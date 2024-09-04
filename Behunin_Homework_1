@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Behunin_Homework_1</title>
+</head>
+
+<body>
+ClS and GUI are simply two different ways to write GitHub code. The main difference between the command line interface (CLI) and the graphical user interface (GUI) in GitHub 
+is that the CLI uses text-based commands, while the GUI uses visual elements. GitHub Desktop simplifies the interaction with GitHub repositories through visualization tasks 
+and elements that affect the HTML. With GitHub Desktop, it's much easier to manage a large number of files, cutting down on the time it usually takes to input all of that stuff
+into GitHub on the website. In contrast, the CLI allows users to access repositories using text-based commands, which is seen as a more flexible and direct chain for some, but 
+the learning curve is much steeper. The desktop version is supposed to be the most user-friendly. Users won't need to memorize git commands, and this version provides the repository's
+stats and a visual representation of the history.  I have taken a course on writing HTML with CSS. 
+</body>
+
+</html>
+
+!sources> 
+
+Acharya, Vishwas. "GitHub Desktop vs. Command Line: Choose the Right Tool for You!"
+Medium, 22 June 2023,
+Medium.com/@vishwasacharya/github-desktop-vs-command-line-choose-the-right-tool-for-you-feb58c3f0e30#.`.text=ln%20contrast%20to%20GitHub%20Desktop's,way%20to%20perform%git%20operation.
+Accessed 04 Sept. 2024
