@@ -1,1 +1,115 @@
+ //Title Behunin-WK-12 
+// NAME DJANGO BEHUNIN
+// PROFESSOR CASSENS
+// 11-18-24
 
+// Variables
+let player;
+let obstacles = [];
+let exit;
+
+// function Setup
+function setup() {
+  createCanvas(800, 600);
+  player = createPlayer(width / 2, height / 2);
+  createObstacles(2);
+  exit = createExit();
+}
+
+// Player Create
+function createPlayer(x, y) {
+  return { x, y, size: 30, speed: 5 };
+}
+
+// Player Draw
+function drawPlayer(player) {
+  fill(0, 255, 0);
+  ellipse(player.x, player.y, player.size);
+}
+
+// Player Movement
+function movePlayer(player) {
+  if (keyIsDown(LEFT_ARROW)) player.x -= player.speed;
+  if (keyIsDown(RIGHT_ARROW)) player.x += player.speed;
+  if (keyIsDown(UP_ARROW)) player.y -= player.speed;
+  if (keyIsDown(DOWN_ARROW)) player.y += player.speed;
+}
+
+// Obstacles Create
+function createObstacles(num) {
+  for (let i = 0; i < num; i++) {
+    obstacles.push({
+      x: random(width),
+      y: random(height),
+      size: random(20, 50),
+      color: color(random(255), random(255), random(255)),
+      speedX: random(-2, 2),
+      speedY: random(-2, 2),
+    });
+  }
+}
+
+// Obstacles DrawandMove
+function drawAndMoveObstacles(obstacles) {
+  for (let obs of obstacles) {
+    fill(obs.color);
+    ellipse(obs.x, obs.y, obs.size);
+    obs.x += obs.speedX;
+    obs.y += obs.speedY;
+
+    // Wrap around if out of bounds
+    if (obs.x > width) obs.x = 0;
+    if (obs.x < 0) obs.x = width;
+    if (obs.y > height) obs.y = 0;
+    if (obs.y < 0) obs.y = height;
+  }
+}
+
+// Exit Create
+function createExit() {
+  return { x: width - 70, y: height - 70, size: 50 };
+}
+
+// Exit Draw
+function drawExit(exit) {
+  fill(255, 0, 0);
+  rect(exit.x, exit.y, exit.size, exit.size);
+}
+
+// Mouse Press Obstacle
+function drawOnMousePress() {
+  if (mouseIsPressed) {
+    fill(0, 0, 255, 150);
+    ellipse(mouseX, mouseY, random(15, 25));
+  }
+}
+
+// Display "You win" message
+function displayWinMessage() {
+  fill(50, 100, 255);
+  textSize(40);
+  textAlign(CENTER, CENTER);
+  text("You Win!", width / 2 + random(-2, 2), height / 2 + random(-2, 2));
+}
+
+// Main draw function
+function draw() {
+  background(200, 220, 200);
+
+  drawExit(exit);
+  drawPlayer(player);
+  movePlayer(player);
+  drawAndMoveObstacles(obstacles);
+  drawOnMousePress();
+
+  // Exit Rules
+  if (
+    player.x > exit.x &&
+    player.x < exit.x + exit.size &&
+    player.y > exit.y &&
+    player.y < exit.y + exit.size
+  ) {
+    displayWinMessage();
+    noLoop();
+  }
+}
