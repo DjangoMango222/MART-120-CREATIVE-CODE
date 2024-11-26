@@ -1,4 +1,4 @@
-/*! p5.js v1.10.0 July 31, 2024 */
+/*! p5.js v1.11.1 October 31, 2024 */
 (function (f) {
   if (typeof exports === 'object' && typeof module !== 'undefined') {
     module.exports = f()
@@ -259,17 +259,34 @@
               'params': [
                 {
                   'name': 'c1',
-                  'description': '<p>interpolate from this color.</p>\n',
+                  'description': '<p>interpolate from this color (any value created by the color() function).</p>\n',
                   'type': 'p5.Color'
                 },
                 {
                   'name': 'c2',
-                  'description': '<p>interpolate to this color.</p>\n',
+                  'description': '<p>interpolate to this color (any value created by the color() function).</p>\n',
                   'type': 'p5.Color'
                 },
                 {
                   'name': 'amt',
                   'description': '<p>number between 0 and 1.</p>\n',
+                  'type': 'Number'
+                }
+              ],
+              'class': 'p5',
+              'module': 'Color'
+            },
+            'paletteLerp': {
+              'name': 'paletteLerp',
+              'params': [
+                {
+                  'name': 'colors_stops',
+                  'description': '<p>color stops to interpolate from</p>\n',
+                  'type': '[p5.Color, Number][]'
+                },
+                {
+                  'name': 'amt',
+                  'description': '<p>number to use to interpolate relative to color stops</p>\n',
                   'type': 'Number'
                 }
               ],
@@ -8642,6 +8659,125 @@
               'class': 'p5',
               'module': 'Shape'
             },
+            'createModel': {
+              'name': 'createModel',
+              'class': 'p5',
+              'module': 'Shape',
+              'overloads': [
+                {
+                  'params': [
+                    {
+                      'name': 'modelString',
+                      'description': '<p>String of the object to be loaded</p>\n',
+                      'type': 'String'
+                    },
+                    {
+                      'name': 'fileType',
+                      'description': '<p>The file extension of the model\n                                     (<code>.stl</code>, <code>.obj</code>).</p>\n',
+                      'type': 'String',
+                      'optional': true
+                    },
+                    {
+                      'name': 'normalize',
+                      'description': '<p>If true, scale the model to a\n                                     standardized size when loading</p>\n',
+                      'type': 'Boolean'
+                    },
+                    {
+                      'name': 'successCallback',
+                      'description': '<p>Function to be called\n                                    once the model is loaded. Will be passed\n                                    the 3D model object.</p>\n',
+                      'type': 'function(p5.Geometry)',
+                      'optional': true
+                    },
+                    {
+                      'name': 'failureCallback',
+                      'description': '<p>called with event error if\n                                        the model fails to load.</p>\n',
+                      'type': 'Function(Event)',
+                      'optional': true
+                    }
+                  ]
+                },
+                {
+                  'params': [
+                    {
+                      'name': 'modelString',
+                      'description': '',
+                      'type': 'String'
+                    },
+                    {
+                      'name': 'fileType',
+                      'description': '',
+                      'type': 'String',
+                      'optional': true
+                    },
+                    {
+                      'name': 'successCallback',
+                      'description': '',
+                      'type': 'function(p5.Geometry)',
+                      'optional': true
+                    },
+                    {
+                      'name': 'failureCallback',
+                      'description': '',
+                      'type': 'Function(Event)',
+                      'optional': true
+                    }
+                  ]
+                },
+                {
+                  'params': [
+                    {
+                      'name': 'modelString',
+                      'description': '',
+                      'type': 'String'
+                    },
+                    {
+                      'name': 'fileType',
+                      'description': '',
+                      'type': 'String',
+                      'optional': true
+                    },
+                    {
+                      'name': 'options',
+                      'description': '',
+                      'type': 'Object',
+                      'optional': true,
+                      'props': [
+                        {
+                          'name': 'successCallback',
+                          'description': '',
+                          'type': 'function(p5.Geometry)',
+                          'optional': true
+                        },
+                        {
+                          'name': 'failureCallback',
+                          'description': '',
+                          'type': 'Function(Event)',
+                          'optional': true
+                        },
+                        {
+                          'name': 'normalize',
+                          'description': '',
+                          'type': 'Boolean',
+                          'optional': true
+                        },
+                        {
+                          'name': 'flipU',
+                          'description': '',
+                          'type': 'Boolean',
+                          'optional': true
+                        },
+                        {
+                          'name': 'flipV',
+                          'description': '',
+                          'type': 'Boolean',
+                          'optional': true
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
             'loadShader': {
               'name': 'loadShader',
               'params': [
@@ -8683,6 +8819,12 @@
                   'name': 'fragSrc',
                   'description': '<p>source code for the fragment shader.</p>\n',
                   'type': 'String'
+                },
+                {
+                  'name': 'options',
+                  'description': '<p>An optional object describing how this shader can\nbe augmented with hooks. It can include:</p>\n<ul>\n<li><code>vertex</code>: An object describing the available vertex shader hooks.</li>\n<li><code>fragment</code>: An object describing the available frament shader hooks.</li>\n</ul>\n',
+                  'type': 'Object',
+                  'optional': true
                 }
               ],
               'class': 'p5',
@@ -8709,6 +8851,26 @@
                   'type': 'p5.Shader'
                 }
               ],
+              'class': 'p5',
+              'module': '3D'
+            },
+            'baseMaterialShader': {
+              'name': 'baseMaterialShader',
+              'class': 'p5',
+              'module': '3D'
+            },
+            'baseNormalShader': {
+              'name': 'baseNormalShader',
+              'class': 'p5',
+              'module': '3D'
+            },
+            'baseColorShader': {
+              'name': 'baseColorShader',
+              'class': 'p5',
+              'module': '3D'
+            },
+            'baseStrokeShader': {
+              'name': 'baseStrokeShader',
               'class': 'p5',
               'module': '3D'
             },
@@ -13454,6 +13616,24 @@
             }
           },
           'p5.Shader': {
+            'inspectHooks': {
+              'name': 'inspectHooks',
+              'class': 'p5.Shader',
+              'module': '3D'
+            },
+            'modify': {
+              'name': 'modify',
+              'params': [
+                {
+                  'name': 'hooks',
+                  'description': '<p>The hooks in the shader to replace.</p>\n',
+                  'type': 'Object',
+                  'optional': true
+                }
+              ],
+              'class': 'p5.Shader',
+              'module': '3D'
+            },
             'copyToContext': {
               'name': 'copyToContext',
               'params': [
@@ -55590,15 +55770,15 @@
  * values. 0 is equal to the first color, 0.1 is very near the first color,
  * 0.5 is halfway between the two colors, and so on. Negative numbers are set
  * to 0. Numbers greater than 1 are set to 1. This differs from the behavior of
- * <a href="#/lerp">lerp</a>. It's necessary because numbers outside of the
+ * <a href="#/p5/lerp">lerp</a>. It's necessary because numbers outside of the
  * interval [0, 1] will produce strange and unexpected colors.
  *
  * The way that colors are interpolated depends on the current
- * <a href="#/colorMode">colorMode()</a>.
+ * <a href="#/p5/colorMode">colorMode()</a>.
  *
  * @method lerpColor
- * @param  {p5.Color} c1  interpolate from this color.
- * @param  {p5.Color} c2  interpolate to this color.
+ * @param  {p5.Color} c1  interpolate from this color (any value created by the color() function).
+ * @param  {p5.Color} c2  interpolate to this color (any value created by the color() function).
  * @param  {Number}   amt number between 0 and 1.
  * @return {p5.Color}     interpolated color.
  *
@@ -55644,6 +55824,12 @@
  */
         _main.default.prototype.lerpColor = function (c1, c2, amt) {
           _main.default._validateParameters('lerpColor', arguments);
+          if (!(c1 instanceof _main.default.Color)) {
+            c1 = color(c1);
+          }
+          if (!(c2 instanceof _main.default.Color)) {
+            c2 = color(c2);
+          }
           var mode = this._colorMode;
           var maxes = this._colorMaxes;
           var l0,
@@ -55708,6 +55894,53 @@
           l2 *= maxes[mode][2];
           l3 *= maxes[mode][3];
           return this.color(l0, l1, l2, l3);
+        };
+        /**
+ * Blends multiple colors to find a color between them.
+ *
+ * The `amt` parameter specifies the amount to interpolate between the color
+ * stops which are colors at each `amt` value "location" with `amt` values
+ * that are between 2 color stops interpolating between them based on its relative
+ * distance to both.
+ *
+ * The way that colors are interpolated depends on the current
+ * <a href="#/colorMode">colorMode()</a>.
+ *
+ * @method paletteLerp
+ * @param  {[p5.Color, Number][]} colors_stops color stops to interpolate from
+ * @param  {Number} amt number to use to interpolate relative to color stops
+ * @return {p5.Color} interpolated color.
+ *
+ * @example
+ * <div>
+ * <code>
+ * function setup() {
+ *   createCanvas(400, 400);
+ * }
+ *
+ * function draw() {
+ *   // The background goes from white to red to green to blue fill
+ *   background(paletteLerp([
+ *     ['white', 0],
+ *     ['red', 0.05],
+ *     ['green', 0.25],
+ *     ['blue', 1]
+ *   ], millis() / 10000 % 1));
+ * }
+ * </code>
+ * </div>
+ */
+        _main.default.prototype.paletteLerp = function (color_stops, amt) {
+          var first_color_stop = color_stops[0];
+          if (amt < first_color_stop[1]) return this.color(first_color_stop[0]);
+          for (var i = 1; i < color_stops.length; i++) {
+            var color_stop = color_stops[i];
+            if (amt < color_stop[1]) {
+              var prev_color_stop = color_stops[i - 1];
+              return this.lerpColor(this.color(prev_color_stop[0]), this.color(color_stop[0]), (amt - prev_color_stop[1]) / (color_stop[1] - prev_color_stop[1]));
+            }
+          }
+          return this.color(color_stops[color_stops.length - 1][0]);
         };
         /**
  * Gets the lightness value of a color.
@@ -56635,6 +56868,7 @@
    * 'rgb%' 'hsb%' 'hsl%' 'rgba%' 'hsba%' and 'hsla%' format as percentages.
    * @return {String} the formatted string.
    *
+   * @example
    * <div>
    * <code>
    * function setup() {
@@ -59076,7 +59310,7 @@
  * @property {String} VERSION
  * @final
  */
-        var VERSION = '1.10.0';
+        var VERSION = '1.11.1';
         // GRAPHICS RENDERER
         /**
  * The default, two-dimensional renderer.
@@ -59090,17 +59324,17 @@
  *
  * `WEBGL` differs from the default <a href="/reference/#/p5/P2D">`P2D`</a> renderer in the following ways:
  *
- * - **Coordinate System** - When drawing in `WEBGL` mode, the origin point (0,0,0) is located at the center of the screen, not the top-left corner. See <a href="https://p5js.org/learn/getting-started-in-webgl-coords-and-transform.html">the learn page about coordinates and transformations</a>.
- * - **3D Shapes** - `WEBGL` mode can be used to draw 3-dimensional shapes like <a href="/reference/#/p5/box">box()</a>, <a href="/reference/#/p5/sphere">sphere()</a>, <a href="/reference/#/p5/cone">cone()</a>, and <a href="/#Shape3D%20Primitives">more</a>. See <a href="https://p5js.org/learn/getting-started-in-webgl-custom-geometry.html">the learn page about custom geometry</a> to make more complex objects.
+ * - **Coordinate System** - When drawing in `WEBGL` mode, the origin point (0,0,0) is located at the center of the screen, not the top-left corner. See <a href="https://p5js.org/tutorials/coordinates-and-transformations/">the tutorial page about coordinates and transformations</a>.
+ * - **3D Shapes** - `WEBGL` mode can be used to draw 3-dimensional shapes like <a href="#/p5/box">box()</a>, <a href="#/p5/sphere">sphere()</a>, <a href="#/p5/cone">cone()</a>, and <a href="https://p5js.org/reference/#3D%20Primitives">more</a>. See <a href="https://p5js.org/tutorials/custom-geometry/">the tutorial page about custom geometry</a> to make more complex objects.
  * - **Shape Detail** - When drawing in `WEBGL` mode, you can specify how smooth curves should be drawn by using a `detail` parameter. See <a href="https://github.com/processing/p5.js/wiki/Getting-started-with-WebGL-in-p5#3d-primitives-shapes">the wiki section about shapes</a> for a more information and an example.
  * - **Textures** - A texture is like a skin that wraps onto a shape. See <a href="https://github.com/processing/p5.js/wiki/Getting-started-with-WebGL-in-p5#textures">the wiki section about textures</a> for examples of mapping images onto surfaces with textures.
- * - **Materials and Lighting** - `WEBGL` offers different types of lights like <a href="/reference/#/p5/ambientLight">ambientLight()</a> to place around a scene. Materials like <a href="/reference/#/p5/specularMaterial">specularMaterial()</a> reflect the lighting to convey shape and depth. See <a href="https://p5js.org/learn/getting-started-in-webgl-appearance.html">the learn page for styling and appearance</a> to experiment with different combinations.
- * - **Camera** - The viewport of a `WEBGL` sketch can be adjusted by changing camera attributes. See <a href="https://p5js.org/learn/getting-started-in-webgl-appearance.html#camera">the learn page section about cameras</a> for an explanation of camera controls.
- * - **Text** - `WEBGL` requires opentype/truetype font files to be preloaded using <a href="/reference/#/p5/loadFont">loadFont()</a>. See <a href="https://github.com/processing/p5.js/wiki/Getting-started-with-WebGL-in-p5#text">the wiki section about text</a> for details, along with a workaround.
- * - **Shaders** - Shaders are hardware accelerated programs that can be used for a variety of effects and graphics. See the <a href="https://p5js.org/learn/getting-started-in-webgl-shaders.html">introduction to shaders</a> to get started with shaders in p5.js.
+ * - **Materials and Lighting** - `WEBGL` offers different types of lights like <a href="#/p5/ambientLight">ambientLight()</a> to place around a scene. Materials like <a href="#/p5/specularMaterial">specularMaterial()</a> reflect the lighting to convey shape and depth. See <a href="https://p5js.org/tutorials/lights-camera-materials/">the tutorial page for styling and appearance</a> to experiment with different combinations.
+ * - **Camera** - The viewport of a `WEBGL` sketch can be adjusted by changing camera attributes. See <a href="https://p5js.org/tutorials/lights-camera-materials#camera-and-view">the tutorial page section about cameras</a> for an explanation of camera controls.
+ * - **Text** - `WEBGL` requires opentype/truetype font files to be preloaded using <a href="#/p5/loadFont">loadFont()</a>. See <a href="https://github.com/processing/p5.js/wiki/Getting-started-with-WebGL-in-p5#text">the wiki section about text</a> for details, along with a workaround.
+ * - **Shaders** - Shaders are hardware accelerated programs that can be used for a variety of effects and graphics. See the <a href="https://p5js.org/tutorials/intro-to-shaders/">introduction to shaders</a> to get started with shaders in p5.js.
  * - **Graphics Acceleration** - `WEBGL` mode uses the graphics card instead of the CPU, so it may help boost the performance of your sketch (example: drawing more shapes on the screen at once).
  *
- * To learn more about WEBGL mode, check out <a href="https://p5js.org/learn/#:~:text=Getting%20Started%20in%20WebGL">all the interactive WEBGL tutorials</a> in the "Learn" section of this website, or read the wiki article <a href="https://github.com/processing/p5.js/wiki/Getting-started-with-WebGL-in-p5">"Getting started with WebGL in p5"</a>.
+ * To learn more about WEBGL mode, check out <a href="https://p5js.org/tutorials/#webgl">all the interactive WEBGL tutorials</a> in the "Tutorials" section of this website, or read the wiki article <a href="https://github.com/processing/p5.js/wiki/Getting-started-with-WebGL-in-p5">"Getting started with WebGL in p5"</a>.
  *
  * @property {String} WEBGL
  * @final
@@ -60522,8 +60756,8 @@
  * @method print
  * @param {Any} contents content to print to the console.
  * @example
- * <div>
- * <code class="norender">
+ * <div class="norender">
+ * <code>
  * function setup() {
  *   // Prints "hello, world" to the console.
  *   print('hello, world');
@@ -60531,8 +60765,8 @@
  * </code>
  * </div>
  *
- * <div>
- * <code class="norender">
+ * <div class="norender">
+ * <code>
  * function setup() {
  *   let name = 'ada';
  *   // Prints "hello, ada" to the console.
@@ -61607,7 +61841,7 @@
  *   textWrap(CHAR);
  *   text(url, 0, 40, 100);
  *
- *   describe('The URL "https://p5js.org/reference/#/p5/getURL" written in black on a gray background.');
+ *   describe('The URL "https://p5js.org/reference/p5/getURL" written in black on a gray background.');
  * }
  * </code>
  * </div>
@@ -62116,7 +62350,7 @@
               var referenceSection = methodParts.length > 1 ? ''.concat(methodParts[0], '.').concat(methodParts[1]) : 'p5';
               var funcName = methodParts.length === 1 ? func : methodParts.slice(2).join('/');
               //Whenever func having p5.[Class] is encountered, we need to have the error link as mentioned below else different link
-              funcName.startsWith('p5.') ? msgWithReference = ''.concat(message, ' (http://p5js.org/reference/#/').concat(referenceSection, '.').concat(funcName, ')') : msgWithReference = ''.concat(message, ' (http://p5js.org/reference/#/').concat(referenceSection, '/').concat(funcName, ')');
+              funcName.startsWith('p5.') ? msgWithReference = ''.concat(message, ' (http://p5js.org/reference/').concat(referenceSection, '.').concat(funcName, ')') : msgWithReference = ''.concat(message, ' (http://p5js.org/reference/').concat(referenceSection, '/').concat(funcName, ')');
             }
             return msgWithReference;
           };
@@ -62683,7 +62917,7 @@
                         }                        // if the flow gets this far, this is likely not a misspelling
                         // of a p5 property/function
 
-                        var _url5 = 'https://p5js.org/examples/data-variable-scope.html';
+                        var _url5 = 'https://p5js.org/tutorials/variables-and-change/';
                         _main.default._friendlyError((0, _internationalization.translator) ('fes.globalErrors.reference.notDefined', {
                           url: _url5,
                           symbol: _errSym,
@@ -63303,7 +63537,7 @@
               //if the element in variableArray is a  p5.js constant then the below condidion
               //will be true, hence a match is found
               if (constants[variableArray[i]] !== undefined) {
-                var url = 'https://p5js.org/reference/#/p5/'.concat(variableArray[i]);
+                var url = 'https://p5js.org/reference/p5/'.concat(variableArray[i]);
                 //display the FES message if a match is found
                 _main.default._friendlyError((0, _internationalization.translator) ('fes.sketchReaderErrors.reservedConst', {
                   url: url,
@@ -63332,7 +63566,7 @@
                 for (; j < keyArray.length; j++) {
                   if (p5Constructors[keyArray[j]].prototype[variableArray[_i2]] !== undefined) {
                     //if a p5.js function is used ie it is in the funcs array
-                    var _url = 'https://p5js.org/reference/#/p5/'.concat(variableArray[_i2]);
+                    var _url = 'https://p5js.org/reference/p5/'.concat(variableArray[_i2]);
                     _main.default._friendlyError((0, _internationalization.translator) ('fes.sketchReaderErrors.reservedFunc', {
                       url: _url,
                       symbol: variableArray[_i2]
@@ -63495,7 +63729,7 @@
               //then report.
 
               if (constants[tempArray[i]] !== element) {
-                var url = 'https://p5js.org/reference/#/p5/'.concat(tempArray[i]);
+                var url = 'https://p5js.org/reference/p5/'.concat(tempArray[i]);
                 _main.default._friendlyError((0, _internationalization.translator) ('fes.sketchReaderErrors.reservedConst', {
                   url: url,
                   symbol: tempArray[i]
@@ -63547,7 +63781,7 @@
                   if (p5Constructors[keyArray[k]].prototype[functionArray[_i5]] === undefined);
                    else {
                     if (p5Constructors[keyArray[k]].prototype[functionArray[_i5]] !== element) {
-                      var _url2 = 'https://p5js.org/reference/#/p5/'.concat(functionArray[_i5]);
+                      var _url2 = 'https://p5js.org/reference/p5/'.concat(functionArray[_i5]);
                       _main.default._friendlyError((0, _internationalization.translator) ('fes.sketchReaderErrors.reservedFunc', {
                         url: _url2,
                         symbol: functionArray[_i5]
@@ -63591,7 +63825,7 @@
             codeToLines(code);
           };
           _main.default._fesCodeReader = fesCodeReader;
-          window.addEventListener('load', _main.default._fesCodeReader);
+          window.addEventListener('p5Ready', _main.default._fesCodeReader);
         }
         var _default = _main.default;
         exports.default = _default;
@@ -64966,37 +65200,57 @@
         }        /**
  * @requires constants
  */
+        /*
+  This function normalizes the first four arguments given to rect, ellipse and arc
+  according to the mode.
+  It returns a 'bounding box' object containing the coordinates of the upper left corner (x, y),
+  and width and height (w, h). The returned width and height are always positive.
+*/
 
         function modeAdjust(a, b, c, d, mode) {
+          var bbox;
           if (mode === constants.CORNER) {
-            return {
+            // CORNER mode already corresponds to a bounding box (top-left corner, width, height)
+            bbox = {
               x: a,
               y: b,
               w: c,
               h: d
             };
           } else if (mode === constants.CORNERS) {
-            return {
-              x: a,
-              y: b,
+            // CORNERS mode uses two opposite corners, in any configuration.
+            // Make sure to get the top left corner by using the minimum of the x and y coordniates.
+            bbox = {
+              x: Math.min(a, c),
+              y: Math.min(b, d),
               w: c - a,
               h: d - b
             };
           } else if (mode === constants.RADIUS) {
-            return {
-              x: a - c,
-              y: b - d,
+            // RADIUS mode uses the center point and half the width and height.
+            // c (half width) and d (half height) could be negative, so use the absolute value
+            // in calculating the top left corner (x, y).
+            bbox = {
+              x: a - Math.abs(c),
+              y: b - Math.abs(d),
               w: 2 * c,
               h: 2 * d
             };
           } else if (mode === constants.CENTER) {
-            return {
-              x: a - c * 0.5,
-              y: b - d * 0.5,
+            // CENTER mode uses the center point, width and height.
+            // c (width) and d (height) could be negative, so use the absolute value
+            // in calculating the top-left corner (x,y).
+            bbox = {
+              x: a - Math.abs(c * 0.5),
+              y: b - Math.abs(d * 0.5),
               w: c,
               h: d
             };
-          }
+          }          // p5 supports negative width and heights for rectangles, ellipses and arcs
+
+          bbox.w = Math.abs(bbox.w);
+          bbox.h = Math.abs(bbox.h);
+          return bbox;
         }
         var _default = {
           modeAdjust: modeAdjust
@@ -65058,6 +65312,8 @@
             return;
           }
           if (!window.mocha) {
+            var p5ReadyEvent = new Event('p5Ready');
+            window.dispatchEvent(p5ReadyEvent);
             // If there is a setup or draw function on the window
             // then instantiate p5 in "global" mode
             if ((window.setup && typeof window.setup === 'function' || window.draw && typeof window.draw === 'function') && !_main.default.instance) {
@@ -69218,12 +69474,10 @@
         _dereq_('core-js/modules/es.symbol.iterator');
         _dereq_('core-js/modules/es.array.concat');
         _dereq_('core-js/modules/es.array.fill');
-        _dereq_('core-js/modules/es.array.for-each');
         _dereq_('core-js/modules/es.array.iterator');
         _dereq_('core-js/modules/es.array.join');
         _dereq_('core-js/modules/es.array.slice');
         _dereq_('core-js/modules/es.function.name');
-        _dereq_('core-js/modules/es.number.to-fixed');
         _dereq_('core-js/modules/es.object.get-own-property-descriptor');
         _dereq_('core-js/modules/es.object.get-prototype-of');
         _dereq_('core-js/modules/es.object.to-string');
@@ -69260,11 +69514,9 @@
         }
         _dereq_('core-js/modules/es.array.concat');
         _dereq_('core-js/modules/es.array.fill');
-        _dereq_('core-js/modules/es.array.for-each');
         _dereq_('core-js/modules/es.array.join');
         _dereq_('core-js/modules/es.array.slice');
         _dereq_('core-js/modules/es.function.name');
-        _dereq_('core-js/modules/es.number.to-fixed');
         _dereq_('core-js/modules/es.object.get-prototype-of');
         _dereq_('core-js/modules/es.object.to-string');
         _dereq_('core-js/modules/es.regexp.exec');
@@ -69872,45 +70124,11 @@
                 if (this.gifProperties) {
                   this.gifProperties.frames[this.gifProperties.displayIndex].image = pixelsState.imageData;
                 }
-                this.drawingContext.putImageData(pixelsState.imageData, x, y, 0, 0, w, h);
+                this.drawingContext.putImageData(pixelsState.imageData, 0, 0, x, y, w, h);
               } //////////////////////////////////////////////
               // SHAPE | 2D Primitives
               //////////////////////////////////////////////
-              /**
-    * Generate a cubic Bezier representing an arc on the unit circle of total
-    * angle `size` radians, beginning `start` radians above the x-axis. Up to
-    * four of these curves are combined to make a full arc.
-    *
-    * See ecridge.com/bezier.pdf for an explanation of the method.
-    */
-
-            },
-            {
-              key: '_acuteArcToBezier',
-              value: function _acuteArcToBezier(start, size) {
-                // Evaluate constants.
-                var alpha = size / 2,
-                cos_alpha = Math.cos(alpha),
-                sin_alpha = Math.sin(alpha),
-                cot_alpha = 1 / Math.tan(alpha),
-                // This is how far the arc needs to be rotated.
-                phi = start + alpha,
-                cos_phi = Math.cos(phi),
-                sin_phi = Math.sin(phi),
-                lambda = (4 - cos_alpha) / 3,
-                mu = sin_alpha + (cos_alpha - lambda) * cot_alpha;
-                // Return rotated waypoints.
-                return {
-                  ax: Math.cos(start).toFixed(7),
-                  ay: Math.sin(start).toFixed(7),
-                  bx: (lambda * cos_phi + mu * sin_phi).toFixed(7),
-                  by: (lambda * sin_phi - mu * cos_phi).toFixed(7),
-                  cx: (lambda * cos_phi - mu * sin_phi).toFixed(7),
-                  cy: (lambda * sin_phi + mu * cos_phi).toFixed(7),
-                  dx: Math.cos(start + size).toFixed(7),
-                  dy: Math.sin(start + size).toFixed(7)
-                };
-              }              /*
+              /*
     * This function requires that:
     *
     *   0 <= start < TWO_PI
@@ -69923,52 +70141,33 @@
               key: 'arc',
               value: function arc(x, y, w, h, start, stop, mode) {
                 var ctx = this.drawingContext;
-                var rx = w / 2;
-                var ry = h / 2;
-                var epsilon = 0.00001; // Smallest visible angle on displays up to 4K.
-                var arcToDraw = 0;
-                var curves = [
-                ];
-                x += rx;
-                y += ry;
-                // Create curves
-                while (stop - start >= epsilon) {
-                  arcToDraw = Math.min(stop - start, constants.HALF_PI);
-                  curves.push(this._acuteArcToBezier(start, arcToDraw));
-                  start += arcToDraw;
-                }                // Fill curves
-
+                var centerX = x + w / 2,
+                centerY = y + h / 2,
+                radiusX = w / 2,
+                radiusY = h / 2;
+                // Determines whether to add a line to the center, which should be done
+                // when the mode is PIE or default; as well as when the start and end
+                // angles do not form a full circle.
+                var createPieSlice = !(mode === constants.CHORD || mode === constants.OPEN || (stop - start) % constants.TWO_PI === 0);
+                // Fill
                 if (this._doFill) {
                   if (!this._clipping) ctx.beginPath();
-                  curves.forEach(function (curve, index) {
-                    if (index === 0) {
-                      ctx.moveTo(x + curve.ax * rx, y + curve.ay * ry);
-                    }                    /* eslint-disable indent */
-
-                    ctx.bezierCurveTo(x + curve.bx * rx, y + curve.by * ry, x + curve.cx * rx, y + curve.cy * ry, x + curve.dx * rx, y + curve.dy * ry);
-                    /* eslint-enable indent */
-                  });
-                  if (mode === constants.PIE || mode == null) {
-                    ctx.lineTo(x, y);
-                  }
+                  ctx.ellipse(centerX, centerY, radiusX, radiusY, 0, start, stop);
+                  if (createPieSlice) ctx.lineTo(centerX, centerY);
                   ctx.closePath();
                   if (!this._clipping) ctx.fill();
-                }                // Stroke curves
+                }                // Stroke
 
                 if (this._doStroke) {
                   if (!this._clipping) ctx.beginPath();
-                  curves.forEach(function (curve, index) {
-                    if (index === 0) {
-                      ctx.moveTo(x + curve.ax * rx, y + curve.ay * ry);
-                    }                    /* eslint-disable indent */
-
-                    ctx.bezierCurveTo(x + curve.bx * rx, y + curve.by * ry, x + curve.cx * rx, y + curve.cy * ry, x + curve.dx * rx, y + curve.dy * ry);
-                    /* eslint-enable indent */
-                  });
-                  if (mode === constants.PIE) {
-                    ctx.lineTo(x, y);
-                    ctx.closePath();
-                  } else if (mode === constants.CHORD) {
+                  ctx.ellipse(centerX, centerY, radiusX, radiusY, 0, start, stop);
+                  if (mode === constants.PIE && createPieSlice) {
+                    // In PIE mode, stroke is added to the center and back to path,
+                    // unless the pie forms a complete ellipse (see: createPieSlice)
+                    ctx.lineTo(centerX, centerY);
+                  }
+                  if (mode === constants.PIE || mode === constants.CHORD) {
+                    // Stroke connects back to path begin for both PIE and CHORD
                     ctx.closePath();
                   }
                   if (!this._clipping) ctx.stroke();
@@ -70001,6 +70200,7 @@
                 radiusY = h / 2;
                 if (!this._clipping) ctx.beginPath();
                 ctx.ellipse(centerX, centerY, radiusX, radiusY, 0, 0, 2 * Math.PI);
+                ctx.closePath();
                 if (!this._clipping && doFill) {
                   ctx.fill();
                 }
@@ -70146,15 +70346,13 @@
                   }
                   if (absH < 2 * bl) {
                     bl = hh;
-                  }                  // Draw shape
-
-                  if (!this._clipping) ctx.beginPath();
-                  ctx.moveTo(x + tl, y);
-                  ctx.arcTo(x + w, y, x + w, y + h, tr);
-                  ctx.arcTo(x + w, y + h, x, y + h, br);
-                  ctx.arcTo(x, y + h, x, y, bl);
-                  ctx.arcTo(x, y, x + w, y, tl);
-                  ctx.closePath();
+                  }
+                  ctx.roundRect(x, y, w, h, [
+                    tl,
+                    tr,
+                    br,
+                    bl
+                  ]);
                 }
                 if (!this._clipping && this._doFill) {
                   ctx.fill();
@@ -70715,12 +70913,10 @@
         './p5.Renderer': 309,
         'core-js/modules/es.array.concat': 171,
         'core-js/modules/es.array.fill': 174,
-        'core-js/modules/es.array.for-each': 179,
         'core-js/modules/es.array.iterator': 183,
         'core-js/modules/es.array.join': 184,
         'core-js/modules/es.array.slice': 187,
         'core-js/modules/es.function.name': 192,
-        'core-js/modules/es.number.to-fixed': 200,
         'core-js/modules/es.object.get-own-property-descriptor': 204,
         'core-js/modules/es.object.get-prototype-of': 206,
         'core-js/modules/es.object.to-string': 208,
@@ -71074,7 +71270,7 @@
  * function setup() {
  *   createCanvas(100, 100);
  *
- *   background(200);
+ *   background(180);
  *
  *   // Draw a diagonal line.
  *   line(0, 0, width, height);
@@ -71089,7 +71285,7 @@
  * function setup() {
  *   createCanvas(100, 50);
  *
- *   background(200);
+ *   background(180);
  *
  *   // Draw a diagonal line.
  *   line(0, 0, width, height);
@@ -71106,7 +71302,7 @@
  * function setup() {
  *   createCanvas(100, 100, WEBGL);
  *
- *   background(200);
+ *   background(180);
  *
  *   // Draw a diagonal line.
  *   line(-width / 2, -height / 2, width / 2, height / 2);
@@ -71125,7 +71321,7 @@
  *   // Position the canvas.
  *   cnv.position(10, 20);
  *
- *   background(200);
+ *   background(180);
  *
  *   // Draw a diagonal line.
  *   line(0, 0, width, height);
@@ -71279,7 +71475,7 @@
  * }
  *
  * function draw() {
- *   background(200);
+ *   background(180);
  *
  *   // Draw a circle at the center of the canvas.
  *   circle(width / 2, height / 2, 20);
@@ -71303,7 +71499,7 @@
  * }
  *
  * function draw() {
- *   background(200);
+ *   background(180);
  *
  *   // Draw a circle at the center of the canvas.
  *   circle(width / 2, height / 2, 20);
@@ -71428,7 +71624,7 @@
  * function setup() {
  *   createCanvas(100, 100);
  *
- *   background(200);
+ *   background(180);
  *
  *   // Create the p5.Graphics object.
  *   pg = createGraphics(50, 50);
@@ -71458,7 +71654,7 @@
  * function setup() {
  *   createCanvas(100, 100);
  *
- *   background(200);
+ *   background(180);
  *
  *   // Create the p5.Graphics object in WebGL mode.
  *   pg = createGraphics(50, 50, WEBGL);
@@ -71781,7 +71977,7 @@
  * function setup() {
  *   createCanvas(100, 100);
  *
- *   background(200);
+ *   background(180);
  *
  *   // Use the default blend mode.
  *   blendMode(BLEND);
@@ -71789,15 +71985,15 @@
  *   // Style the lines.
  *   strokeWeight(30);
  *
- *   // Draw the blue line.
- *   stroke('blue');
+ *   // Draw the first line.
+ *   stroke('#1a85ff');
  *   line(25, 25, 75, 75);
  *
- *   // Draw the red line.
- *   stroke('red');
+ *   // Draw the second line.
+ *   stroke('#d41159');
  *   line(75, 25, 25, 75);
  *
- *   describe('A blue line and a red line form an X on a gray background.');
+ *   describe('A Sky Blue line and a Deep Rose line form an X on a gray background.');
  * }
  * </code>
  * </div>
@@ -71807,7 +72003,33 @@
  * function setup() {
  *   createCanvas(100, 100);
  *
- *   background(200);
+ *   background(180);
+ *
+ *   // Set the blend mode.
+ *   blendMode(HARD_LIGHT);
+ *
+ *   // Style the lines.
+ *   strokeWeight(30);
+ *
+ *   // Draw the first line.
+ *   stroke('#1a85ff');
+ *   line(25, 25, 75, 75);
+ *
+ *   // Draw the second line.
+ *   stroke('#d41159');
+ *   line(75, 25, 25, 75);
+ *
+ *   describe('An ocean blue line and a hot pink line form an X on a gray background. The area where they overlap is Magenta purple.');
+ * }
+ * </code>
+ * </div>
+ *
+ * <div>
+ * <code>
+ * function setup() {
+ *   createCanvas(100, 100);
+ *
+ *   background(180);
  *
  *   // Set the blend mode.
  *   blendMode(ADD);
@@ -71815,15 +72037,15 @@
  *   // Style the lines.
  *   strokeWeight(30);
  *
- *   // Draw the blue line.
- *   stroke('blue');
+ *   // Draw the first line.
+ *   stroke('#1a85ff');
  *   line(25, 25, 75, 75);
  *
- *   // Draw the red line.
- *   stroke('red');
+ *   // Draw the second line.
+ *   stroke('#d41159');
  *   line(75, 25, 25, 75);
  *
- *   describe('A faint blue line and a faint red line form an X on a gray background. The area where they overlap is faint magenta.');
+ *   describe('An icy blue line and a light lavender line form an X on a gray background. The area where they overlap is white.');
  * }
  * </code>
  * </div>
@@ -71833,7 +72055,7 @@
  * function setup() {
  *   createCanvas(100, 100);
  *
- *   background(200);
+ *   background(180);
  *
  *   // Set the blend mode.
  *   blendMode(DARKEST);
@@ -71841,15 +72063,15 @@
  *   // Style the lines.
  *   strokeWeight(30);
  *
- *   // Draw the blue line.
- *   stroke('blue');
+ *   // Draw the first line.
+ *   stroke('#1a85ff');
  *   line(25, 25, 75, 75);
  *
- *   // Draw the red line.
- *   stroke('red');
+ *   // Draw the second line.
+ *   stroke('#d41159');
  *   line(75, 25, 25, 75);
  *
- *   describe('A blue line and a red line form an X on a gray background. The area where they overlap is black.');
+ *   describe('A steel blue line and a cranberry line form an X on a gray background. The area where they overlap is deep purple.');
  * }
  * </code>
  * </div>
@@ -71859,7 +72081,33 @@
  * function setup() {
  *   createCanvas(100, 100);
  *
- *   background(200);
+ *   background(180);
+ *
+ *   // Set the blend mode.
+ *   blendMode(BURN);
+ *
+ *   // Style the lines.
+ *   strokeWeight(30);
+ *
+ *   // Draw the first line.
+ *   stroke('#1a85ff');
+ *   line(25, 25, 75, 75);
+ *
+ *   // Draw the second line.
+ *   stroke('#d41159');
+ *   line(75, 25, 25, 75);
+ *
+ *   describe('A cobalt blue line and a burgundy line form an X on a gray background. The area where they overlap is black.');
+ * }
+ * </code>
+ * </div>
+ *
+ * <div>
+ * <code>
+ * function setup() {
+ *   createCanvas(100, 100);
+ *
+ *   background(180);
  *
  *   // Set the blend mode.
  *   blendMode(LIGHTEST);
@@ -71867,15 +72115,15 @@
  *   // Style the lines.
  *   strokeWeight(30);
  *
- *   // Draw the blue line.
- *   stroke('blue');
+ *   // Draw the first line.
+ *   stroke('#1a85ff');
  *   line(25, 25, 75, 75);
  *
- *   // Draw the red line.
- *   stroke('red');
+ *   // Draw the second line.
+ *   stroke('#d41159');
  *   line(75, 25, 25, 75);
  *
- *   describe('A faint blue line and a faint red line form an X on a gray background. The area where they overlap is faint magenta.');
+ *   describe('A pale lavender line and a soft beige line form an X on a gray background. The area where they overlap is pale lilac.');
  * }
  * </code>
  * </div>
@@ -71885,7 +72133,7 @@
  * function setup() {
  *   createCanvas(100, 100);
  *
- *   background(200);
+ *   background(180);
  *
  *   // Set the blend mode.
  *   blendMode(EXCLUSION);
@@ -71893,15 +72141,15 @@
  *   // Style the lines.
  *   strokeWeight(30);
  *
- *   // Draw the blue line.
- *   stroke('blue');
+ *   // Draw the first line.
+ *   stroke('#1a85ff');
  *   line(25, 25, 75, 75);
  *
- *   // Draw the red line.
- *   stroke('red');
+ *   // Draw the second line.
+ *   stroke('#d41159');
  *   line(75, 25, 25, 75);
  *
- *   describe('A yellow line and a cyan line form an X on a gray background. The area where they overlap is green.');
+ *   describe('An earthy brown line and a muted sage line form an X on a gray background. The area where they overlap is sage green.');
  * }
  * </code>
  * </div>
@@ -71911,7 +72159,7 @@
  * function setup() {
  *   createCanvas(100, 100);
  *
- *   background(200);
+ *   background(180);
  *
  *   // Set the blend mode.
  *   blendMode(MULTIPLY);
@@ -71919,15 +72167,15 @@
  *   // Style the lines.
  *   strokeWeight(30);
  *
- *   // Draw the blue line.
- *   stroke('blue');
+ *   // Draw the first line.
+ *   stroke('#1a85ff');
  *   line(25, 25, 75, 75);
  *
- *   // Draw the red line.
- *   stroke('red');
+ *   // Draw the second line.
+ *   stroke('#d41159');
  *   line(75, 25, 25, 75);
  *
- *   describe('A blue line and a red line form an X on a gray background. The area where they overlap is black.');
+ *   describe('A slate blue line and a plum line form an X on a gray background. The area where they overlap is dark Indigo.');
  * }
  * </code>
  * </div>
@@ -71937,7 +72185,7 @@
  * function setup() {
  *   createCanvas(100, 100);
  *
- *   background(200);
+ *   background(180);
  *
  *   // Set the blend mode.
  *   blendMode(SCREEN);
@@ -71945,15 +72193,15 @@
  *   // Style the lines.
  *   strokeWeight(30);
  *
- *   // Draw the blue line.
- *   stroke('blue');
+ *   // Draw the first line.
+ *   stroke('#1a85ff');
  *   line(25, 25, 75, 75);
  *
- *   // Draw the red line.
- *   stroke('red');
+ *   // Draw the second line.
+ *   stroke('#d41159');
  *   line(75, 25, 25, 75);
  *
- *   describe('A faint blue line and a faint red line form an X on a gray background. The area where they overlap is faint magenta.');
+ *   describe('A baby blue line and a peach pink line form an X on a gray background. The area where they overlap is misty lilac.');
  * }
  * </code>
  * </div>
@@ -71963,7 +72211,7 @@
  * function setup() {
  *   createCanvas(100, 100);
  *
- *   background(200);
+ *   background(180);
  *
  *   // Set the blend mode.
  *   blendMode(REPLACE);
@@ -71971,15 +72219,15 @@
  *   // Style the lines.
  *   strokeWeight(30);
  *
- *   // Draw the blue line.
- *   stroke('blue');
+ *   // Draw the first line.
+ *   stroke('#1a85ff');
  *   line(25, 25, 75, 75);
  *
- *   // Draw the red line.
- *   stroke('red');
+ *   // Draw the second line.
+ *   stroke('#d41159');
  *   line(75, 25, 25, 75);
  *
- *   describe('A diagonal red line.');
+ *   describe('A diagonal deep rose line.');
  * }
  * </code>
  * </div>
@@ -71989,7 +72237,7 @@
  * function setup() {
  *   createCanvas(100, 100);
  *
- *   background(200);
+ *   background(180);
  *
  *   // Set the blend mode.
  *   blendMode(REMOVE);
@@ -71997,12 +72245,12 @@
  *   // Style the lines.
  *   strokeWeight(30);
  *
- *   // Draw the blue line.
- *   stroke('blue');
+ *   // Draw the first line.
+ *   stroke('#1a85ff');
  *   line(25, 25, 75, 75);
  *
- *   // Draw the red line.
- *   stroke('red');
+ *   // Draw the second line.
+ *   stroke('#d41159');
  *   line(75, 25, 25, 75);
  *
  *   describe('The silhouette of an X is missing from a gray background.');
@@ -72015,7 +72263,7 @@
  * function setup() {
  *   createCanvas(100, 100);
  *
- *   background(200);
+ *   background(180);
  *
  *   // Set the blend mode.
  *   blendMode(DIFFERENCE);
@@ -72023,15 +72271,15 @@
  *   // Style the lines.
  *   strokeWeight(30);
  *
- *   // Draw the blue line.
- *   stroke('blue');
+ *   // Draw the first line.
+ *   stroke('#1a85ff');
  *   line(25, 25, 75, 75);
  *
- *   // Draw the red line.
- *   stroke('red');
+ *   // Draw the second line.
+ *   stroke('#d41159');
  *   line(75, 25, 25, 75);
  *
- *   describe('A yellow line and a cyan line form an X on a gray background. The area where they overlap is green.');
+ *   describe('A light burgundy line and a forest green line form an X on a gray background. The area where they overlap is dark cocoa.');
  * }
  * </code>
  * </div>
@@ -72041,7 +72289,7 @@
  * function setup() {
  *   createCanvas(100, 100);
  *
- *   background(200);
+ *   background(180);
  *
  *   // Set the blend mode.
  *   blendMode(OVERLAY);
@@ -72049,15 +72297,15 @@
  *   // Style the lines.
  *   strokeWeight(30);
  *
- *   // Draw the blue line.
- *   stroke('blue');
+ *   // Draw the first line.
+ *   stroke('#1a85ff');
  *   line(25, 25, 75, 75);
  *
- *   // Draw the red line.
- *   stroke('red');
+ *   // Draw the second line.
+ *   stroke('#d41159');
  *   line(75, 25, 25, 75);
  *
- *   describe('A faint blue line and a faint red line form an X on a gray background. The area where they overlap is bright magenta.');
+ *   describe('A cornflower blue line and a light rose line form an X on a gray background. The area where they overlap is violet.');
  * }
  * </code>
  * </div>
@@ -72067,33 +72315,7 @@
  * function setup() {
  *   createCanvas(100, 100);
  *
- *   background(200);
- *
- *   // Set the blend mode.
- *   blendMode(HARD_LIGHT);
- *
- *   // Style the lines.
- *   strokeWeight(30);
- *
- *   // Draw the blue line.
- *   stroke('blue');
- *   line(25, 25, 75, 75);
- *
- *   // Draw the red line.
- *   stroke('red');
- *   line(75, 25, 25, 75);
- *
- *   describe('A blue line and a red line form an X on a gray background.');
- * }
- * </code>
- * </div>
- *
- * <div>
- * <code>
- * function setup() {
- *   createCanvas(100, 100);
- *
- *   background(200);
+ *   background(180);
  *
  *   // Set the blend mode.
  *   blendMode(SOFT_LIGHT);
@@ -72101,15 +72323,15 @@
  *   // Style the lines.
  *   strokeWeight(30);
  *
- *   // Draw the blue line.
- *   stroke('blue');
+ *   // Draw the first line.
+ *   stroke('#1a85ff');
  *   line(25, 25, 75, 75);
  *
- *   // Draw the red line.
- *   stroke('red');
+ *   // Draw the second line.
+ *   stroke('#d41159');
  *   line(75, 25, 25, 75);
  *
- *   describe('A faint blue line and a faint red line form an X on a gray background. The area where they overlap is violet.');
+ *   describe('A pale sky line and a rose blush line form an X on a gray background. The area where they overlap is lavender.');
  * }
  * </code>
  * </div>
@@ -72119,7 +72341,7 @@
  * function setup() {
  *   createCanvas(100, 100);
  *
- *   background(200);
+ *   background(180);
  *
  *   // Set the blend mode.
  *   blendMode(DODGE);
@@ -72127,15 +72349,15 @@
  *   // Style the lines.
  *   strokeWeight(30);
  *
- *   // Draw the blue line.
- *   stroke('blue');
+ *   // Draw the first line.
+ *   stroke('#1a85ff');
  *   line(25, 25, 75, 75);
  *
- *   // Draw the red line.
- *   stroke('red');
+ *   // Draw the second line.
+ *   stroke('#d41159');
  *   line(75, 25, 25, 75);
  *
- *   describe('A faint blue line and a faint red line form an X on a gray background. The area where they overlap is faint violet.');
+ *   describe('An aqua blue line and a light pink line form an X on a gray background. The area where they overlap is white.');
  * }
  * </code>
  * </div>
@@ -72143,51 +72365,27 @@
  * <div>
  * <code>
  * function setup() {
- *   createCanvas(100, 100);
+ *   // Create a canvas with WEBGL mode.
+ *   createCanvas(100, 100, WEBGL);
  *
- *   background(200);
+ *   // Set the background color.
+ *   background(180);
  *
- *   // Set the blend mode.
- *   blendMode(BURN);
- *
- *   // Style the lines.
- *   strokeWeight(30);
- *
- *   // Draw the blue line.
- *   stroke('blue');
- *   line(25, 25, 75, 75);
- *
- *   // Draw the red line.
- *   stroke('red');
- *   line(75, 25, 25, 75);
- *
- *   describe('A blue line and a red line form an X on a gray background. The area where they overlap is black.');
- * }
- * </code>
- * </div>
- *
- * <div>
- * <code>
- * function setup() {
- *   createCanvas(100, 100);
- *
- *   background(200);
- *
- *   // Set the blend mode.
+ *   // Set the blend mode to SUBTRACT.
  *   blendMode(SUBTRACT);
  *
  *   // Style the lines.
  *   strokeWeight(30);
  *
  *   // Draw the blue line.
- *   stroke('blue');
- *   line(25, 25, 75, 75);
+ *   stroke('#1a85ff');
+ *   line(-25, -25, 25, 25);
  *
  *   // Draw the red line.
- *   stroke('red');
- *   line(75, 25, 25, 75);
+ *   stroke('#d41159');
+ *   line(25, -25, -25, 25);
  *
- *   describe('A yellow line and a turquoise line form an X on a gray background. The area where they overlap is green.');
+ *   describe('A burnt orange and a sea green line form an X on a gray background. The area where they overlap is forest green.');
  * }
  * </code>
  * </div>
@@ -72219,7 +72417,7 @@
  * function setup() {
  *   createCanvas(100, 100);
  *
- *   background(200);
+ *   background(180);
  *
  *   // Style the circle using shadows.
  *   drawingContext.shadowOffsetX = 5;
@@ -72694,9 +72892,6 @@
           }
           start = this._toRadians(start);
           stop = this._toRadians(stop);
-          // p5 supports negative width and heights for ellipses
-          w = Math.abs(w);
-          h = Math.abs(h);
           var vals = _helpers.default.modeAdjust(x, y, w, h, this._renderer._ellipseMode);
           var angles = this._normalizeArcAngles(start, stop, vals.w, vals.h, true);
           if (angles.correspondToSamePoint) {
@@ -72904,16 +73099,10 @@
           // visible, exit immediately
           if (!this._renderer._doStroke && !this._renderer._doFill) {
             return this;
-          }          // p5 supports negative width and heights for rects
+          }          // Duplicate 3rd argument if only 3 given.
 
-          if (w < 0) {
-            w = Math.abs(w);
-          }
           if (typeof h === 'undefined') {
-            // Duplicate 3rd argument if only 3 given.
             h = w;
-          } else if (h < 0) {
-            h = Math.abs(h);
           }
           var vals = _helpers.default.modeAdjust(x, y, w, h, this._renderer._ellipseMode);
           this._renderer.ellipse([vals.x,
@@ -74271,11 +74460,12 @@
  * </div>
  */
         _main.default.prototype.smooth = function () {
-          this.setAttributes('antialias', true);
           if (!this._renderer.isP3D) {
             if ('imageSmoothingEnabled' in this.drawingContext) {
               this.drawingContext.imageSmoothingEnabled = true;
             }
+          } else {
+            this.setAttributes('antialias', true);
           }
           return this;
         };
@@ -76595,7 +76785,7 @@
  * <a href="#/p5/beginShape">beginShape()</a> and
  * <a href="#/p5/endShape">endShape()</a> in order to draw a curve:
  *
- * <code>
+ * ```js
  * beginShape();
  *
  * // Add the first control point.
@@ -76609,14 +76799,14 @@
  * curveVertex(32, 91);
  *
  * endShape();
- * </code>
+ * ```
  *
  * The code snippet above would only draw the curve between the anchor points,
  * similar to the <a href="#/p5/curve">curve()</a> function. The segments
  * between the control and anchor points can be drawn by calling
  * `curveVertex()` with the coordinates of the control points:
  *
- * <code>
+ * ```js
  * beginShape();
  *
  * // Add the first control point and draw a segment to it.
@@ -76634,7 +76824,7 @@
  * // curveVertex(32, 91);
  *
  * endShape();
- * </code>
+ * ```
  *
  * The first two parameters, `x` and `y`, set the vertex’s location. For
  * example, calling `curveVertex(10, 10)` adds a point to the curve at
@@ -77107,7 +77297,7 @@
  * The `count` parameter tells WebGL mode how many copies to draw. For
  * example, calling `endShape(CLOSE, 400)` after drawing a custom shape will
  * make it efficient to draw 400 copies. This feature requires
- * <a href="https://p5js.org/learn/getting-started-in-webgl-shaders.html" target="_blank">writing a custom shader</a>.
+ * <a href="https://p5js.org/tutorials/intro-to-shaders/" target="_blank">writing a custom shader</a>.
  *
  * After calling <a href="#/p5/beginShape">beginShape()</a>, shapes can be
  * built by calling <a href="#/p5/vertex">vertex()</a>,
@@ -77817,7 +78007,7 @@
  * `normal()` will affect all following vertices until `normal()` is called
  * again:
  *
- * <code>
+ * ```js
  * beginShape();
  *
  * // Set the vertex normal.
@@ -77840,7 +78030,7 @@
  * vertex(-30, 30, 0);
  *
  * endShape();
- * </code>
+ * ```
  *
  * @method normal
  * @param  {p5.Vector} vector vertex normal as a <a href="#/p5.Vector">p5.Vector</a> object.
@@ -83840,6 +84030,8 @@
  * @method createRadio
  * @return {p5.Element} new <a href="#/p5.Element">p5.Element</a> object.
  */
+        //counter for unique names on radio button
+        var counter = 0;
         _main.default.prototype.createRadio = function () {
           // Creates a div, adds each option as an individual input inside it.
           // If already given with a containerEl, will search for all input[radio]
@@ -83863,8 +84055,9 @@
             radioElement = document.createElement('div');
             self = addElement(radioElement, this);
             this.elt = radioElement;
-          }
-          self._name = name || 'radioOption';
+          }          // Generate a unique name for each radio group if not provided
+
+          self._name = name || 'radioOption_'.concat(counter++);
           // setup member functions
           var isRadioInput = function isRadioInput(el) {
             return el instanceof HTMLInputElement && el.type === 'radio';
@@ -85345,8 +85538,8 @@
  * @returns {Object} object of form `{ x: 0, y: 0 }` containing the element's position.
  *
  * @example
- * <div>
- * <code class='norender'>
+ * <div class='norender'>
+ * <code>
  * function setup() {
  *   let cnv = createCanvas(100, 100);
  *
@@ -85361,8 +85554,8 @@
  * </code>
  * </div>
  *
- * <div>
- * <code class='norender'>
+ * <div class='norender'>
+ * <code>
  * function setup() {
  *   let cnv = createCanvas(100, 100);
  *
@@ -88729,7 +88922,7 @@
         /**
  * The <a href="#/p5/deviceMoved">deviceMoved()</a> function is called when the device is moved by more than
  * the threshold value along X, Y or Z axis. The default threshold is set to 0.5.
- * The threshold value can be changed using <a href="https://p5js.org/reference/#/p5/setMoveThreshold">setMoveThreshold()</a>.
+ * The threshold value can be changed using <a href="#/p5/setMoveThreshold">setMoveThreshold()</a>.
  *
  * @method deviceMoved
  * @example
@@ -88816,7 +89009,7 @@
  * The <a href="#/p5/deviceShaken">deviceShaken()</a> function is called when the device total acceleration
  * changes of accelerationX and accelerationY values is more than
  * the threshold value. The default threshold is set to 30.
- * The threshold value can be changed using <a href="https://p5js.org/reference/#/p5/setShakeThreshold">setShakeThreshold()</a>.
+ * The threshold value can be changed using <a href="#/p5/setShakeThreshold">setShakeThreshold()</a>.
  *
  * @method deviceShaken
  * @example
@@ -90219,7 +90412,7 @@
  *   background(200);
  *
  *   // Draw a horizontal line that follows the mouse's y-coordinate.
- *   line(0, mouseY, 0, mouseY);
+ *   line(0, mouseY, 100, mouseY);
  * }
  * </code>
  * </div>
@@ -106581,7 +106774,7 @@
  *   let noiseScale = 0.002;
  *
  *   // Iterate from left to right.
- *   for (let x = 0; x < 100; x += 1) {
+ *   for (let x = 0; x < width; x += 1) {
  *     // Scale the input coordinates.
  *     let nx = noiseScale * x;
  *     let nt = noiseScale * frameCount;
@@ -106608,9 +106801,9 @@
  *   let noiseScale = 0.01;
  *
  *   // Iterate from top to bottom.
- *   for (let y = 0; y < 100; y += 1) {
+ *   for (let y = 0; y < height; y += 1) {
  *     // Iterate from left to right.
- *     for (let x = 0; x < 100; x += 1) {
+ *     for (let x = 0; x < width; x += 1) {
  *       // Scale the input coordinates.
  *       let nx = noiseScale * x;
  *       let ny = noiseScale * y;
@@ -106643,7 +106836,7 @@
  *   let noiseScale = 0.009;
  *
  *   // Iterate from top to bottom.
- *   for (let y = 0; y < 100; y += 1) {
+ *   for (let y = 0; y < height; y += 1) {
  *     // Iterate from left to right.
  *     for (let x = 0; x < width; x += 1) {
  *       // Scale the input coordinates.
@@ -106766,9 +106959,9 @@
  *   let noiseScale = 0.02;
  *
  *   // Iterate from top to bottom.
- *   for (let y = 0; y < 100; y += 1) {
+ *   for (let y = 0; y < height; y += 1) {
  *     // Iterate from left to right.
- *     for (let x = 0; x < 50; x += 1) {
+ *     for (let x = 0; x < width / 2; x += 1) {
  *       // Scale the input coordinates.
  *       let nx = noiseScale * x;
  *       let ny = noiseScale * y;
@@ -107720,7 +107913,7 @@
     *   let p1 = createVector(75, 75);
     *   let p2 = createVector(50, 50);
     *
-    *   // Subtract with modifying the original vectors.
+    *   // Subtract without modifying the original vectors.
     *   let p3 = p5.Vector.sub(p1, p2);
     *
     *   // Draw the points.
@@ -107812,7 +108005,7 @@
     *
     * If only one value is provided, as in `v.mult(2)`, then all the components
     * will be multiplied by 2. If a value isn't provided for a component, it
-    * won't change. For example, `v.mult(4, 5)` multiplies `v.x` by, `v.y` by 5,
+    * won't change. For example, `v.mult(4, 5)` multiplies `v.x` by 4, `v.y` by 5,
     * and `v.z` by 1. Calling `mult()` with no arguments, as in `v.mult()`, has
     * no effect.
     *
@@ -108696,8 +108889,8 @@
     *   // Style the text.
     *   textAlign(CENTER);
     *
-    *   // Display the magnitude.
-    *   let m = floor(v3.mag());
+    *   // Display the magnitude. The same as floor(v3.mag());
+    *   let m = floor(p5.Vector.dist(v1, v2));
     *   text(m, 50, 75);
     * }
     *
@@ -113926,6 +114119,8 @@
                 var xOriginal = x;
                 var result = [
                 ];
+                var p = this.parent;
+                var pos;
                 var lines = txt.split(/\r?\n|\r|\n/g);
                 fontSize = fontSize || this.parent._renderer._textSize;
                 function isSpace(i, text, glyphsLine) {
@@ -113948,6 +114143,9 @@
                         var pts = pathToPoints(paths[k], options);
                         for (var l = 0; l < pts.length; l++) {
                           pts[l].x += xoff;
+                          pos = this._handleAlignment(p._renderer, line, pts[l].x, pts[l].y);
+                          pts[l].x = pos.x;
+                          pts[l].y = pos.y;
                           result.push(pts[l]);
                         }
                       }
@@ -116838,6 +117036,9 @@
  * then unused decimal places will be set to 0. For example, calling
  * `nf(123.45, 4, 3)` returns the string `'0123.450'`.
  *
+ * When the number is negative, for example, calling `nf(-123.45, 5, 2)`
+ * returns the string `'-00123.45'`.
+ *
  * @method nf
  * @param {Number|String} num number to format.
  * @param {Integer|String} [left] number of digits to include to the left of
@@ -116863,21 +117064,24 @@
  *
  *   // Display the number as a string.
  *   let formatted = nf(number);
- *   text(formatted, 20, 25);
+ *   text(formatted, 20, 20);
+ *
+ *   let negative = nf(-number, 4, 2);
+ *   text(negative, 20, 40);
  *
  *   // Display the number with four digits
  *   // to the left of the decimal.
  *   let left = nf(number, 4);
- *   text(left, 20, 50);
+ *   text(left, 20, 60);
  *
  *   // Display the number with four digits
  *   // to the left of the decimal and one
  *   // to the right.
  *   let right = nf(number, 4, 1);
- *   text(right, 20, 75);
+ *   text(right, 20, 80);
  *
  *   describe(
- *     'The numbers "123.45", "0123.45", and "0123.5" written on three separate lines. The text is in black on a gray background.'
+ *     'The numbers "123.45", "-0123.45", "0123.45", and "0123.5" written on four separate lines. The text is in black on a gray background.'
  *   );
  * }
  * </code>
@@ -116912,13 +117116,16 @@
           }
         };
         function doNf(num, left, right) {
+          var isNegative = num < 0;
+          num = Math.abs(num);
           var _num$toString$split = num.toString().split('.'),
           _num$toString$split2 = _slicedToArray(_num$toString$split, 2),
           leftPart = _num$toString$split2[0],
           rightPart = _num$toString$split2[1];
           if (typeof right === 'undefined') {
             leftPart = leftPart.padStart(left, '0');
-            return rightPart ? leftPart + '.' + rightPart : leftPart;
+            var result = rightPart ? leftPart + '.' + rightPart : leftPart;
+            return isNegative ? '-' + result : result;
           } else {
             var roundedOff = num.toFixed(right);
             var _roundedOff$toString$ = roundedOff.toString().split('.');
@@ -116926,11 +117133,8 @@
             leftPart = _roundedOff$toString$2[0];
             rightPart = _roundedOff$toString$2[1];
             leftPart = leftPart.padStart(left, '0');
-            if (typeof rightPart === 'undefined') {
-              return leftPart;
-            } else {
-              return leftPart + '.' + rightPart;
-            }
+            var _result = typeof rightPart === 'undefined' ? leftPart : leftPart + '.' + rightPart;
+            return isNegative ? '-' + _result : _result;
           }
         }        /**
  * Converts a `Number` into a `String` with commas to mark units of 1,000.
@@ -121059,7 +121263,7 @@
               ];
               this._lutBezierDetail = this._pInst._curveDetail;
               var step = 1 / this._lutBezierDetail;
-              var start = 0;
+              var start = step;
               var end = 1;
               var j = 0;
               while (start < 1) {
@@ -121247,7 +121451,7 @@
               ];
               this._lutQuadraticDetail = this._pInst._curveDetail;
               var step = 1 / this._lutQuadraticDetail;
-              var start = 0;
+              var start = step;
               var end = 1;
               var j = 0;
               while (start < 1) {
@@ -121416,7 +121620,7 @@
             ];
             this._lutBezierDetail = this._pInst._curveDetail;
             var step = 1 / this._lutBezierDetail;
-            var start = 0;
+            var start = step;
             var end = 1;
             var j = 0;
             while (start < 1) {
@@ -123245,7 +123449,8 @@
  * that shines from somewhere offscreen. The light’s direction is set using
  * three `(x, y, z)` values between -1 and 1. For example, setting a light’s
  * direction as `(1, 0, 0)` will light <a href="#/p5.Geometry">p5.Geometry</a>
- * objects from the left since the light faces directly to the right.
+ * objects from the left since the light faces directly to the right. A
+ * maximum of 5 directional lights can be active at once.
  *
  * There are four ways to call `directionalLight()` with parameters to set the
  * light’s color and direction.
@@ -125111,12 +125316,13 @@
                         if (flipV) {
                           model.flipV();
                         }
+                        model._makeTriangleEdges();
                         self._decrementPreload();
                         if (typeof successCallback === 'function') {
                           successCallback(model);
                         }
                         return _context.finish(11);
-                      case 18:
+                      case 19:
                       case 'end':
                         return _context.stop();
                     }
@@ -125125,7 +125331,7 @@
                   [0,
                   7,
                   11,
-                  18]
+                  19]
                 ]);
               }));
               return function (_x3) {
@@ -125716,14 +125922,175 @@
           _main.default._validateParameters('model', arguments);
           if (model.vertices.length > 0) {
             if (!this._renderer.geometryInHash(model.gid)) {
-              if (model.edges.length === 0) {
-                model._makeTriangleEdges();
-              }
               model._edgesToVertices();
               this._renderer.createBuffers(model.gid, model);
             }
             this._renderer.drawBuffers(model.gid);
           }
+        };
+        /**
+ * Load a 3d model from an OBJ or STL string.
+ *
+ * OBJ and STL files lack a built-in sense of scale, causing models exported from different programs to vary in size.
+ * If your model doesn't display correctly, consider using `loadModel()` with `normalize` set to `true` to standardize its size.
+ * Further adjustments can be made using the `scale()` function.
+ *
+ * Also, the support for colored STL files is not present. STL files with color will be
+ * rendered without color properties.
+ *
+ * * Options can include:
+ * - `modelString`: Specifies the plain text string of either an stl or obj file to be loaded.
+ * - `fileType`: Defines the file extension of the model.
+ * - `normalize`: Enables standardized size scaling during loading if set to true.
+ * - `successCallback`: Callback for post-loading actions with the 3D model object.
+ * - `failureCallback`: Handles errors if model loading fails, receiving an event error.
+ * - `flipU`: Flips the U texture coordinates of the model.
+ * - `flipV`: Flips the V texture coordinates of the model.
+ *
+ *
+ * @method createModel
+ * @param  {String} modelString         String of the object to be loaded
+ * @param  {String} [fileType]          The file extension of the model
+ *                                      (<code>.stl</code>, <code>.obj</code>).
+ * @param  {Boolean} normalize        If true, scale the model to a
+ *                                      standardized size when loading
+ * @param  {function(p5.Geometry)} [successCallback] Function to be called
+ *                                     once the model is loaded. Will be passed
+ *                                     the 3D model object.
+ * @param  {function(Event)} [failureCallback] called with event error if
+ *                                         the model fails to load.
+ * @return {p5.Geometry} the <a href="#/p5.Geometry">p5.Geometry</a> object
+ *
+ * @example
+ * <div>
+ * <code>
+ * const octahedron_model = `
+ * v 0.000000E+00 0.000000E+00 40.0000
+ * v 22.5000 22.5000 0.000000E+00
+ * v 22.5000 -22.5000 0.000000E+00
+ * v -22.5000 -22.5000 0.000000E+00
+ * v -22.5000 22.5000 0.000000E+00
+ * v 0.000000E+00 0.000000E+00 -40.0000
+ * f     1 2 3
+ * f     1 3 4
+ * f     1 4 5
+ * f     1 5 2
+ * f     6 5 4
+ * f     6 4 3
+ * f     6 3 2
+ * f     6 2 5
+ * `;
+ * //draw a spinning octahedron
+ * let octahedron;
+ *
+ * function setup() {
+ *   createCanvas(100, 100, WEBGL);
+ *   octahedron = createModel(octahedron_model, '.obj');
+ *   describe('Vertically rotating 3D octahedron.');
+ * }
+ *
+ * function draw() {
+ *   background(200);
+ *   rotateX(frameCount * 0.01);
+ *   rotateY(frameCount * 0.01);
+ *   model(octahedron);
+ *}
+ * </code>
+ * </div>
+ */
+        /**
+ * @method createModel
+ * @param  {String} modelString
+ * @param  {String} [fileType]
+ * @param  {function(p5.Geometry)} [successCallback]
+ * @param  {function(Event)} [failureCallback]
+ * @return {p5.Geometry} the <a href="#/p5.Geometry">p5.Geometry</a> object
+ */
+        /**
+ * @method createModel
+ * @param  {String} modelString
+ * @param  {String} [fileType]
+ * @param  {Object} [options]
+ * @param  {function(p5.Geometry)} [options.successCallback]
+ * @param  {function(Event)} [options.failureCallback]
+ * @param  {boolean} [options.normalize]
+ * @param  {boolean} [options.flipU]
+ * @param  {boolean} [options.flipV]
+ * @return {p5.Geometry} the <a href="#/p5.Geometry">p5.Geometry</a> object
+ */
+        var modelCounter = 0;
+        _main.default.prototype.createModel = function (modelString) {
+          var fileType = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ' ';
+          var options = arguments.length > 2 ? arguments[2] : undefined;
+          _main.default._validateParameters('createModel', arguments);
+          var normalize = false;
+          var successCallback;
+          var failureCallback;
+          var flipU = false;
+          var flipV = false;
+          if (options && _typeof(options) === 'object') {
+            normalize = options.normalize || false;
+            successCallback = options.successCallback;
+            failureCallback = options.failureCallback;
+            flipU = options.flipU || false;
+            flipV = options.flipV || false;
+          } else if (typeof options === 'boolean') {
+            normalize = options;
+            successCallback = arguments[3];
+            failureCallback = arguments[4];
+          } else {
+            successCallback = typeof arguments[2] === 'function' ? arguments[2] : undefined;
+            failureCallback = arguments[3];
+          }
+          var model = new _main.default.Geometry();
+          model.gid = ''.concat(fileType, '|').concat(normalize, '|').concat(modelCounter++);
+          if (fileType.match(/\.stl$/i)) {
+            try {
+              var uint8array = new TextEncoder().encode(modelString);
+              var arrayBuffer = uint8array.buffer;
+              parseSTL(model, arrayBuffer);
+            } catch (error) {
+              if (failureCallback) {
+                failureCallback(error);
+              } else {
+                _main.default._friendlyError('Error during parsing: ' + error.message);
+              }
+              return;
+            }
+          } else if (fileType.match(/\.obj$/i)) {
+            try {
+              var lines = modelString.split('\n');
+              parseObj(model, lines);
+            } catch (error) {
+              if (failureCallback) {
+                failureCallback(error);
+              } else {
+                _main.default._friendlyError('Error during parsing: ' + error.message);
+              }
+              return;
+            }
+          } else {
+            _main.default._friendlyFileLoadError(3, modelString);
+            if (failureCallback) {
+              failureCallback();
+            } else {
+              _main.default._friendlyError('Sorry, the file type is invalid. Only OBJ and STL files are supported.');
+            }
+          }
+          if (normalize) {
+            model.normalize();
+          }
+          if (flipU) {
+            model.flipU();
+          }
+          if (flipV) {
+            model.flipV();
+          }
+          model._makeTriangleEdges();
+          if (typeof successCallback === 'function') {
+            successCallback(model);
+          }
+          return model;
         };
         var _default = _main.default;
         exports.default = _default;
@@ -126026,12 +126393,54 @@
  * The second parameter, `fragSrc`, sets the fragment shader. It’s a string
  * that contains the fragment shader program written in GLSL.
  *
+ * A shader can optionally describe *hooks,* which are functions in GLSL that
+ * users may choose to provide to customize the behavior of the shader using the
+ * <a href="#/p5.Shader/modify">`modify()`</a> method of `p5.Shader`. These are added by
+ * describing the hooks in a third parameter, `options`, and referencing the hooks in
+ * your `vertSrc` or `fragSrc`. Hooks for the vertex or fragment shader are described under
+ * the `vertex` and `fragment` keys of `options`. Each one is an object. where each key is
+ * the type and name of a hook function, and each value is a string with the
+ * parameter list and default implementation of the hook. For example, to let users
+ * optionally run code at the start of the vertex shader, the options object could
+ * include:
+ *
+ * ```js
+ * {
+ *   vertex: {
+ *     'void beforeVertex': '() {}'
+ *   }
+ * }
+ * ```
+ *
+ * Then, in your vertex shader source, you can run a hook by calling a function
+ * with the same name prefixed by `HOOK_`. If you want to check if the default
+ * hook has been replaced, maybe to avoid extra overhead, you can check if the
+ * same name prefixed by `AUGMENTED_HOOK_` has been defined:
+ *
+ * ```glsl
+ * void main() {
+ *   // In most cases, just calling the hook is fine:
+ *   HOOK_beforeVertex();
+ *
+ *   // Alternatively, for more efficiency:
+ *   #ifdef AUGMENTED_HOOK_beforeVertex
+ *   HOOK_beforeVertex();
+ *   #endif
+ *
+ *   // Add the rest of your shader code here!
+ * }
+ * ```
+ *
  * Note: Only filter shaders can be used in 2D mode. All shaders can be used
  * in WebGL mode.
  *
  * @method createShader
  * @param {String} vertSrc source code for the vertex shader.
  * @param {String} fragSrc source code for the fragment shader.
+ * @param {Object} [options] An optional object describing how this shader can
+ * be augmented with hooks. It can include:
+ *  - `vertex`: An object describing the available vertex shader hooks.
+ *  - `fragment`: An object describing the available frament shader hooks.
  * @returns {p5.Shader} new shader object created from the
  * vertex and fragment shaders.
  *
@@ -126255,10 +126664,79 @@
  * }
  * </code>
  * </div>
+ *
+ * <div>
+ * <code>
+ * // A shader with hooks.
+ * let myShader;
+ *
+ * // A shader with modified hooks.
+ * let modifiedShader;
+ *
+ * // Create a string with the vertex shader program.
+ * // The vertex shader is called for each vertex.
+ * let vertSrc = `
+ * precision highp float;
+ * uniform mat4 uModelViewMatrix;
+ * uniform mat4 uProjectionMatrix;
+ *
+ * attribute vec3 aPosition;
+ * attribute vec2 aTexCoord;
+ *
+ * void main() {
+ *   vec4 positionVec4 = vec4(aPosition, 1.0);
+ *   gl_Position = uProjectionMatrix * uModelViewMatrix * positionVec4;
+ * }
+ * `;
+ *
+ * // Create a fragment shader that uses a hook.
+ * let fragSrc = `
+ * precision highp float;
+ * void main() {
+ *   // Let users override the color
+ *   gl_FragColor = HOOK_getColor(vec4(1., 0., 0., 1.));
+ * }
+ * `;
+ *
+ * function setup() {
+ *   createCanvas(50, 50, WEBGL);
+ *
+ *   // Create a shader with hooks
+ *   myShader = createShader(vertSrc, fragSrc, {
+ *     fragment: {
+ *       'vec4 getColor': '(vec4 color) { return color; }'
+ *     }
+ *   });
+ *
+ *   // Make a version of the shader with a hook overridden
+ *   modifiedShader = myShader.modify({
+ *     'vec4 getColor': `(vec4 color) {
+ *       return vec4(0., 0., 1., 1.);
+ *     }`
+ *   });
+ * }
+ *
+ * function draw() {
+ *   noStroke();
+ *
+ *   push();
+ *   shader(myShader);
+ *   translate(-width/3, 0);
+ *   sphere(10);
+ *   pop();
+ *
+ *   push();
+ *   shader(modifiedShader);
+ *   translate(width/3, 0);
+ *   sphere(10);
+ *   pop();
+ * }
+ * </code>
+ * </div>
  */
-        _main.default.prototype.createShader = function (vertSrc, fragSrc) {
+        _main.default.prototype.createShader = function (vertSrc, fragSrc, options) {
           _main.default._validateParameters('createShader', arguments);
-          return new _main.default.Shader(this._renderer, vertSrc, fragSrc);
+          return new _main.default.Shader(this._renderer, vertSrc, fragSrc, options);
         };
         /**
  * Creates a <a href="#/p5.Shader">p5.Shader</a> object to be used with the
@@ -126286,7 +126764,7 @@
  * `vTexCoord` describes where on the canvas the pixel will be drawn.
  *
  * For more info about filters and shaders, see Adam Ferriss' <a href="https://github.com/aferriss/p5jsShaderExamples">repo of shader examples</a>
- * or the <a href="https://p5js.org/learn/getting-started-in-webgl-shaders.html">Introduction to Shaders</a> tutorial.
+ * or the <a href="https://p5js.org/tutorials/intro-to-shaders/">Introduction to Shaders</a> tutorial.
  *
  * @method createFilterShader
  * @param {String} fragSrc source code for the fragment shader.
@@ -126559,7 +127037,746 @@
             this._renderer.userFillShader = s;
             this._renderer._useNormalMaterial = false;
           }
+          s.setDefaultUniforms();
           return this;
+        };
+        /**
+ * Get the default shader used with lights, materials,
+ * and textures.
+ *
+ * You can call <a href="#/p5.Shader/modify">`baseMaterialShader().modify()`</a>
+ * and change any of the following hooks:
+ *
+ * <table>
+ * <tr><th>Hook</th><th>Description</th></tr>
+ * <tr><td>
+ *
+ * `void beforeVertex`
+ *
+ * </td><td>
+ *
+ * Called at the start of the vertex shader.
+ *
+ * </td></tr>
+ * <tr><td>
+ *
+ * `vec3 getLocalPosition`
+ *
+ * </td><td>
+ *
+ * Update the position of vertices before transforms are applied. It takes in `vec3 position` and must return a modified version.
+ *
+ * </td></tr>
+ * <tr><td>
+ *
+ * `vec3 getWorldPosition`
+ *
+ * </td><td>
+ *
+ * Update the position of vertices after transforms are applied. It takes in `vec3 position` and pust return a modified version.
+ *
+ * </td></tr>
+ * <tr><td>
+ *
+ * `vec3 getLocalNormal`
+ *
+ * </td><td>
+ *
+ * Update the normal before transforms are applied. It takes in `vec3 normal` and must return a modified version.
+ *
+ * </td></tr>
+ * <tr><td>
+ *
+ * `vec3 getWorldNormal`
+ *
+ * </td><td>
+ *
+ * Update the normal after transforms are applied. It takes in `vec3 normal` and must return a modified version.
+ *
+ * </td></tr>
+ * <tr><td>
+ *
+ * `vec2 getUV`
+ *
+ * </td><td>
+ *
+ * Update the texture coordinates. It takes in `vec2 uv` and must return a modified version.
+ *
+ * </td></tr>
+ * <tr><td>
+ *
+ * `vec4 getVertexColor`
+ *
+ * </td><td>
+ *
+ * Update the color of each vertex. It takes in a `vec4 color` and must return a modified version.
+ *
+ * </td></tr>
+ * <tr><td>
+ *
+ * `void afterVertex`
+ *
+ * </td><td>
+ *
+ * Called at the end of the vertex shader.
+ *
+ * </td></tr>
+ * <tr><td>
+ *
+ * `void beforeFragment`
+ *
+ * </td><td>
+ *
+ * Called at the start of the fragment shader.
+ *
+ * </td></tr>
+ * <tr><td>
+ *
+ * `Inputs getPixelInputs`
+ *
+ * </td><td>
+ *
+ * Update the per-pixel inputs of the material. It takes in an `Inputs` struct, which includes:
+ * - `vec3 normal`, the direction pointing out of the surface
+ * - `vec2 texCoord`, a vector where `x` and `y` are between 0 and 1 describing the spot on a texture the pixel is mapped to, as a fraction of the texture size
+ * - `vec3 ambientLight`, the ambient light color on the vertex
+ * - `vec4 color`, the base material color of the pixel
+ * - `vec3 ambientMaterial`, the color of the pixel when affected by ambient light
+ * - `vec3 specularMaterial`, the color of the pixel when reflecting specular highlights
+ * - `vec3 emissiveMaterial`, the light color emitted by the pixel
+ * - `float shininess`, a number representing how sharp specular reflections should be, from 1 to infinity
+ * - `float metalness`, a number representing how mirrorlike the material should be, between 0 and 1
+ * The struct can be modified and returned.
+ * </td></tr>
+ * <tr><td>
+ *
+ * `vec4 combineColors`
+ *
+ * </td><td>
+ *
+ * Take in a `ColorComponents` struct containing all the different components of light, and combining them into
+ * a single final color. The struct contains:
+ * - `vec3 baseColor`, the base color of the pixel
+ * - `float opacity`, the opacity between 0 and 1 that it should be drawn at
+ * - `vec3 ambientColor`, the color of the pixel when affected by ambient light
+ * - `vec3 specularColor`, the color of the pixel when affected by specular reflections
+ * - `vec3 diffuse`, the amount of diffused light hitting the pixel
+ * - `vec3 ambient`, the amount of ambient light hitting the pixel
+ * - `vec3 specular`, the amount of specular reflection hitting the pixel
+ * - `vec3 emissive`, the amount of light emitted by the pixel
+ *
+ * </td></tr>
+ * <tr><td>
+ *
+ * `vec4 getFinalColor`
+ *
+ * </td><td>
+ *
+ * Update the final color after mixing. It takes in a `vec4 color` and must return a modified version.
+ *
+ * </td></tr>
+ * <tr><td>
+ *
+ * `void afterFragment`
+ *
+ * </td><td>
+ *
+ * Called at the end of the fragment shader.
+ *
+ * </td></tr>
+ * </table>
+ *
+ * Most of the time, you will need to write your hooks in GLSL ES version 300. If you
+ * are using WebGL 1 instead of 2, write your hooks in GLSL ES 100 instead.
+ *
+ * Call `baseMaterialShader().inspectHooks()` to see all the possible hooks and
+ * their default implementations.
+ *
+ * @method baseMaterialShader
+ * @beta
+ * @returns {p5.Shader} The material shader
+ *
+ * @example
+ * <div modernizr='webgl'>
+ * <code>
+ * let myShader;
+ *
+ * function setup() {
+ *   createCanvas(200, 200, WEBGL);
+ *   myShader = baseMaterialShader().modify({
+ *     uniforms: {
+ *       'float time': () => millis()
+ *     },
+ *     'vec3 getWorldPosition': `(vec3 pos) {
+ *       pos.y += 20.0 * sin(time * 0.001 + pos.x * 0.05);
+ *       return pos;
+ *     }`
+ *   });
+ * }
+ *
+ * function draw() {
+ *   background(255);
+ *   shader(myShader);
+ *   lights();
+ *   noStroke();
+ *   fill('red');
+ *   sphere(50);
+ * }
+ * </code>
+ * </div>
+ *
+ * @example
+ * <div modernizr='webgl'>
+ * <code>
+ * let myShader;
+ *
+ * function setup() {
+ *   createCanvas(200, 200, WEBGL);
+ *   myShader = baseMaterialShader().modify({
+ *     declarations: 'vec3 myNormal;',
+ *     'Inputs getPixelInputs': `(Inputs inputs) {
+ *       myNormal = inputs.normal;
+ *       return inputs;
+ *     }`,
+ *     'vec4 getFinalColor': `(vec4 color) {
+ *       return mix(
+ *         vec4(1.0, 1.0, 1.0, 1.0),
+ *         color,
+ *         abs(dot(myNormal, vec3(0.0, 0.0, 1.0)))
+ *       );
+ *     }`
+ *   });
+ * }
+ *
+ * function draw() {
+ *   background(255);
+ *   rotateY(millis() * 0.001);
+ *   shader(myShader);
+ *   lights();
+ *   noStroke();
+ *   fill('red');
+ *   torus(30);
+ * }
+ * </code>
+ * </div>
+ *
+ * @example
+ * <div modernizr='webgl'>
+ * <code>
+ * let myShader;
+ * let environment;
+ *
+ * function preload() {
+ *   environment = loadImage('assets/outdoor_spheremap.jpg');
+ * }
+ *
+ * function setup() {
+ *   createCanvas(200, 200, WEBGL);
+ *   myShader = baseMaterialShader().modify({
+ *     'Inputs getPixelInputs': `(Inputs inputs) {
+ *       float factor =
+ *         sin(
+ *           inputs.texCoord.x * ${TWO_PI} +
+ *           inputs.texCoord.y * ${TWO_PI}
+ *         ) * 0.4 + 0.5;
+ *       inputs.shininess = mix(1., 100., factor);
+ *       inputs.metalness = factor;
+ *       return inputs;
+ *     }`
+ *   });
+ * }
+ *
+ * function draw() {
+ *   panorama(environment);
+ *   ambientLight(100);
+ *   imageLight(environment);
+ *   rotateY(millis() * 0.001);
+ *   shader(myShader);
+ *   noStroke();
+ *   fill(255);
+ *   specularMaterial(150);
+ *   sphere(50);
+ * }
+ * </code>
+ * </div>
+ *
+ * @example
+ * <div modernizr='webgl'>
+ * <code>
+ * let myShader;
+ *
+ * function setup() {
+ *   createCanvas(200, 200, WEBGL);
+ *   myShader = baseMaterialShader().modify({
+ *     'Inputs getPixelInputs': `(Inputs inputs) {
+ *       vec3 newNormal = inputs.normal;
+ *       // Simple bump mapping: adjust the normal based on position
+ *       newNormal.x += 0.2 * sin(
+ *           sin(
+ *             inputs.texCoord.y * ${TWO_PI} * 10.0 +
+ *             inputs.texCoord.x * ${TWO_PI} * 25.0
+ *           )
+ *         );
+ *       newNormal.y += 0.2 * sin(
+ *         sin(
+ *             inputs.texCoord.x * ${TWO_PI} * 10.0 +
+ *             inputs.texCoord.y * ${TWO_PI} * 25.0
+ *           )
+ *       );
+ *       inputs.normal = normalize(newNormal);
+ *       return inputs;
+ *     }`
+ *   });
+ * }
+ *
+ * function draw() {
+ *   background(255);
+ *   shader(myShader);
+ *   ambientLight(150);
+ *   pointLight(
+ *     255, 255, 255,
+ *     100*cos(frameCount*0.04), -50, 100*sin(frameCount*0.04)
+ *   );
+ *   noStroke();
+ *   fill('red');
+ *   shininess(200);
+ *   specularMaterial(255);
+ *   sphere(50);
+ * }
+ * </code>
+ * </div>
+ */
+        _main.default.prototype.baseMaterialShader = function () {
+          this._assert3d('baseMaterialShader');
+          return this._renderer.baseMaterialShader();
+        };
+        /**
+ * Get the shader used by <a href="#/p5/normalMaterial">`normalMaterial()`</a>.
+ *
+ * You can call <a href="#/p5.Shader/modify">`baseNormalShader().modify()`</a>
+ * and change any of the following hooks:
+ *
+ * Hook | Description
+ * -----|------------
+ * `void beforeVertex` | Called at the start of the vertex shader.
+ * `vec3 getLocalPosition` | Update the position of vertices before transforms are applied. It takes in `vec3 position` and must return a modified version.
+ * `vec3 getWorldPosition` | Update the position of vertices after transforms are applied. It takes in `vec3 position` and pust return a modified version.
+ * `vec3 getLocalNormal` | Update the normal before transforms are applied. It takes in `vec3 normal` and must return a modified version.
+ * `vec3 getWorldNormal` | Update the normal after transforms are applied. It takes in `vec3 normal` and must return a modified version.
+ * `vec2 getUV` | Update the texture coordinates. It takes in `vec2 uv` and must return a modified version.
+ * `vec4 getVertexColor` | Update the color of each vertex. It takes in a `vec4 color` and must return a modified version.
+ * `void afterVertex` | Called at the end of the vertex shader.
+ * `void beforeFragment` | Called at the start of the fragment shader.
+ * `vec4 getFinalColor` | Update the final color after mixing. It takes in a `vec4 color` and must return a modified version.
+ * `void afterFragment` | Called at the end of the fragment shader.
+ *
+ * Most of the time, you will need to write your hooks in GLSL ES version 300. If you
+ * are using WebGL 1 instead of 2, write your hooks in GLSL ES 100 instead.
+ *
+ * Call `baseNormalShader().inspectHooks()` to see all the possible hooks and
+ * their default implementations.
+ *
+ * @method baseNormalShader
+ * @beta
+ * @returns {p5.Shader} The `normalMaterial` shader
+ *
+ * @example
+ * <div modernizr='webgl'>
+ * <code>
+ * let myShader;
+ *
+ * function setup() {
+ *   createCanvas(200, 200, WEBGL);
+ *   myShader = baseNormalShader().modify({
+ *     uniforms: {
+ *       'float time': () => millis()
+ *     },
+ *     'vec3 getWorldPosition': `(vec3 pos) {
+ *       pos.y += 20. * sin(time * 0.001 + pos.x * 0.05);
+ *       return pos;
+ *     }`
+ *   });
+ * }
+ *
+ * function draw() {
+ *   background(255);
+ *   shader(myShader);
+ *   noStroke();
+ *   sphere(50);
+ * }
+ * </code>
+ * </div>
+ *
+ * @example
+ * <div modernizr='webgl'>
+ * <code>
+ * let myShader;
+ *
+ * function setup() {
+ *   createCanvas(200, 200, WEBGL);
+ *   myShader = baseNormalShader().modify({
+ *     'vec3 getWorldNormal': '(vec3 normal) { return abs(normal); }',
+ *     'vec4 getFinalColor': `(vec4 color) {
+ *       // Map the r, g, and b values of the old normal to new colors
+ *       // instead of just red, green, and blue:
+ *       vec3 newColor =
+ *         color.r * vec3(89.0, 240.0, 232.0) / 255.0 +
+ *         color.g * vec3(240.0, 237.0, 89.0) / 255.0 +
+ *         color.b * vec3(205.0, 55.0, 222.0) / 255.0;
+ *       newColor = newColor / (color.r + color.g + color.b);
+ *       return vec4(newColor, 1.0) * color.a;
+ *     }`
+ *   });
+ * }
+ *
+ * function draw() {
+ *   background(255);
+ *   shader(myShader);
+ *   noStroke();
+ *   rotateX(frameCount * 0.01);
+ *   rotateY(frameCount * 0.015);
+ *   box(100);
+ * }
+ * </code>
+ * </div>
+ */
+        _main.default.prototype.baseNormalShader = function () {
+          this._assert3d('baseNormalShader');
+          return this._renderer.baseNormalShader();
+        };
+        /**
+ * Get the shader used when no lights or materials are applied.
+ *
+ * You can call <a href="#/p5.Shader/modify">`baseColorShader().modify()`</a>
+ * and change any of the following hooks:
+ *
+ * Hook | Description
+ * -------|-------------
+ * `void beforeVertex` | Called at the start of the vertex shader.
+ * `vec3 getLocalPosition` | Update the position of vertices before transforms are applied. It takes in `vec3 position` and must return a modified version.
+ * `vec3 getWorldPosition` | Update the position of vertices after transforms are applied. It takes in `vec3 position` and pust return a modified version.
+ * `vec3 getLocalNormal` | Update the normal before transforms are applied. It takes in `vec3 normal` and must return a modified version.
+ * `vec3 getWorldNormal` | Update the normal after transforms are applied. It takes in `vec3 normal` and must return a modified version.
+ * `vec2 getUV` | Update the texture coordinates. It takes in `vec2 uv` and must return a modified version.
+ * `vec4 getVertexColor` | Update the color of each vertex. It takes in a `vec4 color` and must return a modified version.
+ * `void afterVertex` | Called at the end of the vertex shader.
+ * `void beforeFragment` | Called at the start of the fragment shader.
+ * `vec4 getFinalColor` | Update the final color after mixing. It takes in a `vec4 color` and must return a modified version.
+ * `void afterFragment` | Called at the end of the fragment shader.
+ *
+ * Most of the time, you will need to write your hooks in GLSL ES version 300. If you
+ * are using WebGL 1 instead of 2, write your hooks in GLSL ES 100 instead.
+ *
+ * Call `baseColorShader().inspectHooks()` to see all the possible hooks and
+ * their default implementations.
+ *
+ * @method baseColorShader
+ * @beta
+ * @returns {p5.Shader} The color shader
+ *
+ * @example
+ * <div modernizr='webgl'>
+ * <code>
+ * let myShader;
+ *
+ * function setup() {
+ *   createCanvas(200, 200, WEBGL);
+ *   myShader = baseColorShader().modify({
+ *     uniforms: {
+ *       'float time': () => millis()
+ *     },
+ *     'vec3 getWorldPosition': `(vec3 pos) {
+ *       pos.y += 20. * sin(time * 0.001 + pos.x * 0.05);
+ *       return pos;
+ *     }`
+ *   });
+ * }
+ *
+ * function draw() {
+ *   background(255);
+ *   shader(myShader);
+ *   noStroke();
+ *   fill('red');
+ *   circle(0, 0, 50);
+ * }
+ * </code>
+ * </div>
+ */
+        _main.default.prototype.baseColorShader = function () {
+          this._assert3d('baseColorShader');
+          return this._renderer.baseColorShader();
+        };
+        /**
+ * Get the shader used when drawing the strokes of shapes.
+ *
+ * You can call <a href="#/p5.Shader/modify">`baseStrokeShader().modify()`</a>
+ * and change any of the following hooks:
+ *
+ * <table>
+ * <tr><th>Hook</th><th>Description</th></tr>
+ * <tr><td>
+ *
+ * `void beforeVertex`
+ *
+ * </td><td>
+ *
+ * Called at the start of the vertex shader.
+ *
+ * </td></tr>
+ * <tr><td>
+ *
+ * `vec3 getLocalPosition`
+ *
+ * </td><td>
+ *
+ * Update the position of vertices before transforms are applied. It takes in `vec3 position` and must return a modified version.
+ *
+ * </td></tr>
+ * <tr><td>
+ *
+ * `vec3 getWorldPosition`
+ *
+ * </td><td>
+ *
+ * Update the position of vertices after transforms are applied. It takes in `vec3 position` and pust return a modified version.
+ *
+ * </td></tr>
+ * <tr><td>
+ *
+ * `float getStrokeWeight`
+ *
+ * </td><td>
+ *
+ * Update the stroke weight. It takes in `float weight` and pust return a modified version.
+ *
+ * </td></tr>
+ * <tr><td>
+ *
+ * `vec2 getLineCenter`
+ *
+ * </td><td>
+ *
+ * Update the center of the line. It takes in `vec2 center` and must return a modified version.
+ *
+ * </td></tr>
+ * <tr><td>
+ *
+ * `vec2 getLinePosition`
+ *
+ * </td><td>
+ *
+ * Update the position of each vertex on the edge of the line. It takes in `vec2 position` and must return a modified version.
+ *
+ * </td></tr>
+ * <tr><td>
+ *
+ * `vec4 getVertexColor`
+ *
+ * </td><td>
+ *
+ * Update the color of each vertex. It takes in a `vec4 color` and must return a modified version.
+ *
+ * </td></tr>
+ * <tr><td>
+ *
+ * `void afterVertex`
+ *
+ * </td><td>
+ *
+ * Called at the end of the vertex shader.
+ *
+ * </td></tr>
+ * <tr><td>
+ *
+ * `void beforeFragment`
+ *
+ * </td><td>
+ *
+ * Called at the start of the fragment shader.
+ *
+ * </td></tr>
+ * <tr><td>
+ *
+ * `Inputs getPixelInputs`
+ *
+ * </td><td>
+ *
+ * Update the inputs to the shader. It takes in a struct `Inputs inputs`, which includes:
+ * - `vec4 color`, the color of the stroke
+ * - `vec2 tangent`, the direction of the stroke in screen space
+ * - `vec2 center`, the coordinate of the center of the stroke in screen space p5.js pixels
+ * - `vec2 position`, the coordinate of the current pixel in screen space p5.js pixels
+ * - `float strokeWeight`, the thickness of the stroke in p5.js pixels
+ *
+ * </td></tr>
+ * <tr><td>
+ *
+ * `bool shouldDiscard`
+ *
+ * </td><td>
+ *
+ * Caps and joins are made by discarded pixels in the fragment shader to carve away unwanted areas. Use this to change this logic. It takes in a `bool willDiscard` and must return a modified version.
+ *
+ * </td></tr>
+ * <tr><td>
+ *
+ * `vec4 getFinalColor`
+ *
+ * </td><td>
+ *
+ * Update the final color after mixing. It takes in a `vec4 color` and must return a modified version.
+ *
+ * </td></tr>
+ * <tr><td>
+ *
+ * `void afterFragment`
+ *
+ * </td><td>
+ *
+ * Called at the end of the fragment shader.
+ *
+ * </td></tr>
+ * </table>
+ *
+ * Most of the time, you will need to write your hooks in GLSL ES version 300. If you
+ * are using WebGL 1 instead of 2, write your hooks in GLSL ES 100 instead.
+ *
+ * Call `baseStrokeShader().inspectHooks()` to see all the possible hooks and
+ * their default implementations.
+ *
+ * @method baseStrokeShader
+ * @beta
+ * @returns {p5.Shader} The stroke shader
+ *
+ * @example
+ * <div modernizr='webgl'>
+ * <code>
+ * let myShader;
+ *
+ * function setup() {
+ *   createCanvas(200, 200, WEBGL);
+ *   myShader = baseStrokeShader().modify({
+ *     'Inputs getPixelInputs': `(Inputs inputs) {
+ *       float opacity = 1.0 - smoothstep(
+ *         0.0,
+ *         15.0,
+ *         length(inputs.position - inputs.center)
+ *       );
+ *       inputs.color *= opacity;
+ *       return inputs;
+ *     }`
+ *   });
+ * }
+ *
+ * function draw() {
+ *   background(255);
+ *   shader(myShader);
+ *   strokeWeight(30);
+ *   line(
+ *     -width/3,
+ *     sin(millis()*0.001) * height/4,
+ *     width/3,
+ *     sin(millis()*0.001 + 1) * height/4
+ *   );
+ * }
+ * </code>
+ * </div>
+ *
+ * @example
+ * <div modernizr='webgl'>
+ * <code>
+ * let myShader;
+ *
+ * function setup() {
+ *   createCanvas(200, 200, WEBGL);
+ *   myShader = baseStrokeShader().modify({
+ *     uniforms: {
+ *       'float time': () => millis()
+ *     },
+ *     declarations: 'vec3 myPosition;',
+ *     'vec3 getWorldPosition': `(vec3 pos) {
+ *       myPosition = pos;
+ *       return pos;
+ *     }`,
+ *     'float getStrokeWeight': `(float w) {
+ *       // Add a somewhat random offset to the weight
+ *       // that varies based on position and time
+ *       float scale = 0.8 + 0.2*sin(10.0 * sin(
+ *         floor(time/250.) +
+ *         myPosition.x*0.01 +
+ *         myPosition.y*0.01
+ *       ));
+ *       return w * scale;
+ *     }`
+ *   });
+ * }
+ *
+ * function draw() {
+ *   background(255);
+ *   shader(myShader);
+ *   myShader.setUniform('time', millis());
+ *   strokeWeight(10);
+ *   beginShape();
+ *   for (let i = 0; i <= 50; i++) {
+ *     let r = map(i, 0, 50, 0, width/3);
+ *     let x = r*cos(i*0.2);
+ *     let y = r*sin(i*0.2);
+ *     vertex(x, y);
+ *   }
+ *   endShape();
+ * }
+ * </code>
+ * </div>
+ *
+ * @example
+ * <div modernizr='webgl'>
+ * <code>
+ * let myShader;
+ *
+ * function setup() {
+ *   createCanvas(200, 200, WEBGL);
+ *   myShader = baseStrokeShader().modify({
+ *     'float random': `(vec2 p) {
+ *       vec3 p3  = fract(vec3(p.xyx) * .1031);
+ *       p3 += dot(p3, p3.yzx + 33.33);
+ *       return fract((p3.x + p3.y) * p3.z);
+ *     }`,
+ *     'Inputs getPixelInputs': `(Inputs inputs) {
+ *       // Replace alpha in the color with dithering by
+ *       // randomly setting pixel colors to 0 based on opacity
+ *       float a = inputs.color.a;
+ *       inputs.color.a = 1.0;
+ *       inputs.color *= random(inputs.position.xy) > a ? 0.0 : 1.0;
+ *       return inputs;
+ *     }`
+ *   });
+ * }
+ *
+ * function draw() {
+ *   background(255);
+ *   shader(myShader);
+ *   strokeWeight(10);
+ *   beginShape();
+ *   for (let i = 0; i <= 50; i++) {
+ *     stroke(
+ *       0,
+ *       255
+ *         * map(i, 0, 20, 0, 1, true)
+ *         * map(i, 30, 50, 1, 0, true)
+ *     );
+ *     vertex(
+ *       map(i, 0, 50, -1, 1) * width/3,
+ *       50 * sin(i/10 + frameCount/100)
+ *     );
+ *   }
+ *   endShape();
+ * }
+ * </code>
+ * </div>
+ */
+        _main.default.prototype.baseStrokeShader = function () {
+          this._assert3d('baseStrokeShader');
+          return this._renderer.baseStrokeShader();
         };
         /**
  * Restores the default shaders.
@@ -129017,6 +130234,7 @@
  * `myCamera.move()` moves the camera along its own axes.
  *
  * @class p5.Camera
+ * @constructor
  * @param {rendererGL} rendererGL instance of WebGL renderer
  *
  * @example
@@ -129119,9 +130337,9 @@
             this.projMatrix = new _main.default.Matrix();
             this.yScale = 1;
           }          /**
-  * The camera’s y-coordinate.
+  * The camera’s x-coordinate.
   *
-  * By default, the camera’s y-coordinate is set to 0 in "world" space.
+  * By default, the camera’s x-coordinate is set to 0 in "world" space.
   *
   * @property {Number} eyeX
   * @readonly
@@ -131500,7 +132718,8 @@
                   'cameraNear',
                   'cameraFar',
                   'cameraType',
-                  'yScale'
+                  'yScale',
+                  'useLinePerspective'
                 ];
                 for (var _i = 0, _keyNamesOfThePropToC = keyNamesOfThePropToCopy; _i < _keyNamesOfThePropToC.length; _i++) {
                   var keyName = _keyNamesOfThePropToC[_i];
@@ -131828,6 +133047,7 @@
                 _cam.cameraNear = this.cameraNear;
                 _cam.cameraFar = this.cameraFar;
                 _cam.cameraType = this.cameraType;
+                _cam.useLinePerspective = this.useLinePerspective;
                 _cam.cameraMatrix = this.cameraMatrix.copy();
                 _cam.projMatrix = this.projMatrix.copy();
                 _cam.yScale = this.yScale;
@@ -138790,7 +140010,7 @@
           // this can optimize performance by skipping the step of breaking it into triangles
 
           if (this.immediateMode.geometry.vertices.length === 3 && this.immediateMode.shapeMode === constants.TESS) {
-            this.immediateMode.shapeMode === constants.TRIANGLES;
+            this.immediateMode.shapeMode = constants.TRIANGLES;
           }
           this.isProcessingVertices = true;
           this._processVertices.apply(this, arguments);
@@ -139970,26 +141190,26 @@
         defineStrokeJoinEnum('ROUND', 0);
         defineStrokeJoinEnum('MITER', 1);
         defineStrokeJoinEnum('BEVEL', 2);
-        var lightingShader = '#define PI 3.141592\n\nprecision highp float;\nprecision highp int;\n\nuniform mat4 uViewMatrix;\n\nuniform bool uUseLighting;\n\nuniform int uAmbientLightCount;\nuniform vec3 uAmbientColor[5];\nuniform mat3 uCameraRotation;\nuniform int uDirectionalLightCount;\nuniform vec3 uLightingDirection[5];\nuniform vec3 uDirectionalDiffuseColors[5];\nuniform vec3 uDirectionalSpecularColors[5];\n\nuniform int uPointLightCount;\nuniform vec3 uPointLightLocation[5];\nuniform vec3 uPointLightDiffuseColors[5];\t\nuniform vec3 uPointLightSpecularColors[5];\n\nuniform int uSpotLightCount;\nuniform float uSpotLightAngle[5];\nuniform float uSpotLightConc[5];\nuniform vec3 uSpotLightDiffuseColors[5];\nuniform vec3 uSpotLightSpecularColors[5];\nuniform vec3 uSpotLightLocation[5];\nuniform vec3 uSpotLightDirection[5];\n\nuniform bool uSpecular;\nuniform float uShininess;\nuniform float metallic;\n\nuniform float uConstantAttenuation;\nuniform float uLinearAttenuation;\nuniform float uQuadraticAttenuation;\n\n// setting from  _setImageLightUniforms()\n// boolean to initiate the calculateImageDiffuse and calculateImageSpecular\nuniform bool uUseImageLight;\n// texture for use in calculateImageDiffuse\nuniform sampler2D environmentMapDiffused;\n// texture for use in calculateImageSpecular\nuniform sampler2D environmentMapSpecular;\n// roughness for use in calculateImageSpecular\nuniform float levelOfDetail;\n\nconst float specularFactor = 2.0;\nconst float diffuseFactor = 0.73;\n\nstruct LightResult {\n  float specular;\n  float diffuse;\n};\n\nfloat _phongSpecular(\n  vec3 lightDirection,\n  vec3 viewDirection,\n  vec3 surfaceNormal,\n  float shininess) {\n\n  vec3 R = reflect(lightDirection, surfaceNormal);\n  return pow(max(0.0, dot(R, viewDirection)), shininess);\n}\n\nfloat _lambertDiffuse(vec3 lightDirection, vec3 surfaceNormal) {\n  return max(0.0, dot(-lightDirection, surfaceNormal));\n}\n\nLightResult _light(vec3 viewDirection, vec3 normal, vec3 lightVector) {\n\n  vec3 lightDir = normalize(lightVector);\n\n  //compute our diffuse & specular terms\n  LightResult lr;\n  float specularIntensity = mix(1.0, 0.4, metallic);\n  float diffuseIntensity = mix(1.0, 0.1, metallic);\n  if (uSpecular)\n    lr.specular = (_phongSpecular(lightDir, viewDirection, normal, uShininess)) * specularIntensity;\n    lr.diffuse = _lambertDiffuse(lightDir, normal) * diffuseIntensity;\n  return lr;\n}\n\n// converts the range of "value" from [min1 to max1] to [min2 to max2]\nfloat map(float value, float min1, float max1, float min2, float max2) {\n  return min2 + (value - min1) * (max2 - min2) / (max1 - min1);\n}\n\nvec2 mapTextureToNormal( vec3 v ){\n  // x = r sin(phi) cos(theta)   \n  // y = r cos(phi)  \n  // z = r sin(phi) sin(theta)\n  float phi = acos( v.y );\n  // if phi is 0, then there are no x, z components\n  float theta = 0.0;\n  // else \n  theta = acos(v.x / sin(phi));\n  float sinTheta = v.z / sin(phi);\n  if (sinTheta < 0.0) {\n    // Turn it into -theta, but in the 0-2PI range\n    theta = 2.0 * PI - theta;\n  }\n  theta = theta / (2.0 * 3.14159);\n  phi = phi / 3.14159 ;\n  \n  vec2 angles = vec2( fract(theta + 0.25), 1.0 - phi );\n  return angles;\n}\n\n\nvec3 calculateImageDiffuse( vec3 vNormal, vec3 vViewPosition ){\n  // make 2 seperate builds \n  vec3 worldCameraPosition =  vec3(0.0, 0.0, 0.0);  // hardcoded world camera position\n  vec3 worldNormal = normalize(vNormal * uCameraRotation);\n  vec2 newTexCoor = mapTextureToNormal( worldNormal );\n  vec4 texture = TEXTURE( environmentMapDiffused, newTexCoor );\n  // this is to make the darker sections more dark\n  // png and jpg usually flatten the brightness so it is to reverse that\n  return mix(smoothstep(vec3(0.0), vec3(1.0), texture.xyz), vec3(0.0), metallic);\n}\n\nvec3 calculateImageSpecular( vec3 vNormal, vec3 vViewPosition ){\n  vec3 worldCameraPosition =  vec3(0.0, 0.0, 0.0);\n  vec3 worldNormal = normalize(vNormal);\n  vec3 lightDirection = normalize( vViewPosition - worldCameraPosition );\n  vec3 R = reflect(lightDirection, worldNormal) * uCameraRotation;\n  vec2 newTexCoor = mapTextureToNormal( R );\n#ifdef WEBGL2\n  vec4 outColor = textureLod(environmentMapSpecular, newTexCoor, levelOfDetail);\n#else\n  vec4 outColor = TEXTURE(environmentMapSpecular, newTexCoor);\n#endif\n  // this is to make the darker sections more dark\n  // png and jpg usually flatten the brightness so it is to reverse that\n  return mix(\n    pow(outColor.xyz, vec3(10)),\n    pow(outColor.xyz, vec3(1.2)),\n    metallic \n  );\n}\n\nvoid totalLight(\n  vec3 modelPosition,\n  vec3 normal,\n  out vec3 totalDiffuse,\n  out vec3 totalSpecular\n) {\n\n  totalSpecular = vec3(0.0);\n\n  if (!uUseLighting) {\n    totalDiffuse = vec3(1.0);\n    return;\n  }\n\n  totalDiffuse = vec3(0.0);\n\n  vec3 viewDirection = normalize(-modelPosition);\n\n  for (int j = 0; j < 5; j++) {\n    if (j < uDirectionalLightCount) {\n      vec3 lightVector = (uViewMatrix * vec4(uLightingDirection[j], 0.0)).xyz;\n      vec3 lightColor = uDirectionalDiffuseColors[j];\n      vec3 specularColor = uDirectionalSpecularColors[j];\n      LightResult result = _light(viewDirection, normal, lightVector);\n      totalDiffuse += result.diffuse * lightColor;\n      totalSpecular += result.specular * lightColor * specularColor;\n    }\n\n    if (j < uPointLightCount) {\n      vec3 lightPosition = (uViewMatrix * vec4(uPointLightLocation[j], 1.0)).xyz;\n      vec3 lightVector = modelPosition - lightPosition;\n      //calculate attenuation\n      float lightDistance = length(lightVector);\n      float lightFalloff = 1.0 / (uConstantAttenuation + lightDistance * uLinearAttenuation + (lightDistance * lightDistance) * uQuadraticAttenuation);\n      vec3 lightColor = lightFalloff * uPointLightDiffuseColors[j];\n      vec3 specularColor = lightFalloff * uPointLightSpecularColors[j];\n\n      LightResult result = _light(viewDirection, normal, lightVector);\n      totalDiffuse += result.diffuse * lightColor;\n      totalSpecular += result.specular * lightColor * specularColor;\n    }\n\n    if(j < uSpotLightCount) {\n      vec3 lightPosition = (uViewMatrix * vec4(uSpotLightLocation[j], 1.0)).xyz;\n      vec3 lightVector = modelPosition - lightPosition;\n    \n      float lightDistance = length(lightVector);\n      float lightFalloff = 1.0 / (uConstantAttenuation + lightDistance * uLinearAttenuation + (lightDistance * lightDistance) * uQuadraticAttenuation);\n\n      vec3 lightDirection = (uViewMatrix * vec4(uSpotLightDirection[j], 0.0)).xyz;\n      float spotDot = dot(normalize(lightVector), normalize(lightDirection));\n      float spotFalloff;\n      if(spotDot < uSpotLightAngle[j]) {\n        spotFalloff = 0.0;\n      }\n      else {\n        spotFalloff = pow(spotDot, uSpotLightConc[j]);\n      }\n      lightFalloff *= spotFalloff;\n\n      vec3 lightColor = uSpotLightDiffuseColors[j];\n      vec3 specularColor = uSpotLightSpecularColors[j];\n     \n      LightResult result = _light(viewDirection, normal, lightVector);\n      \n      totalDiffuse += result.diffuse * lightColor * lightFalloff;\n      totalSpecular += result.specular * lightColor * specularColor * lightFalloff;\n    }\n  }\n\n  if( uUseImageLight ){\n    totalDiffuse += calculateImageDiffuse(normal, modelPosition);\n    totalSpecular += calculateImageSpecular(normal, modelPosition);\n  }\n\n  totalDiffuse *= diffuseFactor;\n  totalSpecular *= specularFactor;\n}\n';
+        var lightingShader = '#define PI 3.141592\n\nprecision highp float;\nprecision highp int;\n\nuniform mat4 uViewMatrix;\n\nuniform bool uUseLighting;\n\nuniform int uAmbientLightCount;\nuniform vec3 uAmbientColor[5];\nuniform mat3 uCameraRotation;\nuniform int uDirectionalLightCount;\nuniform vec3 uLightingDirection[5];\nuniform vec3 uDirectionalDiffuseColors[5];\nuniform vec3 uDirectionalSpecularColors[5];\n\nuniform int uPointLightCount;\nuniform vec3 uPointLightLocation[5];\nuniform vec3 uPointLightDiffuseColors[5];\t\nuniform vec3 uPointLightSpecularColors[5];\n\nuniform int uSpotLightCount;\nuniform float uSpotLightAngle[5];\nuniform float uSpotLightConc[5];\nuniform vec3 uSpotLightDiffuseColors[5];\nuniform vec3 uSpotLightSpecularColors[5];\nuniform vec3 uSpotLightLocation[5];\nuniform vec3 uSpotLightDirection[5];\n\nuniform bool uSpecular;\nuniform float uShininess;\nuniform float uMetallic;\n\nuniform float uConstantAttenuation;\nuniform float uLinearAttenuation;\nuniform float uQuadraticAttenuation;\n\n// setting from  _setImageLightUniforms()\n// boolean to initiate the calculateImageDiffuse and calculateImageSpecular\nuniform bool uUseImageLight;\n// texture for use in calculateImageDiffuse\nuniform sampler2D environmentMapDiffused;\n// texture for use in calculateImageSpecular\nuniform sampler2D environmentMapSpecular;\n\nconst float specularFactor = 2.0;\nconst float diffuseFactor = 0.73;\n\nstruct LightResult {\n  float specular;\n  float diffuse;\n};\n\nfloat _phongSpecular(\n  vec3 lightDirection,\n  vec3 viewDirection,\n  vec3 surfaceNormal,\n  float shininess) {\n\n  vec3 R = reflect(lightDirection, surfaceNormal);\n  return pow(max(0.0, dot(R, viewDirection)), shininess);\n}\n\nfloat _lambertDiffuse(vec3 lightDirection, vec3 surfaceNormal) {\n  return max(0.0, dot(-lightDirection, surfaceNormal));\n}\n\nLightResult _light(vec3 viewDirection, vec3 normal, vec3 lightVector, float shininess, float metallic) {\n\n  vec3 lightDir = normalize(lightVector);\n\n  //compute our diffuse & specular terms\n  LightResult lr;\n  float specularIntensity = mix(1.0, 0.4, metallic);\n  float diffuseIntensity = mix(1.0, 0.1, metallic);\n  if (uSpecular)\n    lr.specular = (_phongSpecular(lightDir, viewDirection, normal, shininess)) * specularIntensity;\n    lr.diffuse = _lambertDiffuse(lightDir, normal) * diffuseIntensity;\n  return lr;\n}\n\n// converts the range of "value" from [min1 to max1] to [min2 to max2]\nfloat map(float value, float min1, float max1, float min2, float max2) {\n  return min2 + (value - min1) * (max2 - min2) / (max1 - min1);\n}\n\nvec2 mapTextureToNormal( vec3 v ){\n  // x = r sin(phi) cos(theta)   \n  // y = r cos(phi)  \n  // z = r sin(phi) sin(theta)\n  float phi = acos( v.y );\n  // if phi is 0, then there are no x, z components\n  float theta = 0.0;\n  // else \n  theta = acos(v.x / sin(phi));\n  float sinTheta = v.z / sin(phi);\n  if (sinTheta < 0.0) {\n    // Turn it into -theta, but in the 0-2PI range\n    theta = 2.0 * PI - theta;\n  }\n  theta = theta / (2.0 * 3.14159);\n  phi = phi / 3.14159 ;\n  \n  vec2 angles = vec2( fract(theta + 0.25), 1.0 - phi );\n  return angles;\n}\n\n\nvec3 calculateImageDiffuse(vec3 vNormal, vec3 vViewPosition, float metallic){\n  // make 2 seperate builds \n  vec3 worldCameraPosition =  vec3(0.0, 0.0, 0.0);  // hardcoded world camera position\n  vec3 worldNormal = normalize(vNormal * uCameraRotation);\n  vec2 newTexCoor = mapTextureToNormal( worldNormal );\n  vec4 texture = TEXTURE( environmentMapDiffused, newTexCoor );\n  // this is to make the darker sections more dark\n  // png and jpg usually flatten the brightness so it is to reverse that\n  return mix(smoothstep(vec3(0.0), vec3(1.0), texture.xyz), vec3(0.0), metallic);\n}\n\nvec3 calculateImageSpecular(vec3 vNormal, vec3 vViewPosition, float shininess, float metallic){\n  vec3 worldCameraPosition =  vec3(0.0, 0.0, 0.0);\n  vec3 worldNormal = normalize(vNormal);\n  vec3 lightDirection = normalize( vViewPosition - worldCameraPosition );\n  vec3 R = reflect(lightDirection, worldNormal) * uCameraRotation;\n  vec2 newTexCoor = mapTextureToNormal( R );\n#ifdef WEBGL2\n  // In p5js the range of shininess is >= 1,\n  // Therefore roughness range will be ([0,1]*8)*20 or [0, 160]\n  // The factor of 8 is because currently the getSpecularTexture\n  // only calculated 8 different levels of roughness\n  // The factor of 20 is just to spread up this range so that,\n  // [1, max] of shininess is converted to [0,160] of roughness\n  float roughness = 20. / shininess;\n  vec4 outColor = textureLod(environmentMapSpecular, newTexCoor, roughness * 8.);\n#else\n  vec4 outColor = TEXTURE(environmentMapSpecular, newTexCoor);\n#endif\n  // this is to make the darker sections more dark\n  // png and jpg usually flatten the brightness so it is to reverse that\n  return mix(\n    pow(outColor.xyz, vec3(10)),\n    pow(outColor.xyz, vec3(1.2)),\n    metallic \n  );\n}\n\nvoid totalLight(\n  vec3 modelPosition,\n  vec3 normal,\n  float shininess,\n  float metallic,\n  out vec3 totalDiffuse,\n  out vec3 totalSpecular\n) {\n\n  totalSpecular = vec3(0.0);\n\n  if (!uUseLighting) {\n    totalDiffuse = vec3(1.0);\n    return;\n  }\n\n  totalDiffuse = vec3(0.0);\n\n  vec3 viewDirection = normalize(-modelPosition);\n\n  for (int j = 0; j < 5; j++) {\n    if (j < uDirectionalLightCount) {\n      vec3 lightVector = (uViewMatrix * vec4(uLightingDirection[j], 0.0)).xyz;\n      vec3 lightColor = uDirectionalDiffuseColors[j];\n      vec3 specularColor = uDirectionalSpecularColors[j];\n      LightResult result = _light(viewDirection, normal, lightVector, shininess, metallic);\n      totalDiffuse += result.diffuse * lightColor;\n      totalSpecular += result.specular * lightColor * specularColor;\n    }\n\n    if (j < uPointLightCount) {\n      vec3 lightPosition = (uViewMatrix * vec4(uPointLightLocation[j], 1.0)).xyz;\n      vec3 lightVector = modelPosition - lightPosition;\n      //calculate attenuation\n      float lightDistance = length(lightVector);\n      float lightFalloff = 1.0 / (uConstantAttenuation + lightDistance * uLinearAttenuation + (lightDistance * lightDistance) * uQuadraticAttenuation);\n      vec3 lightColor = lightFalloff * uPointLightDiffuseColors[j];\n      vec3 specularColor = lightFalloff * uPointLightSpecularColors[j];\n\n      LightResult result = _light(viewDirection, normal, lightVector, shininess, metallic);\n      totalDiffuse += result.diffuse * lightColor;\n      totalSpecular += result.specular * lightColor * specularColor;\n    }\n\n    if(j < uSpotLightCount) {\n      vec3 lightPosition = (uViewMatrix * vec4(uSpotLightLocation[j], 1.0)).xyz;\n      vec3 lightVector = modelPosition - lightPosition;\n    \n      float lightDistance = length(lightVector);\n      float lightFalloff = 1.0 / (uConstantAttenuation + lightDistance * uLinearAttenuation + (lightDistance * lightDistance) * uQuadraticAttenuation);\n\n      vec3 lightDirection = (uViewMatrix * vec4(uSpotLightDirection[j], 0.0)).xyz;\n      float spotDot = dot(normalize(lightVector), normalize(lightDirection));\n      float spotFalloff;\n      if(spotDot < uSpotLightAngle[j]) {\n        spotFalloff = 0.0;\n      }\n      else {\n        spotFalloff = pow(spotDot, uSpotLightConc[j]);\n      }\n      lightFalloff *= spotFalloff;\n\n      vec3 lightColor = uSpotLightDiffuseColors[j];\n      vec3 specularColor = uSpotLightSpecularColors[j];\n     \n      LightResult result = _light(viewDirection, normal, lightVector, shininess, metallic);\n      \n      totalDiffuse += result.diffuse * lightColor * lightFalloff;\n      totalSpecular += result.specular * lightColor * specularColor * lightFalloff;\n    }\n  }\n\n  if( uUseImageLight ){\n    totalDiffuse += calculateImageDiffuse(normal, modelPosition, metallic);\n    totalSpecular += calculateImageSpecular(normal, modelPosition, shininess, metallic);\n  }\n\n  totalDiffuse *= diffuseFactor;\n  totalSpecular *= specularFactor;\n}\n';
         var webgl2CompatibilityShader = '#ifdef WEBGL2\n\n#define IN in\n#define OUT out\n\n#ifdef FRAGMENT_SHADER\nout vec4 outColor;\n#define OUT_COLOR outColor\n#endif\n#define TEXTURE texture\n\n#else\n\n#ifdef FRAGMENT_SHADER\n#define IN varying\n#else\n#define IN attribute\n#endif\n#define OUT varying\n#define TEXTURE texture2D\n\n#ifdef FRAGMENT_SHADER\n#define OUT_COLOR gl_FragColor\n#endif\n\n#endif\n';
         var defaultShaders = {
-          sphereMappingFrag: '#define PI 3.141592\n\nprecision highp float;\n  \nuniform sampler2D uSampler;\nuniform mat3 uNewNormalMatrix;\nuniform float uFovY;\nuniform float uAspect;\n\nvarying vec2 vTexCoord;\n  \nvoid main() {\n    float uFovX = uFovY * uAspect; \n    vec4 newTexColor = texture2D(uSampler, vTexCoord);\n    float angleY = mix(uFovY/2.0,  -uFovY/2.0, vTexCoord.y);\n    float angleX = mix(uFovX/2.0, -uFovX/2.0, vTexCoord.x);\n    vec3 rotatedNormal = vec3( angleX, angleY, 1.0 );\n    rotatedNormal = uNewNormalMatrix * normalize(rotatedNormal);\n    vec2 suv;\n    suv.y = 0.5 + 0.5 * (-rotatedNormal.y);\n    suv.x = atan(rotatedNormal.z, rotatedNormal.x) / (2.0 * PI) + 0.5;\n    newTexColor = texture2D(uSampler, suv.xy);\n    gl_FragColor = newTexColor;\n}\n',
+          sphereMappingFrag: '#define PI 3.141592\n\nprecision highp float;\n  \nuniform sampler2D uSampler;\nuniform mat3 uNewNormalMatrix;\nuniform float uFovY;\nuniform float uAspect;\n\nvarying vec2 vTexCoord;\n  \nvoid main() {\n    float uFovX = uFovY * uAspect; \n    vec4 newTexColor = texture2D(uSampler, vTexCoord);\n    float angleY = mix(uFovY/2.0,  -uFovY/2.0, vTexCoord.y);\n    float angleX = mix(uFovX/2.0, -uFovX/2.0, vTexCoord.x);\n    vec3 rotatedNormal = vec3( angleX, angleY, 1.0 );\n    rotatedNormal = uNewNormalMatrix * normalize(rotatedNormal);\n    float temp = rotatedNormal.z;\n    rotatedNormal.z = rotatedNormal.x;\n    rotatedNormal.x = -temp;\n    vec2 suv;\n    suv.y = 0.5 + 0.5 * (-rotatedNormal.y);\n    suv.x = atan(rotatedNormal.z, rotatedNormal.x) / (2.0 * PI) + 0.5;\n    newTexColor = texture2D(uSampler, suv.xy);\n    gl_FragColor = newTexColor;\n}\n',
           immediateVert: 'IN vec3 aPosition;\nIN vec4 aVertexColor;\n\nuniform mat4 uModelViewMatrix;\nuniform mat4 uProjectionMatrix;\nuniform float uResolution;\nuniform float uPointSize;\n\nOUT vec4 vColor;\nvoid main(void) {\n  vec4 positionVec4 = vec4(aPosition, 1.0);\n  gl_Position = uProjectionMatrix * uModelViewMatrix * positionVec4;\n  vColor = aVertexColor;\n  gl_PointSize = uPointSize;\n}\n',
           vertexColorVert: 'IN vec3 aPosition;\nIN vec4 aVertexColor;\n\nuniform mat4 uModelViewMatrix;\nuniform mat4 uProjectionMatrix;\n\nOUT vec4 vColor;\n\nvoid main(void) {\n  vec4 positionVec4 = vec4(aPosition, 1.0);\n  gl_Position = uProjectionMatrix * uModelViewMatrix * positionVec4;\n  vColor = aVertexColor;\n}\n',
           vertexColorFrag: 'IN vec4 vColor;\nvoid main(void) {\n  OUT_COLOR = vec4(vColor.rgb, 1.) * vColor.a;\n}\n',
-          normalVert: 'IN vec3 aPosition;\nIN vec3 aNormal;\nIN vec2 aTexCoord;\nIN vec4 aVertexColor;\n\nuniform mat4 uModelViewMatrix;\nuniform mat4 uProjectionMatrix;\nuniform mat3 uNormalMatrix;\n\nuniform vec4 uMaterialColor;\nuniform bool uUseVertexColor;\n\nOUT vec3 vVertexNormal;\nOUT highp vec2 vVertTexCoord;\nOUT vec4 vColor;\n\nvoid main(void) {\n  vec4 positionVec4 = vec4(aPosition, 1.0);\n  gl_Position = uProjectionMatrix * uModelViewMatrix * positionVec4;\n  vVertexNormal = normalize(vec3( uNormalMatrix * aNormal ));\n  vVertTexCoord = aTexCoord;\n  vColor = (uUseVertexColor ? aVertexColor : uMaterialColor);\n}\n',
-          normalFrag: 'IN vec3 vVertexNormal;\nvoid main(void) {\n  OUT_COLOR = vec4(vVertexNormal, 1.0);\n}\n',
-          basicFrag: 'IN vec4 vColor;\nvoid main(void) {\n  OUT_COLOR = vec4(vColor.rgb, 1.) * vColor.a;\n}\n',
+          normalVert: 'IN vec3 aPosition;\nIN vec3 aNormal;\nIN vec2 aTexCoord;\nIN vec4 aVertexColor;\n\nuniform mat4 uModelViewMatrix;\nuniform mat4 uProjectionMatrix;\nuniform mat3 uNormalMatrix;\n\nuniform vec4 uMaterialColor;\nuniform bool uUseVertexColor;\n\nOUT vec3 vVertexNormal;\nOUT highp vec2 vVertTexCoord;\nOUT vec4 vColor;\n\nvoid main(void) {\n  HOOK_beforeVertex();\n  vec4 positionVec4 = vec4(HOOK_getWorldPosition(\n    (uModelViewMatrix * vec4(HOOK_getLocalPosition(aPosition), 1.0)).xyz\n  ), 1.);\n\n  gl_Position = uProjectionMatrix * positionVec4;\n\n  vVertexNormal = HOOK_getWorldNormal(normalize(uNormalMatrix * HOOK_getLocalNormal(aNormal)));\n  vVertTexCoord = HOOK_getUV(aTexCoord);\n  vColor = HOOK_getVertexColor(uUseVertexColor ? aVertexColor : uMaterialColor);\n  HOOK_afterVertex();\n}\n',
+          normalFrag: 'IN vec3 vVertexNormal;\nvoid main(void) {\n  HOOK_beforeFragment();\n  OUT_COLOR = HOOK_getFinalColor(vec4(vVertexNormal, 1.0));\n  HOOK_afterFragment();\n}\n',
+          basicFrag: 'IN vec4 vColor;\nvoid main(void) {\n  HOOK_beforeFragment();\n  OUT_COLOR = HOOK_getFinalColor(vec4(vColor.rgb, 1.) * vColor.a);\n  HOOK_afterFragment();\n}\n',
           lightVert: lightingShader + '// include lighting.glgl\n\nIN vec3 aPosition;\nIN vec3 aNormal;\nIN vec2 aTexCoord;\nIN vec4 aVertexColor;\n\nuniform mat4 uModelViewMatrix;\nuniform mat4 uProjectionMatrix;\nuniform mat3 uNormalMatrix;\n\nuniform bool uUseVertexColor;\nuniform vec4 uMaterialColor;\n\nOUT highp vec2 vVertTexCoord;\nOUT vec3 vDiffuseColor;\nOUT vec3 vSpecularColor;\nOUT vec4 vColor;\n\nvoid main(void) {\n\n  vec4 viewModelPosition = uModelViewMatrix * vec4(aPosition, 1.0);\n  gl_Position = uProjectionMatrix * viewModelPosition;\n\n  vec3 vertexNormal = normalize(uNormalMatrix * aNormal);\n  vVertTexCoord = aTexCoord;\n\n  totalLight(viewModelPosition.xyz, vertexNormal, vDiffuseColor, vSpecularColor);\n\n  for (int i = 0; i < 8; i++) {\n    if (i < uAmbientLightCount) {\n      vDiffuseColor += uAmbientColor[i];\n    }\n  }\n  \n  vColor = (uUseVertexColor ? aVertexColor : uMaterialColor);\n}\n',
           lightTextureFrag: 'uniform vec4 uTint;\nuniform sampler2D uSampler;\nuniform bool isTexture;\nuniform bool uEmissive;\n\nIN highp vec2 vVertTexCoord;\nIN vec3 vDiffuseColor;\nIN vec3 vSpecularColor;\nIN vec4 vColor;\n\nvoid main(void) {\n  if(uEmissive && !isTexture) {\n    OUT_COLOR = vColor;\n  }\n  else {\n    vec4 baseColor = isTexture\n      // Textures come in with premultiplied alpha. To apply tint and still have\n      // premultiplied alpha output, we need to multiply the RGB channels by the\n      // tint RGB, and all channels by the tint alpha.\n      ? TEXTURE(uSampler, vVertTexCoord) * vec4(uTint.rgb/255., 1.) * (uTint.a/255.)\n      // Colors come in with unmultiplied alpha, so we need to multiply the RGB\n      // channels by alpha to convert it to premultiplied alpha.\n      : vec4(vColor.rgb * vColor.a, vColor.a);\n    OUT_COLOR = vec4(baseColor.rgb * vDiffuseColor + vSpecularColor, baseColor.a);\n  }\n}\n',
-          phongVert: 'precision highp int;\n\nIN vec3 aPosition;\nIN vec3 aNormal;\nIN vec2 aTexCoord;\nIN vec4 aVertexColor;\n\nuniform vec3 uAmbientColor[5];\n\nuniform mat4 uModelViewMatrix;\nuniform mat4 uProjectionMatrix;\nuniform mat3 uNormalMatrix;\nuniform int uAmbientLightCount;\n\nuniform bool uUseVertexColor;\nuniform vec4 uMaterialColor;\n\nOUT vec3 vNormal;\nOUT vec2 vTexCoord;\nOUT vec3 vViewPosition;\nOUT vec3 vAmbientColor;\nOUT vec4 vColor;\n\nvoid main(void) {\n\n  vec4 viewModelPosition = uModelViewMatrix * vec4(aPosition, 1.0);\n\n  // Pass varyings to fragment shader\n  vViewPosition = viewModelPosition.xyz;\n  gl_Position = uProjectionMatrix * viewModelPosition;  \n\n  vNormal = uNormalMatrix * aNormal;\n  vTexCoord = aTexCoord;\n\n  // TODO: this should be a uniform\n  vAmbientColor = vec3(0.0);\n  for (int i = 0; i < 5; i++) {\n    if (i < uAmbientLightCount) {\n      vAmbientColor += uAmbientColor[i];\n    }\n  }\n  \n  vColor = (uUseVertexColor ? aVertexColor : uMaterialColor);\n}\n',
-          phongFrag: lightingShader + '// include lighting.glsl\nprecision highp int;\n\nuniform bool uHasSetAmbient;\nuniform vec4 uSpecularMatColor;\nuniform vec4 uAmbientMatColor;\nuniform vec4 uEmissiveMatColor;\n\nuniform vec4 uTint;\nuniform sampler2D uSampler;\nuniform bool isTexture;\n\nIN vec3 vNormal;\nIN vec2 vTexCoord;\nIN vec3 vViewPosition;\nIN vec3 vAmbientColor;\nIN vec4 vColor;\n\nvoid main(void) {\n\n  vec3 diffuse;\n  vec3 specular;\n  totalLight(vViewPosition, normalize(vNormal), diffuse, specular);\n\n  // Calculating final color as result of all lights (plus emissive term).\n\n  vec4 baseColor = isTexture\n    // Textures come in with premultiplied alpha. To apply tint and still have\n    // premultiplied alpha output, we need to multiply the RGB channels by the\n    // tint RGB, and all channels by the tint alpha.\n    ? TEXTURE(uSampler, vTexCoord) * vec4(uTint.rgb/255., 1.) * (uTint.a/255.)\n    // Colors come in with unmultiplied alpha, so we need to multiply the RGB\n    // channels by alpha to convert it to premultiplied alpha.\n    : vec4(vColor.rgb * vColor.a, vColor.a);\n  OUT_COLOR = vec4(diffuse * baseColor.rgb + \n                    vAmbientColor * (\n                      uHasSetAmbient ? uAmbientMatColor.rgb : baseColor.rgb\n                    ) + \n                    specular * uSpecularMatColor.rgb + \n                    uEmissiveMatColor.rgb, baseColor.a);\n}\n',
+          phongVert: 'precision highp int;\n\nIN vec3 aPosition;\nIN vec3 aNormal;\nIN vec2 aTexCoord;\nIN vec4 aVertexColor;\n\nuniform vec3 uAmbientColor[5];\n\nuniform mat4 uModelViewMatrix;\nuniform mat4 uProjectionMatrix;\nuniform mat3 uNormalMatrix;\nuniform int uAmbientLightCount;\n\nuniform bool uUseVertexColor;\nuniform vec4 uMaterialColor;\n\nOUT vec3 vNormal;\nOUT vec2 vTexCoord;\nOUT vec3 vViewPosition;\nOUT vec3 vAmbientColor;\nOUT vec4 vColor;\n\nvoid main(void) {\n  HOOK_beforeVertex();\n  vec4 viewModelPosition = vec4(HOOK_getWorldPosition(\n    (uModelViewMatrix * vec4(HOOK_getLocalPosition(aPosition), 1.0)).xyz\n  ), 1.);\n\n  // Pass varyings to fragment shader\n  vViewPosition = viewModelPosition.xyz;\n  gl_Position = uProjectionMatrix * viewModelPosition;  \n\n  vNormal = HOOK_getWorldNormal(uNormalMatrix * HOOK_getLocalNormal(aNormal));\n  vTexCoord = HOOK_getUV(aTexCoord);\n\n  // TODO: this should be a uniform\n  vAmbientColor = vec3(0.0);\n  for (int i = 0; i < 5; i++) {\n    if (i < uAmbientLightCount) {\n      vAmbientColor += uAmbientColor[i];\n    }\n  }\n  \n  vColor = HOOK_getVertexColor((uUseVertexColor ? aVertexColor : uMaterialColor));\n  HOOK_afterVertex();\n}\n',
+          phongFrag: lightingShader + '// include lighting.glsl\nprecision highp int;\n\nuniform bool uHasSetAmbient;\nuniform vec4 uSpecularMatColor;\nuniform vec4 uAmbientMatColor;\nuniform vec4 uEmissiveMatColor;\n\nuniform vec4 uTint;\nuniform sampler2D uSampler;\nuniform bool isTexture;\n\nIN vec3 vNormal;\nIN vec2 vTexCoord;\nIN vec3 vViewPosition;\nIN vec3 vAmbientColor;\nIN vec4 vColor;\n\nstruct ColorComponents {\n  vec3 baseColor;\n  float opacity;\n  vec3 ambientColor;\n  vec3 specularColor;\n  vec3 diffuse;\n  vec3 ambient;\n  vec3 specular;\n  vec3 emissive;\n};\n\nstruct Inputs {\n  vec3 normal;\n  vec2 texCoord;\n  vec3 ambientLight;\n  vec3 ambientMaterial;\n  vec3 specularMaterial;\n  vec3 emissiveMaterial;\n  vec4 color;\n  float shininess;\n  float metalness;\n};\n\nvoid main(void) {\n  HOOK_beforeFragment();\n\n  Inputs inputs;\n  inputs.normal = normalize(vNormal);\n  inputs.texCoord = vTexCoord;\n  inputs.ambientLight = vAmbientColor;\n  inputs.color = isTexture\n      // Textures come in with premultiplied alpha. To apply tint and still have\n      // premultiplied alpha output, we need to multiply the RGB channels by the\n      // tint RGB, and all channels by the tint alpha.\n      ? TEXTURE(uSampler, vTexCoord) * vec4(uTint.rgb/255., 1.) * (uTint.a/255.)\n      // Colors come in with unmultiplied alpha, so we need to multiply the RGB\n      // channels by alpha to convert it to premultiplied alpha.\n      : vec4(vColor.rgb * vColor.a, vColor.a);\n  inputs.shininess = uShininess;\n  inputs.metalness = uMetallic;\n  inputs.ambientMaterial = uHasSetAmbient ? uAmbientMatColor.rgb : inputs.color.rgb;\n  inputs.specularMaterial = uSpecularMatColor.rgb;\n  inputs.emissiveMaterial = uEmissiveMatColor.rgb;\n  inputs = HOOK_getPixelInputs(inputs);\n\n  vec3 diffuse;\n  vec3 specular;\n  totalLight(vViewPosition, inputs.normal, inputs.shininess, inputs.metalness, diffuse, specular);\n\n  // Calculating final color as result of all lights (plus emissive term).\n\n  vec2 texCoord = inputs.texCoord;\n  vec4 baseColor = inputs.color;\n  ColorComponents c;\n  c.opacity = baseColor.a;\n  c.baseColor = baseColor.rgb;\n  c.ambientColor = inputs.ambientMaterial;\n  c.specularColor = inputs.specularMaterial;\n  c.diffuse = diffuse;\n  c.ambient = inputs.ambientLight;\n  c.specular = specular;\n  c.emissive = inputs.emissiveMaterial;\n  OUT_COLOR = HOOK_getFinalColor(HOOK_combineColors(c));\n  HOOK_afterFragment();\n}\n',
           fontVert: 'IN vec3 aPosition;\nIN vec2 aTexCoord;\nuniform mat4 uModelViewMatrix;\nuniform mat4 uProjectionMatrix;\n\nuniform vec4 uGlyphRect;\nuniform float uGlyphOffset;\n\nOUT vec2 vTexCoord;\nOUT float w;\n\nvoid main() {\n  vec4 positionVec4 = vec4(aPosition, 1.0);\n\n  // scale by the size of the glyph\'s rectangle\n  positionVec4.xy *= uGlyphRect.zw - uGlyphRect.xy;\n\n  // Expand glyph bounding boxes by 1px on each side to give a bit of room\n  // for antialiasing\n  vec3 newOrigin = (uModelViewMatrix * vec4(0., 0., 0., 1.)).xyz;\n  vec3 newDX = (uModelViewMatrix * vec4(1., 0., 0., 1.)).xyz;\n  vec3 newDY = (uModelViewMatrix * vec4(0., 1., 0., 1.)).xyz;\n  vec2 pixelScale = vec2(\n    1. / length(newOrigin - newDX),\n    1. / length(newOrigin - newDY)\n  );\n  vec2 offset = pixelScale * normalize(aTexCoord - vec2(0.5, 0.5)) * vec2(1., -1.);\n  vec2 textureOffset = offset * (1. / vec2(\n    uGlyphRect.z - uGlyphRect.x,\n    uGlyphRect.w - uGlyphRect.y\n  ));\n\n  // move to the corner of the glyph\n  positionVec4.xy += uGlyphRect.xy;\n\n  // move to the letter\'s line offset\n  positionVec4.x += uGlyphOffset;\n\n  positionVec4.xy += offset;\n  \n  gl_Position = uProjectionMatrix * uModelViewMatrix * positionVec4;\n  vTexCoord = aTexCoord + textureOffset;\n  w = gl_Position.w;\n}\n',
           fontFrag: '#ifndef WEBGL2\n#extension GL_OES_standard_derivatives : enable\n#endif\n\n#if 0\n  // simulate integer math using floats\n\t#define int float\n\t#define ivec2 vec2\n\t#define INT(x) float(x)\n\n\tint ifloor(float v) { return floor(v); }\n\tivec2 ifloor(vec2 v) { return floor(v); }\n\n#else\n  // use native integer math\n\tprecision highp int;\n\t#define INT(x) x\n\n\tint ifloor(float v) { return int(v); }\n\tint ifloor(int v) { return v; }\n\tivec2 ifloor(vec2 v) { return ivec2(v); }\n\n#endif\n\nuniform sampler2D uSamplerStrokes;\nuniform sampler2D uSamplerRowStrokes;\nuniform sampler2D uSamplerRows;\nuniform sampler2D uSamplerColStrokes;\nuniform sampler2D uSamplerCols;\n\nuniform ivec2 uStrokeImageSize;\nuniform ivec2 uCellsImageSize;\nuniform ivec2 uGridImageSize;\n\nuniform ivec2 uGridOffset;\nuniform ivec2 uGridSize;\nuniform vec4 uMaterialColor;\n\nIN vec2 vTexCoord;\n\n// some helper functions\nint ROUND(float v) { return ifloor(v + 0.5); }\nivec2 ROUND(vec2 v) { return ifloor(v + 0.5); }\nfloat saturate(float v) { return clamp(v, 0.0, 1.0); }\nvec2 saturate(vec2 v) { return clamp(v, 0.0, 1.0); }\n\nint mul(float v1, int v2) {\n  return ifloor(v1 * float(v2));\n}\n\nivec2 mul(vec2 v1, ivec2 v2) {\n  return ifloor(v1 * vec2(v2) + 0.5);\n}\n\n// unpack a 16-bit integer from a float vec2\nint getInt16(vec2 v) {\n  ivec2 iv = ROUND(v * 255.0);\n  return iv.x * INT(128) + iv.y;\n}\n\nvec2 pixelScale;\nvec2 coverage = vec2(0.0);\nvec2 weight = vec2(0.5);\nconst float minDistance = 1.0/8192.0;\nconst float hardness = 1.05; // amount of antialias\n\n// the maximum number of curves in a glyph\nconst int N = INT(250);\n\n// retrieves an indexed pixel from a sampler\nvec4 getTexel(sampler2D sampler, int pos, ivec2 size) {\n  int width = size.x;\n  int y = ifloor(pos / width);\n  int x = pos - y * width;  // pos % width\n\n  return TEXTURE(sampler, (vec2(x, y) + 0.5) / vec2(size));\n}\n\nvoid calulateCrossings(vec2 p0, vec2 p1, vec2 p2, out vec2 C1, out vec2 C2) {\n\n  // get the coefficients of the quadratic in t\n  vec2 a = p0 - p1 * 2.0 + p2;\n  vec2 b = p0 - p1;\n  vec2 c = p0 - vTexCoord;\n\n  // found out which values of \'t\' it crosses the axes\n  vec2 surd = sqrt(max(vec2(0.0), b * b - a * c));\n  vec2 t1 = ((b - surd) / a).yx;\n  vec2 t2 = ((b + surd) / a).yx;\n\n  // approximate straight lines to avoid rounding errors\n  if (abs(a.y) < 0.001)\n    t1.x = t2.x = c.y / (2.0 * b.y);\n\n  if (abs(a.x) < 0.001)\n    t1.y = t2.y = c.x / (2.0 * b.x);\n\n  // plug into quadratic formula to find the corrdinates of the crossings\n  C1 = ((a * t1 - b * 2.0) * t1 + c) * pixelScale;\n  C2 = ((a * t2 - b * 2.0) * t2 + c) * pixelScale;\n}\n\nvoid coverageX(vec2 p0, vec2 p1, vec2 p2) {\n\n  vec2 C1, C2;\n  calulateCrossings(p0, p1, p2, C1, C2);\n\n  // determine on which side of the x-axis the points lie\n  bool y0 = p0.y > vTexCoord.y;\n  bool y1 = p1.y > vTexCoord.y;\n  bool y2 = p2.y > vTexCoord.y;\n\n  // could web be under the curve (after t1)?\n  if (y1 ? !y2 : y0) {\n    // add the coverage for t1\n    coverage.x += saturate(C1.x + 0.5);\n    // calculate the anti-aliasing for t1\n    weight.x = min(weight.x, abs(C1.x));\n  }\n\n  // are we outside the curve (after t2)?\n  if (y1 ? !y0 : y2) {\n    // subtract the coverage for t2\n    coverage.x -= saturate(C2.x + 0.5);\n    // calculate the anti-aliasing for t2\n    weight.x = min(weight.x, abs(C2.x));\n  }\n}\n\n// this is essentially the same as coverageX, but with the axes swapped\nvoid coverageY(vec2 p0, vec2 p1, vec2 p2) {\n\n  vec2 C1, C2;\n  calulateCrossings(p0, p1, p2, C1, C2);\n\n  bool x0 = p0.x > vTexCoord.x;\n  bool x1 = p1.x > vTexCoord.x;\n  bool x2 = p2.x > vTexCoord.x;\n\n  if (x1 ? !x2 : x0) {\n    coverage.y -= saturate(C1.y + 0.5);\n    weight.y = min(weight.y, abs(C1.y));\n  }\n\n  if (x1 ? !x0 : x2) {\n    coverage.y += saturate(C2.y + 0.5);\n    weight.y = min(weight.y, abs(C2.y));\n  }\n}\n\nvoid main() {\n\n  // calculate the pixel scale based on screen-coordinates\n  pixelScale = hardness / fwidth(vTexCoord);\n\n  // which grid cell is this pixel in?\n  ivec2 gridCoord = ifloor(vTexCoord * vec2(uGridSize));\n\n  // intersect curves in this row\n  {\n    // the index into the row info bitmap\n    int rowIndex = gridCoord.y + uGridOffset.y;\n    // fetch the info texel\n    vec4 rowInfo = getTexel(uSamplerRows, rowIndex, uGridImageSize);\n    // unpack the rowInfo\n    int rowStrokeIndex = getInt16(rowInfo.xy);\n    int rowStrokeCount = getInt16(rowInfo.zw);\n\n    for (int iRowStroke = INT(0); iRowStroke < N; iRowStroke++) {\n      if (iRowStroke >= rowStrokeCount)\n        break;\n\n      // each stroke is made up of 3 points: the start and control point\n      // and the start of the next curve.\n      // fetch the indices of this pair of strokes:\n      vec4 strokeIndices = getTexel(uSamplerRowStrokes, rowStrokeIndex++, uCellsImageSize);\n\n      // unpack the stroke index\n      int strokePos = getInt16(strokeIndices.xy);\n\n      // fetch the two strokes\n      vec4 stroke0 = getTexel(uSamplerStrokes, strokePos + INT(0), uStrokeImageSize);\n      vec4 stroke1 = getTexel(uSamplerStrokes, strokePos + INT(1), uStrokeImageSize);\n\n      // calculate the coverage\n      coverageX(stroke0.xy, stroke0.zw, stroke1.xy);\n    }\n  }\n\n  // intersect curves in this column\n  {\n    int colIndex = gridCoord.x + uGridOffset.x;\n    vec4 colInfo = getTexel(uSamplerCols, colIndex, uGridImageSize);\n    int colStrokeIndex = getInt16(colInfo.xy);\n    int colStrokeCount = getInt16(colInfo.zw);\n    \n    for (int iColStroke = INT(0); iColStroke < N; iColStroke++) {\n      if (iColStroke >= colStrokeCount)\n        break;\n\n      vec4 strokeIndices = getTexel(uSamplerColStrokes, colStrokeIndex++, uCellsImageSize);\n\n      int strokePos = getInt16(strokeIndices.xy);\n      vec4 stroke0 = getTexel(uSamplerStrokes, strokePos + INT(0), uStrokeImageSize);\n      vec4 stroke1 = getTexel(uSamplerStrokes, strokePos + INT(1), uStrokeImageSize);\n      coverageY(stroke0.xy, stroke0.zw, stroke1.xy);\n    }\n  }\n\n  weight = saturate(1.0 - weight * 2.0);\n  float distance = max(weight.x + weight.y, minDistance); // manhattan approx.\n  float antialias = abs(dot(coverage, weight) / distance);\n  float cover = min(abs(coverage.x), abs(coverage.y));\n  OUT_COLOR = vec4(uMaterialColor.rgb, 1.) * uMaterialColor.a;\n  OUT_COLOR *= saturate(max(antialias, cover));\n}\n',
-          lineVert: lineDefs + '/*\n  Part of the Processing project - http://processing.org\n  Copyright (c) 2012-15 The Processing Foundation\n  Copyright (c) 2004-12 Ben Fry and Casey Reas\n  Copyright (c) 2001-04 Massachusetts Institute of Technology\n  This library is free software; you can redistribute it and/or\n  modify it under the terms of the GNU Lesser General Public\n  License as published by the Free Software Foundation, version 2.1.\n  This library is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU\n  Lesser General Public License for more details.\n  You should have received a copy of the GNU Lesser General\n  Public License along with this library; if not, write to the\n  Free Software Foundation, Inc., 59 Temple Place, Suite 330,\n  Boston, MA  02111-1307  USA\n*/\n\n#define PROCESSING_LINE_SHADER\n\nprecision mediump int;\n\nuniform mat4 uModelViewMatrix;\nuniform mat4 uProjectionMatrix;\nuniform float uStrokeWeight;\n\nuniform bool uUseLineColor;\nuniform vec4 uMaterialColor;\n\nuniform vec4 uViewport;\nuniform int uPerspective;\nuniform int uStrokeJoin;\n\nIN vec4 aPosition;\nIN vec3 aTangentIn;\nIN vec3 aTangentOut;\nIN float aSide;\nIN vec4 aVertexColor;\n\nOUT vec4 vColor;\nOUT vec2 vTangent;\nOUT vec2 vCenter;\nOUT vec2 vPosition;\nOUT float vMaxDist;\nOUT float vCap;\nOUT float vJoin;\n\nvec2 lineIntersection(vec2 aPoint, vec2 aDir, vec2 bPoint, vec2 bDir) {\n  // Rotate and translate so a starts at the origin and goes out to the right\n  bPoint -= aPoint;\n  vec2 rotatedBFrom = vec2(\n    bPoint.x*aDir.x + bPoint.y*aDir.y,\n    bPoint.y*aDir.x - bPoint.x*aDir.y\n  );\n  vec2 bTo = bPoint + bDir;\n  vec2 rotatedBTo = vec2(\n    bTo.x*aDir.x + bTo.y*aDir.y,\n    bTo.y*aDir.x - bTo.x*aDir.y\n  );\n  float intersectionDistance =\n    rotatedBTo.x + (rotatedBFrom.x - rotatedBTo.x) * rotatedBTo.y /\n    (rotatedBTo.y - rotatedBFrom.y);\n  return aPoint + aDir * intersectionDistance;\n}\n\nvoid main() {\n  // Caps have one of either the in or out tangent set to 0\n  vCap = (aTangentIn == vec3(0.)) != (aTangentOut == (vec3(0.)))\n    ? 1. : 0.;\n\n  // Joins have two unique, defined tangents\n  vJoin = (\n    aTangentIn != vec3(0.) &&\n    aTangentOut != vec3(0.) &&\n    aTangentIn != aTangentOut\n  ) ? 1. : 0.;\n\n  vec4 posp = uModelViewMatrix * aPosition;\n  vec4 posqIn = uModelViewMatrix * (aPosition + vec4(aTangentIn, 0));\n  vec4 posqOut = uModelViewMatrix * (aPosition + vec4(aTangentOut, 0));\n\n  float facingCamera = pow(\n    // The word space tangent\'s z value is 0 if it\'s facing the camera\n    abs(normalize(posqIn-posp).z),\n\n    // Using pow() here to ramp `facingCamera` up from 0 to 1 really quickly\n    // so most lines get scaled and don\'t get clipped\n    0.25\n  );\n\n  // Moving vertices slightly toward the camera\n  // to avoid depth-fighting with the fill triangles.\n  // This prevents popping effects due to half of\n  // the line disappearing behind the geometry faces.\n  \n  float zOffset = mix(-0.00045, -1., facingCamera);\n  posp.z -= zOffset;\n  posqIn.z -= zOffset;\n  posqOut.z -= zOffset;\n  \n  vec4 p = uProjectionMatrix * posp;\n  vec4 qIn = uProjectionMatrix * posqIn;\n  vec4 qOut = uProjectionMatrix * posqOut;\n  vCenter = p.xy;\n\n  // formula to convert from clip space (range -1..1) to screen space (range 0..[width or height])\n  // screen_p = (p.xy/p.w + <1,1>) * 0.5 * uViewport.zw\n\n  // prevent division by W by transforming the tangent formula (div by 0 causes\n  // the line to disappear, see https://github.com/processing/processing/issues/5183)\n  // t = screen_q - screen_p\n  //\n  // tangent is normalized and we don\'t care which aDirection it points to (+-)\n  // t = +- normalize( screen_q - screen_p )\n  // t = +- normalize( (q.xy/q.w+<1,1>)*0.5*uViewport.zw - (p.xy/p.w+<1,1>)*0.5*uViewport.zw )\n  //\n  // extract common factor, <1,1> - <1,1> cancels out\n  // t = +- normalize( (q.xy/q.w - p.xy/p.w) * 0.5 * uViewport.zw )\n  //\n  // convert to common divisor\n  // t = +- normalize( ((q.xy*p.w - p.xy*q.w) / (p.w*q.w)) * 0.5 * uViewport.zw )\n  //\n  // remove the common scalar divisor/factor, not needed due to normalize and +-\n  // (keep uViewport - can\'t remove because it has different components for x and y\n  //  and corrects for aspect ratio, see https://github.com/processing/processing/issues/5181)\n  // t = +- normalize( (q.xy*p.w - p.xy*q.w) * uViewport.zw )\n\n  vec2 tangentIn = normalize((qIn.xy*p.w - p.xy*qIn.w) * uViewport.zw);\n  vec2 tangentOut = normalize((qOut.xy*p.w - p.xy*qOut.w) * uViewport.zw);\n\n  vec2 curPerspScale;\n  if(uPerspective == 1) {\n    // Perspective ---\n    // convert from world to clip by multiplying with projection scaling factor\n    // to get the right thickness (see https://github.com/processing/processing/issues/5182)\n\n    // The y value of the projection matrix may be flipped if rendering to a Framebuffer.\n    // Multiplying again by its sign here negates the flip to get just the scale.\n    curPerspScale = (uProjectionMatrix * vec4(1, sign(uProjectionMatrix[1][1]), 0, 0)).xy;\n  } else {\n    // No Perspective ---\n    // multiply by W (to cancel out division by W later in the pipeline) and\n    // convert from screen to clip (derived from clip to screen above)\n    curPerspScale = p.w / (0.5 * uViewport.zw);\n  }\n\n  vec2 offset;\n  if (vJoin == 1.) {\n    vTangent = normalize(tangentIn + tangentOut);\n    vec2 normalIn = vec2(-tangentIn.y, tangentIn.x);\n    vec2 normalOut = vec2(-tangentOut.y, tangentOut.x);\n    float side = sign(aSide);\n    float sideEnum = abs(aSide);\n\n    // We generate vertices for joins on either side of the centerline, but\n    // the "elbow" side is the only one needing a join. By not setting the\n    // offset for the other side, all its vertices will end up in the same\n    // spot and not render, effectively discarding it.\n    if (sign(dot(tangentOut, vec2(-tangentIn.y, tangentIn.x))) != side) {\n      // Side enums:\n      //   1: the side going into the join\n      //   2: the middle of the join\n      //   3: the side going out of the join\n      if (sideEnum == 2.) {\n        // Calculate the position + tangent on either side of the join, and\n        // find where the lines intersect to find the elbow of the join\n        vec2 c = (posp.xy/posp.w + vec2(1.,1.)) * 0.5 * uViewport.zw;\n        vec2 intersection = lineIntersection(\n          c + (side * normalIn * uStrokeWeight / 2.),\n          tangentIn,\n          c + (side * normalOut * uStrokeWeight / 2.),\n          tangentOut\n        );\n        offset = (intersection - c);\n\n        // When lines are thick and the angle of the join approaches 180, the\n        // elbow might be really far from the center. We\'ll apply a limit to\n        // the magnitude to avoid lines going across the whole screen when this\n        // happens.\n        float mag = length(offset);\n        float maxMag = 3. * uStrokeWeight;\n        if (mag > maxMag) {\n          offset *= maxMag / mag;\n        }\n      } else if (sideEnum == 1.) {\n        offset = side * normalIn * uStrokeWeight / 2.;\n      } else if (sideEnum == 3.) {\n        offset = side * normalOut * uStrokeWeight / 2.;\n      }\n    }\n    if (uStrokeJoin == STROKE_JOIN_BEVEL) {\n      vec2 avgNormal = vec2(-vTangent.y, vTangent.x);\n      vMaxDist = abs(dot(avgNormal, normalIn * uStrokeWeight / 2.));\n    } else {\n      vMaxDist = uStrokeWeight / 2.;\n    }\n  } else {\n    vec2 tangent = aTangentIn == vec3(0.) ? tangentOut : tangentIn;\n    vTangent = tangent;\n    vec2 normal = vec2(-tangent.y, tangent.x);\n\n    float normalOffset = sign(aSide);\n    // Caps will have side values of -2 or 2 on the edge of the cap that\n    // extends out from the line\n    float tangentOffset = abs(aSide) - 1.;\n    offset = (normal * normalOffset + tangent * tangentOffset) *\n      uStrokeWeight * 0.5;\n    vMaxDist = uStrokeWeight / 2.;\n  }\n  vPosition = vCenter + offset;\n\n  gl_Position.xy = p.xy + offset.xy * curPerspScale;\n  gl_Position.zw = p.zw;\n  \n  vColor = (uUseLineColor ? aVertexColor : uMaterialColor);\n}\n',
-          lineFrag: lineDefs + 'precision mediump int;\n\nuniform vec4 uMaterialColor;\nuniform int uStrokeCap;\nuniform int uStrokeJoin;\nuniform float uStrokeWeight;\n\nIN vec4 vColor;\nIN vec2 vTangent;\nIN vec2 vCenter;\nIN vec2 vPosition;\nIN float vMaxDist;\nIN float vCap;\nIN float vJoin;\n\nfloat distSquared(vec2 a, vec2 b) {\n  vec2 aToB = b - a;\n  return dot(aToB, aToB);\n}\n\nvoid main() {\n  if (vCap > 0.) {\n    if (\n      uStrokeCap == STROKE_CAP_ROUND &&\n      distSquared(vPosition, vCenter) > uStrokeWeight * uStrokeWeight * 0.25\n    ) {\n      discard;\n    } else if (\n      uStrokeCap == STROKE_CAP_SQUARE &&\n      dot(vPosition - vCenter, vTangent) > 0.\n    ) {\n      discard;\n    }\n    // Use full area for PROJECT\n  } else if (vJoin > 0.) {\n    if (\n      uStrokeJoin == STROKE_JOIN_ROUND &&\n      distSquared(vPosition, vCenter) > uStrokeWeight * uStrokeWeight * 0.25\n    ) {\n      discard;\n    } else if (uStrokeJoin == STROKE_JOIN_BEVEL) {\n      vec2 normal = vec2(-vTangent.y, vTangent.x);\n      if (abs(dot(vPosition - vCenter, normal)) > vMaxDist) {\n        discard;\n      }\n    }\n    // Use full area for MITER\n  }\n  OUT_COLOR = vec4(vColor.rgb, 1.) * vColor.a;\n}\n',
-          pointVert: 'IN vec3 aPosition;\nuniform float uPointSize;\nOUT float vStrokeWeight;\nuniform mat4 uModelViewMatrix;\nuniform mat4 uProjectionMatrix;\nvoid main() {\n\tvec4 positionVec4 =  vec4(aPosition, 1.0);\n\tgl_Position = uProjectionMatrix * uModelViewMatrix * positionVec4;\n\tgl_PointSize = uPointSize;\n\tvStrokeWeight = uPointSize;\n}\n',
-          pointFrag: 'precision mediump int;\nuniform vec4 uMaterialColor;\nIN float vStrokeWeight;\n\nvoid main(){\n  float mask = 0.0;\n\n  // make a circular mask using the gl_PointCoord (goes from 0 - 1 on a point)\n  // might be able to get a nicer edge on big strokeweights with smoothstep but slightly less performant\n\n  mask = step(0.98, length(gl_PointCoord * 2.0 - 1.0));\n\n  // if strokeWeight is 1 or less lets just draw a square\n  // this prevents weird artifacting from carving circles when our points are really small\n  // if strokeWeight is larger than 1, we just use it as is\n\n  mask = mix(0.0, mask, clamp(floor(vStrokeWeight - 0.5),0.0,1.0));\n\n  // throw away the borders of the mask\n  // otherwise we get weird alpha blending issues\n\n  if(mask > 0.98){\n    discard;\n  }\n\n  OUT_COLOR = vec4(uMaterialColor.rgb, 1.) * uMaterialColor.a;\n}\n',
+          lineVert: lineDefs + '/*\n  Part of the Processing project - http://processing.org\n  Copyright (c) 2012-15 The Processing Foundation\n  Copyright (c) 2004-12 Ben Fry and Casey Reas\n  Copyright (c) 2001-04 Massachusetts Institute of Technology\n  This library is free software; you can redistribute it and/or\n  modify it under the terms of the GNU Lesser General Public\n  License as published by the Free Software Foundation, version 2.1.\n  This library is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU\n  Lesser General Public License for more details.\n  You should have received a copy of the GNU Lesser General\n  Public License along with this library; if not, write to the\n  Free Software Foundation, Inc., 59 Temple Place, Suite 330,\n  Boston, MA  02111-1307  USA\n*/\n\n#define PROCESSING_LINE_SHADER\n\nprecision mediump int;\n\nuniform mat4 uModelViewMatrix;\nuniform mat4 uProjectionMatrix;\nuniform float uStrokeWeight;\n\nuniform bool uUseLineColor;\nuniform vec4 uMaterialColor;\n\nuniform vec4 uViewport;\nuniform int uPerspective;\nuniform int uStrokeJoin;\n\nIN vec4 aPosition;\nIN vec3 aTangentIn;\nIN vec3 aTangentOut;\nIN float aSide;\nIN vec4 aVertexColor;\n\nOUT vec4 vColor;\nOUT vec2 vTangent;\nOUT vec2 vCenter;\nOUT vec2 vPosition;\nOUT float vMaxDist;\nOUT float vCap;\nOUT float vJoin;\nOUT float vStrokeWeight;\n\nvec2 lineIntersection(vec2 aPoint, vec2 aDir, vec2 bPoint, vec2 bDir) {\n  // Rotate and translate so a starts at the origin and goes out to the right\n  bPoint -= aPoint;\n  vec2 rotatedBFrom = vec2(\n    bPoint.x*aDir.x + bPoint.y*aDir.y,\n    bPoint.y*aDir.x - bPoint.x*aDir.y\n  );\n  vec2 bTo = bPoint + bDir;\n  vec2 rotatedBTo = vec2(\n    bTo.x*aDir.x + bTo.y*aDir.y,\n    bTo.y*aDir.x - bTo.x*aDir.y\n  );\n  float intersectionDistance =\n    rotatedBTo.x + (rotatedBFrom.x - rotatedBTo.x) * rotatedBTo.y /\n    (rotatedBTo.y - rotatedBFrom.y);\n  return aPoint + aDir * intersectionDistance;\n}\n\nvoid main() {\n  HOOK_beforeVertex();\n  // Caps have one of either the in or out tangent set to 0\n  vCap = (aTangentIn == vec3(0.)) != (aTangentOut == (vec3(0.)))\n    ? 1. : 0.;\n\n  // Joins have two unique, defined tangents\n  vJoin = (\n    aTangentIn != vec3(0.) &&\n    aTangentOut != vec3(0.) &&\n    aTangentIn != aTangentOut\n  ) ? 1. : 0.;\n\n  vec4 localPosition = vec4(HOOK_getLocalPosition(aPosition.xyz), 1.);\n  vec4 posp = vec4(HOOK_getWorldPosition((uModelViewMatrix * localPosition).xyz), 1.);\n  vec4 posqIn = posp + uModelViewMatrix * vec4(aTangentIn, 0);\n  vec4 posqOut = posp + uModelViewMatrix * vec4(aTangentOut, 0);\n  float strokeWeight = HOOK_getStrokeWeight(uStrokeWeight);\n  vStrokeWeight = strokeWeight;\n\n  float facingCamera = pow(\n    // The word space tangent\'s z value is 0 if it\'s facing the camera\n    abs(normalize(posqIn-posp).z),\n\n    // Using pow() here to ramp `facingCamera` up from 0 to 1 really quickly\n    // so most lines get scaled and don\'t get clipped\n    0.25\n  );\n\n  // Moving vertices slightly toward the camera\n  // to avoid depth-fighting with the fill triangles.\n  // A mix of scaling and offsetting is used based on distance\n  // Discussion here:\n  // https://github.com/processing/p5.js/issues/7200 \n\n  // using a scale <1 moves the lines towards nearby camera\n  // in order to prevent popping effects due to half of\n  // the line disappearing behind the geometry faces.\n  float zDistance = -posp.z; \n  float distanceFactor = smoothstep(0.0, 800.0, zDistance); \n  \n  // Discussed here:\n  // http://www.opengl.org/discussion_boards/ubbthreads.php?ubb=showflat&Number=252848  \n  float scale = mix(1., 0.995, facingCamera);\n  float dynamicScale = mix(scale, 1.0, distanceFactor); // Closer = more scale, farther = less\n\n  posp.xyz = posp.xyz * dynamicScale;\n  posqIn.xyz = posqIn.xyz * dynamicScale;\n  posqOut.xyz = posqOut.xyz * dynamicScale;\n\n  // Moving vertices slightly toward camera when far away \n  // https://github.com/processing/p5.js/issues/6956 \n  float zOffset = mix(-0.00045, -1., facingCamera);\n  float dynamicZAdjustment = mix(0.0, zOffset, distanceFactor); // Closer = less zAdjustment, farther = more\n\n  posp.z -= dynamicZAdjustment;\n  posqIn.z -= dynamicZAdjustment;\n  posqOut.z -= dynamicZAdjustment;\n  \n  vec4 p = uProjectionMatrix * posp;\n  vec4 qIn = uProjectionMatrix * posqIn;\n  vec4 qOut = uProjectionMatrix * posqOut;\n  vCenter = HOOK_getLineCenter(p.xy);\n\n  // formula to convert from clip space (range -1..1) to screen space (range 0..[width or height])\n  // screen_p = (p.xy/p.w + <1,1>) * 0.5 * uViewport.zw\n\n  // prevent division by W by transforming the tangent formula (div by 0 causes\n  // the line to disappear, see https://github.com/processing/processing/issues/5183)\n  // t = screen_q - screen_p\n  //\n  // tangent is normalized and we don\'t care which aDirection it points to (+-)\n  // t = +- normalize( screen_q - screen_p )\n  // t = +- normalize( (q.xy/q.w+<1,1>)*0.5*uViewport.zw - (p.xy/p.w+<1,1>)*0.5*uViewport.zw )\n  //\n  // extract common factor, <1,1> - <1,1> cancels out\n  // t = +- normalize( (q.xy/q.w - p.xy/p.w) * 0.5 * uViewport.zw )\n  //\n  // convert to common divisor\n  // t = +- normalize( ((q.xy*p.w - p.xy*q.w) / (p.w*q.w)) * 0.5 * uViewport.zw )\n  //\n  // remove the common scalar divisor/factor, not needed due to normalize and +-\n  // (keep uViewport - can\'t remove because it has different components for x and y\n  //  and corrects for aspect ratio, see https://github.com/processing/processing/issues/5181)\n  // t = +- normalize( (q.xy*p.w - p.xy*q.w) * uViewport.zw )\n\n  vec2 tangentIn = normalize((qIn.xy*p.w - p.xy*qIn.w) * uViewport.zw);\n  vec2 tangentOut = normalize((qOut.xy*p.w - p.xy*qOut.w) * uViewport.zw);\n\n  vec2 curPerspScale;\n  if(uPerspective == 1) {\n    // Perspective ---\n    // convert from world to clip by multiplying with projection scaling factor\n    // to get the right thickness (see https://github.com/processing/processing/issues/5182)\n\n    // The y value of the projection matrix may be flipped if rendering to a Framebuffer.\n    // Multiplying again by its sign here negates the flip to get just the scale.\n    curPerspScale = (uProjectionMatrix * vec4(1, sign(uProjectionMatrix[1][1]), 0, 0)).xy;\n  } else {\n    // No Perspective ---\n    // multiply by W (to cancel out division by W later in the pipeline) and\n    // convert from screen to clip (derived from clip to screen above)\n    curPerspScale = p.w / (0.5 * uViewport.zw);\n  }\n\n  vec2 offset;\n  if (vJoin == 1.) {\n    vTangent = normalize(tangentIn + tangentOut);\n    vec2 normalIn = vec2(-tangentIn.y, tangentIn.x);\n    vec2 normalOut = vec2(-tangentOut.y, tangentOut.x);\n    float side = sign(aSide);\n    float sideEnum = abs(aSide);\n\n    // We generate vertices for joins on either side of the centerline, but\n    // the "elbow" side is the only one needing a join. By not setting the\n    // offset for the other side, all its vertices will end up in the same\n    // spot and not render, effectively discarding it.\n    if (sign(dot(tangentOut, vec2(-tangentIn.y, tangentIn.x))) != side) {\n      // Side enums:\n      //   1: the side going into the join\n      //   2: the middle of the join\n      //   3: the side going out of the join\n      if (sideEnum == 2.) {\n        // Calculate the position + tangent on either side of the join, and\n        // find where the lines intersect to find the elbow of the join\n        vec2 c = (posp.xy/posp.w + vec2(1.,1.)) * 0.5 * uViewport.zw;\n        vec2 intersection = lineIntersection(\n          c + (side * normalIn * strokeWeight / 2.),\n          tangentIn,\n          c + (side * normalOut * strokeWeight / 2.),\n          tangentOut\n        );\n        offset = (intersection - c);\n\n        // When lines are thick and the angle of the join approaches 180, the\n        // elbow might be really far from the center. We\'ll apply a limit to\n        // the magnitude to avoid lines going across the whole screen when this\n        // happens.\n        float mag = length(offset);\n        float maxMag = 3. * strokeWeight;\n        if (mag > maxMag) {\n          offset *= maxMag / mag;\n        }\n      } else if (sideEnum == 1.) {\n        offset = side * normalIn * strokeWeight / 2.;\n      } else if (sideEnum == 3.) {\n        offset = side * normalOut * strokeWeight / 2.;\n      }\n    }\n    if (uStrokeJoin == STROKE_JOIN_BEVEL) {\n      vec2 avgNormal = vec2(-vTangent.y, vTangent.x);\n      vMaxDist = abs(dot(avgNormal, normalIn * strokeWeight / 2.));\n    } else {\n      vMaxDist = strokeWeight / 2.;\n    }\n  } else {\n    vec2 tangent = aTangentIn == vec3(0.) ? tangentOut : tangentIn;\n    vTangent = tangent;\n    vec2 normal = vec2(-tangent.y, tangent.x);\n\n    float normalOffset = sign(aSide);\n    // Caps will have side values of -2 or 2 on the edge of the cap that\n    // extends out from the line\n    float tangentOffset = abs(aSide) - 1.;\n    offset = (normal * normalOffset + tangent * tangentOffset) *\n      strokeWeight * 0.5;\n    vMaxDist = strokeWeight / 2.;\n  }\n  vPosition = HOOK_getLinePosition(vCenter + offset);\n\n  gl_Position.xy = p.xy + offset.xy * curPerspScale;\n  gl_Position.zw = p.zw;\n  \n  vColor = HOOK_getVertexColor(uUseLineColor ? aVertexColor : uMaterialColor);\n  HOOK_afterVertex();\n}\n',
+          lineFrag: lineDefs + 'precision mediump int;\n\nuniform vec4 uMaterialColor;\nuniform int uStrokeCap;\nuniform int uStrokeJoin;\n\nIN vec4 vColor;\nIN vec2 vTangent;\nIN vec2 vCenter;\nIN vec2 vPosition;\nIN float vStrokeWeight;\nIN float vMaxDist;\nIN float vCap;\nIN float vJoin;\n\nfloat distSquared(vec2 a, vec2 b) {\n  vec2 aToB = b - a;\n  return dot(aToB, aToB);\n}\n\nstruct Inputs {\n  vec4 color;\n  vec2 tangent;\n  vec2 center;\n  vec2 position;\n  float strokeWeight;\n};\n\nvoid main() {\n  HOOK_beforeFragment();\n\n  Inputs inputs;\n  inputs.color = vColor;\n  inputs.tangent = vTangent;\n  inputs.center = vCenter;\n  inputs.position = vPosition;\n  inputs.strokeWeight = vStrokeWeight;\n  inputs = HOOK_getPixelInputs(inputs);\n\n  if (vCap > 0.) {\n    if (\n      uStrokeCap == STROKE_CAP_ROUND &&\n      HOOK_shouldDiscard(distSquared(inputs.position, inputs.center) > inputs.strokeWeight * inputs.strokeWeight * 0.25)\n    ) {\n      discard;\n    } else if (\n      uStrokeCap == STROKE_CAP_SQUARE &&\n      HOOK_shouldDiscard(dot(inputs.position - inputs.center, inputs.tangent) > 0.)\n    ) {\n      discard;\n    // Use full area for PROJECT\n    } else if (HOOK_shouldDiscard(false)) {\n      discard;\n    }\n  } else if (vJoin > 0.) {\n    if (\n      uStrokeJoin == STROKE_JOIN_ROUND &&\n      HOOK_shouldDiscard(distSquared(inputs.position, inputs.center) > inputs.strokeWeight * inputs.strokeWeight * 0.25)\n    ) {\n      discard;\n    } else if (uStrokeJoin == STROKE_JOIN_BEVEL) {\n      vec2 normal = vec2(-inputs.tangent.y, inputs.tangent.x);\n      if (HOOK_shouldDiscard(abs(dot(inputs.position - inputs.center, normal)) > vMaxDist)) {\n        discard;\n      }\n    // Use full area for MITER\n    } else if (HOOK_shouldDiscard(false)) {\n      discard;\n    }\n  }\n  OUT_COLOR = HOOK_getFinalColor(vec4(inputs.color.rgb, 1.) * inputs.color.a);\n  HOOK_afterFragment();\n}\n',
+          pointVert: 'IN vec3 aPosition;\nuniform float uPointSize;\nOUT float vStrokeWeight;\nuniform mat4 uModelViewMatrix;\nuniform mat4 uProjectionMatrix;\n\nvoid main() {\n  HOOK_beforeVertex();\n  vec4 viewModelPosition = vec4(HOOK_getWorldPosition(\n    (uModelViewMatrix * vec4(HOOK_getLocalPosition(aPosition), 1.0)).xyz\n  ), 1.);\n  gl_Position = uProjectionMatrix * viewModelPosition;  \n\n  float pointSize = HOOK_getPointSize(uPointSize);\n\n\tgl_PointSize = pointSize;\n\tvStrokeWeight = pointSize;\n  HOOK_afterVertex();\n}\n',
+          pointFrag: 'precision mediump int;\nuniform vec4 uMaterialColor;\nIN float vStrokeWeight;\n\nvoid main(){\n  HOOK_beforeFragment();\n  float mask = 0.0;\n\n  // make a circular mask using the gl_PointCoord (goes from 0 - 1 on a point)\n  // might be able to get a nicer edge on big strokeweights with smoothstep but slightly less performant\n\n  mask = step(0.98, length(gl_PointCoord * 2.0 - 1.0));\n\n  // if strokeWeight is 1 or less lets just draw a square\n  // this prevents weird artifacting from carving circles when our points are really small\n  // if strokeWeight is larger than 1, we just use it as is\n\n  mask = mix(0.0, mask, clamp(floor(vStrokeWeight - 0.5),0.0,1.0));\n\n  // throw away the borders of the mask\n  // otherwise we get weird alpha blending issues\n\n  if(HOOK_shouldDiscard(mask > 0.98)){\n    discard;\n  }\n\n  OUT_COLOR = HOOK_getFinalColor(vec4(uMaterialColor.rgb, 1.) * uMaterialColor.a);\n  HOOK_afterFragment();\n}\n',
           imageLightVert: 'precision highp float;\nattribute vec3 aPosition;\nattribute vec3 aNormal;\nattribute vec2 aTexCoord;\n\nvarying vec3 localPos;\nvarying vec3 vWorldNormal;\nvarying vec3 vWorldPosition;\nvarying vec2 vTexCoord;\n\nuniform mat4 uModelViewMatrix;\nuniform mat4 uProjectionMatrix;\nuniform mat3 uNormalMatrix;\n\nvoid main() {\n  // Multiply the position by the matrix.\n  vec4 viewModelPosition = uModelViewMatrix * vec4(aPosition, 1.0);\n  gl_Position = uProjectionMatrix * viewModelPosition;  \n  \n  // orient the normals and pass to the fragment shader\n  vWorldNormal = uNormalMatrix * aNormal;\n  \n  // send the view position to the fragment shader\n  vWorldPosition = (uModelViewMatrix * vec4(aPosition, 1.0)).xyz;\n  \n  localPos = vWorldPosition;\n  vTexCoord = aTexCoord;\n}\n\n\n/*\nin the vertex shader we\'ll compute the world position and world oriented normal of the vertices and pass those to the fragment shader as varyings.\n*/\n',
           imageLightDiffusedFrag: 'precision highp float;\nvarying vec3 localPos;\n\n// the HDR cubemap converted (can be from an equirectangular environment map.)\nuniform sampler2D environmentMap;\nvarying vec2 vTexCoord;\n\nconst float PI = 3.14159265359;\n\nvec2 nTOE( vec3 v ){\n  // x = r sin(phi) cos(theta)   \n  // y = r cos(phi)  \n  // z = r sin(phi) sin(theta)\n  float phi = acos( v.y );\n  // if phi is 0, then there are no x, z components\n  float theta = 0.0;\n  // else \n  theta = acos(v.x / sin(phi));\n  float sinTheta = v.z / sin(phi);\n  if (sinTheta < 0.0) {\n    // Turn it into -theta, but in the 0-2PI range\n    theta = 2.0 * PI - theta;\n  }\n  theta = theta / (2.0 * 3.14159);\n  phi = phi / 3.14159 ;\n  \n  vec2 angles = vec2( phi, theta );\n  return angles;\n}\n\nfloat random(vec2 p) {\n  vec3 p3  = fract(vec3(p.xyx) * .1031);\n  p3 += dot(p3, p3.yzx + 33.33);\n  return fract((p3.x + p3.y) * p3.z);\n}\n\nvoid main()\n{   \t \n\t// the sample direction equals the hemisphere\'s orientation\n  float phi = vTexCoord.x * 2.0 * PI;\n  float theta = vTexCoord.y * PI;\n  float x = sin(theta) * cos(phi);\n  float y = sin(theta) * sin(phi);\n  float z = cos(theta);\n  vec3 normal = vec3( x, y, z);\n\n\t// Discretely sampling the hemisphere given the integral\'s\n  // spherical coordinates translates to the following fragment code:\n\tvec3 irradiance = vec3(0.0);  \n\tvec3 up\t= vec3(0.0, 1.0, 0.0);\n\tvec3 right = normalize(cross(up, normal));\n\tup = normalize(cross(normal, right));\n\n\t//  We specify a fixed sampleDelta delta value to traverse\n  // the hemisphere; decreasing or increasing the sample delta\n  // will increase or decrease the accuracy respectively.\n\tconst float sampleDelta = 0.100;\n\tfloat nrSamples = 0.0;\n  float randomOffset = random(gl_FragCoord.xy) * sampleDelta;\n\tfor(float rawPhi = 0.0; rawPhi < 2.0 * PI; rawPhi += sampleDelta)\n\t{\n    float phi = rawPhi + randomOffset;\n    for(float rawTheta = 0.0; rawTheta < ( 0.5 ) * PI; rawTheta += sampleDelta)\n    {\n      float theta = rawTheta + randomOffset;\n      // spherical to cartesian (in tangent space) // tangent space to world // add each sample result to irradiance\n      float x = sin(theta) * cos(phi);\n      float y = sin(theta) * sin(phi);\n      float z = cos(theta);\n      vec3 tangentSample = vec3( x, y, z);\n      \n      vec3 sampleVec = tangentSample.x * right + tangentSample.y * up + tangentSample.z * normal;\n        irradiance += (texture2D(environmentMap, nTOE(sampleVec)).xyz) * cos(theta) * sin(theta);\n      nrSamples++;\n    }\n\t}\n\t// divide by the total number of samples taken, giving us the average sampled irradiance.\n\tirradiance = PI * irradiance * (1.0 / float(nrSamples )) ;\n  \n \n\tgl_FragColor = vec4(irradiance, 1.0);\n}',
           imageLightSpecularFrag: 'precision highp float;\r\nvarying vec3 localPos;\r\nvarying vec2 vTexCoord;\r\n\r\n// our texture\r\nuniform sampler2D environmentMap;\r\nuniform float roughness;\r\n\r\nconst float PI = 3.14159265359;\r\n\r\nfloat VanDerCorput(int bits);\r\nvec2 HammersleyNoBitOps(int i, int N);\r\nvec3 ImportanceSampleGGX(vec2 Xi, vec3 N, float roughness);\r\n\r\n\r\nvec2 nTOE( vec3 v ){\r\n  // x = r sin(phi) cos(theta)   \r\n  // y = r cos(phi)  \r\n  // z = r sin(phi) sin(theta)\r\n  float phi = acos( v.y );\r\n  // if phi is 0, then there are no x, z components\r\n  float theta = 0.0;\r\n  // else \r\n  theta = acos(v.x / sin(phi));\r\n  float sinTheta = v.z / sin(phi);\r\n  if (sinTheta < 0.0) {\r\n    // Turn it into -theta, but in the 0-2PI range\r\n    theta = 2.0 * PI - theta;\r\n  }\r\n  theta = theta / (2.0 * 3.14159);\r\n  phi = phi / 3.14159 ;\r\n  \r\n  vec2 angles = vec2( phi, theta );\r\n  return angles;\r\n}\r\n\r\n\r\nvoid main(){\r\n  const int SAMPLE_COUNT = 400; // 4096\r\n  int lowRoughnessLimit = int(pow(2.0,(roughness+0.1)*20.0));\r\n  float totalWeight = 0.0;\r\n  vec3 prefilteredColor = vec3(0.0);\r\n  float phi = vTexCoord.x * 2.0 * PI;\r\n  float theta = vTexCoord.y * PI;\r\n  float x = sin(theta) * cos(phi);\r\n  float y = sin(theta) * sin(phi);\r\n  float z = cos(theta);\r\n  vec3 N = vec3(x,y,z);\r\n  vec3 V = N;\r\n  for (int i = 0; i < SAMPLE_COUNT; ++i)\r\n  {\r\n    // break at smaller sample numbers for low roughness levels\r\n    if(i == lowRoughnessLimit)\r\n    {\r\n      break;\r\n    }\r\n    vec2 Xi = HammersleyNoBitOps(i, SAMPLE_COUNT);\r\n    vec3 H = ImportanceSampleGGX(Xi, N, roughness);\r\n    vec3 L = normalize(2.0 * dot(V, H) * H - V);\r\n\r\n    float NdotL = max(dot(N, L), 0.0);\r\n    if (NdotL > 0.0)\r\n    {\r\n      prefilteredColor += texture2D(environmentMap, nTOE(L)).xyz * NdotL;\r\n      totalWeight += NdotL;\r\n    }\r\n  }\r\n  prefilteredColor = prefilteredColor / totalWeight;\r\n\r\n  gl_FragColor = vec4(prefilteredColor, 1.0);\r\n}\r\n\r\nvec3 ImportanceSampleGGX(vec2 Xi, vec3 N, float roughness){\r\n  float a = roughness * roughness;\r\n\r\n  float phi = 2.0 * PI * Xi.x;\r\n  float cosTheta = sqrt((1.0 - Xi.y) / (1.0 + (a * a - 1.0) * Xi.y));\r\n  float sinTheta = sqrt(1.0 - cosTheta * cosTheta);\r\n  // from spherical coordinates to cartesian coordinates\r\n  vec3 H;\r\n  H.x = cos(phi) * sinTheta;\r\n  H.y = sin(phi) * sinTheta;\r\n  H.z = cosTheta;\r\n\r\n  // from tangent-space vector to world-space sample vector\r\n  vec3 up = abs(N.z) < 0.999 ? vec3(0.0, 0.0, 1.0) : vec3(1.0, 0.0, 0.0);\r\n  vec3 tangent = normalize(cross(up, N));\r\n  vec3 bitangent = cross(N, tangent);\r\n\r\n  vec3 sampleVec = tangent * H.x + bitangent * H.y + N * H.z;\r\n  return normalize(sampleVec);\r\n}\r\n\r\n\r\nfloat VanDerCorput(int n, int base)\r\n{\r\n#ifdef WEBGL2\r\n\r\n    uint bits = uint(n);\r\n    bits = (bits << 16u) | (bits >> 16u);\r\n    bits = ((bits & 0x55555555u) << 1u) | ((bits & 0xAAAAAAAAu) >> 1u);\r\n    bits = ((bits & 0x33333333u) << 2u) | ((bits & 0xCCCCCCCCu) >> 2u);\r\n    bits = ((bits & 0x0F0F0F0Fu) << 4u) | ((bits & 0xF0F0F0F0u) >> 4u);\r\n    bits = ((bits & 0x00FF00FFu) << 8u) | ((bits & 0xFF00FF00u) >> 8u);\r\n    return float(bits) * 2.3283064365386963e-10; // / 0x100000000\r\n\r\n#else\r\n\r\n  float invBase = 1.0 / float(base);\r\n  float denom = 1.0;\r\n  float result = 0.0;\r\n\r\n\r\n  for (int i = 0; i < 32; ++i)\r\n  {\r\n        if (n > 0)\r\n        {\r\n        denom = mod(float(n), 2.0);\r\n        result += denom * invBase;\r\n        invBase = invBase / 2.0;\r\n        n = int(float(n) / 2.0);\r\n        }\r\n  }\r\n\r\n\r\n  return result;\r\n\r\n#endif\r\n}\r\n\r\nvec2 HammersleyNoBitOps(int i, int N)\r\n{\r\n  return vec2(float(i) / float(N), VanDerCorput(i, 2));\r\n}\r\n'
@@ -141694,11 +142914,38 @@
               }
             },
             {
+              key: 'baseMaterialShader',
+              value: function baseMaterialShader() {
+                if (!this._pInst._glAttributes.perPixelLighting) {
+                  throw new Error('The material shader does not support hooks without perPixelLighting. Try turning it back on.');
+                }
+                return this._getLightShader();
+              }
+            },
+            {
               key: '_getLightShader',
               value: function _getLightShader() {
                 if (!this._defaultLightShader) {
                   if (this._pInst._glAttributes.perPixelLighting) {
-                    this._defaultLightShader = new _main.default.Shader(this, this._webGL2CompatibilityPrefix('vert', 'highp') + defaultShaders.phongVert, this._webGL2CompatibilityPrefix('frag', 'highp') + defaultShaders.phongFrag);
+                    this._defaultLightShader = new _main.default.Shader(this, this._webGL2CompatibilityPrefix('vert', 'highp') + defaultShaders.phongVert, this._webGL2CompatibilityPrefix('frag', 'highp') + defaultShaders.phongFrag, {
+                      vertex: {
+                        'void beforeVertex': '() {}',
+                        'vec3 getLocalPosition': '(vec3 position) { return position; }',
+                        'vec3 getWorldPosition': '(vec3 position) { return position; }',
+                        'vec3 getLocalNormal': '(vec3 normal) { return normal; }',
+                        'vec3 getWorldNormal': '(vec3 normal) { return normal; }',
+                        'vec2 getUV': '(vec2 uv) { return uv; }',
+                        'vec4 getVertexColor': '(vec4 color) { return color; }',
+                        'void afterVertex': '() {}'
+                      },
+                      fragment: {
+                        'void beforeFragment': '() {}',
+                        'Inputs getPixelInputs': '(Inputs inputs) { return inputs; }',
+                        'vec4 combineColors': '(ColorComponents components) {\n                vec4 color = vec4(0.);\n                color.rgb += components.diffuse * components.baseColor;\n                color.rgb += components.ambient * components.ambientColor;\n                color.rgb += components.specular * components.specularColor;\n                color.rgb += components.emissive;\n                color.a = components.opacity;\n                return color;\n              }',
+                        'vec4 getFinalColor': '(vec4 color) { return color; }',
+                        'void afterFragment': '() {}'
+                      }
+                    });
                   } else {
                     this._defaultLightShader = new _main.default.Shader(this, this._webGL2CompatibilityPrefix('vert', 'highp') + defaultShaders.lightVert, this._webGL2CompatibilityPrefix('frag', 'highp') + defaultShaders.lightTextureFrag);
                   }
@@ -141716,37 +142963,149 @@
               }
             },
             {
+              key: 'baseNormalShader',
+              value: function baseNormalShader() {
+                return this._getNormalShader();
+              }
+            },
+            {
               key: '_getNormalShader',
               value: function _getNormalShader() {
                 if (!this._defaultNormalShader) {
-                  this._defaultNormalShader = new _main.default.Shader(this, this._webGL2CompatibilityPrefix('vert', 'mediump') + defaultShaders.normalVert, this._webGL2CompatibilityPrefix('frag', 'mediump') + defaultShaders.normalFrag);
+                  this._defaultNormalShader = new _main.default.Shader(this, this._webGL2CompatibilityPrefix('vert', 'mediump') + defaultShaders.normalVert, this._webGL2CompatibilityPrefix('frag', 'mediump') + defaultShaders.normalFrag, {
+                    vertex: {
+                      'void beforeVertex': '() {}',
+                      'vec3 getLocalPosition': '(vec3 position) { return position; }',
+                      'vec3 getWorldPosition': '(vec3 position) { return position; }',
+                      'vec3 getLocalNormal': '(vec3 normal) { return normal; }',
+                      'vec3 getWorldNormal': '(vec3 normal) { return normal; }',
+                      'vec2 getUV': '(vec2 uv) { return uv; }',
+                      'vec4 getVertexColor': '(vec4 color) { return color; }',
+                      'void afterVertex': '() {}'
+                    },
+                    fragment: {
+                      'void beforeFragment': '() {}',
+                      'vec4 getFinalColor': '(vec4 color) { return color; }',
+                      'void afterFragment': '() {}'
+                    }
+                  });
                 }
                 return this._defaultNormalShader;
+              }
+            },
+            {
+              key: 'baseColorShader',
+              value: function baseColorShader() {
+                return this._getColorShader();
               }
             },
             {
               key: '_getColorShader',
               value: function _getColorShader() {
                 if (!this._defaultColorShader) {
-                  this._defaultColorShader = new _main.default.Shader(this, this._webGL2CompatibilityPrefix('vert', 'mediump') + defaultShaders.normalVert, this._webGL2CompatibilityPrefix('frag', 'mediump') + defaultShaders.basicFrag);
+                  this._defaultColorShader = new _main.default.Shader(this, this._webGL2CompatibilityPrefix('vert', 'mediump') + defaultShaders.normalVert, this._webGL2CompatibilityPrefix('frag', 'mediump') + defaultShaders.basicFrag, {
+                    vertex: {
+                      'void beforeVertex': '() {}',
+                      'vec3 getLocalPosition': '(vec3 position) { return position; }',
+                      'vec3 getWorldPosition': '(vec3 position) { return position; }',
+                      'vec3 getLocalNormal': '(vec3 normal) { return normal; }',
+                      'vec3 getWorldNormal': '(vec3 normal) { return normal; }',
+                      'vec2 getUV': '(vec2 uv) { return uv; }',
+                      'vec4 getVertexColor': '(vec4 color) { return color; }',
+                      'void afterVertex': '() {}'
+                    },
+                    fragment: {
+                      'void beforeFragment': '() {}',
+                      'vec4 getFinalColor': '(vec4 color) { return color; }',
+                      'void afterFragment': '() {}'
+                    }
+                  });
                 }
                 return this._defaultColorShader;
+              }              /**
+     * TODO(dave): un-private this when there is a way to actually override the
+     * shader used for points
+     *
+     * Get the shader used when drawing points with <a href="#/p5/point">`point()`</a>.
+     *
+     * You can call <a href="#/p5.Shader/modify">`pointShader().modify()`</a>
+     * and change any of the following hooks:
+     * - `void beforeVertex`: Called at the start of the vertex shader.
+     * - `vec3 getLocalPosition`: Update the position of vertices before transforms are applied. It takes in `vec3 position` and must return a modified version.
+     * - `vec3 getWorldPosition`: Update the position of vertices after transforms are applied. It takes in `vec3 position` and pust return a modified version.
+     * - `float getPointSize`: Update the size of the point. It takes in `float size` and must return a modified version.
+     * - `void afterVertex`: Called at the end of the vertex shader.
+     * - `void beforeFragment`: Called at the start of the fragment shader.
+     * - `bool shouldDiscard`: Points are drawn inside a square, with the corners discarded in the fragment shader to create a circle. Use this to change this logic. It takes in a `bool willDiscard` and must return a modified version.
+     * - `vec4 getFinalColor`: Update the final color after mixing. It takes in a `vec4 color` and must return a modified version.
+     * - `void afterFragment`: Called at the end of the fragment shader.
+     *
+     * Call `pointShader().inspectHooks()` to see all the possible hooks and
+     * their default implementations.
+     *
+     * @returns {p5.Shader} The `point()` shader
+     * @private()
+     */
+
+            },
+            {
+              key: 'pointShader',
+              value: function pointShader() {
+                return this._getPointShader();
               }
             },
             {
               key: '_getPointShader',
               value: function _getPointShader() {
                 if (!this._defaultPointShader) {
-                  this._defaultPointShader = new _main.default.Shader(this, this._webGL2CompatibilityPrefix('vert', 'mediump') + defaultShaders.pointVert, this._webGL2CompatibilityPrefix('frag', 'mediump') + defaultShaders.pointFrag);
+                  this._defaultPointShader = new _main.default.Shader(this, this._webGL2CompatibilityPrefix('vert', 'mediump') + defaultShaders.pointVert, this._webGL2CompatibilityPrefix('frag', 'mediump') + defaultShaders.pointFrag, {
+                    vertex: {
+                      'void beforeVertex': '() {}',
+                      'vec3 getLocalPosition': '(vec3 position) { return position; }',
+                      'vec3 getWorldPosition': '(vec3 position) { return position; }',
+                      'float getPointSize': '(float size) { return size; }',
+                      'void afterVertex': '() {}'
+                    },
+                    fragment: {
+                      'void beforeFragment': '() {}',
+                      'vec4 getFinalColor': '(vec4 color) { return color; }',
+                      'bool shouldDiscard': '(bool outside) { return outside; }',
+                      'void afterFragment': '() {}'
+                    }
+                  });
                 }
                 return this._defaultPointShader;
+              }
+            },
+            {
+              key: 'baseStrokeShader',
+              value: function baseStrokeShader() {
+                return this._getLineShader();
               }
             },
             {
               key: '_getLineShader',
               value: function _getLineShader() {
                 if (!this._defaultLineShader) {
-                  this._defaultLineShader = new _main.default.Shader(this, this._webGL2CompatibilityPrefix('vert', 'mediump') + defaultShaders.lineVert, this._webGL2CompatibilityPrefix('frag', 'mediump') + defaultShaders.lineFrag);
+                  this._defaultLineShader = new _main.default.Shader(this, this._webGL2CompatibilityPrefix('vert', 'mediump') + defaultShaders.lineVert, this._webGL2CompatibilityPrefix('frag', 'mediump') + defaultShaders.lineFrag, {
+                    vertex: {
+                      'void beforeVertex': '() {}',
+                      'vec3 getLocalPosition': '(vec3 position) { return position; }',
+                      'vec3 getWorldPosition': '(vec3 position) { return position; }',
+                      'float getStrokeWeight': '(float weight) { return weight; }',
+                      'vec2 getLineCenter': '(vec2 center) { return center; }',
+                      'vec2 getLinePosition': '(vec2 position) { return position; }',
+                      'vec4 getVertexColor': '(vec4 color) { return color; }',
+                      'void afterVertex': '() {}'
+                    },
+                    fragment: {
+                      'void beforeFragment': '() {}',
+                      'Inputs getPixelInputs': '(Inputs inputs) { return inputs; }',
+                      'vec4 getFinalColor': '(vec4 color) { return color; }',
+                      'bool shouldDiscard': '(bool outside) { return outside; }',
+                      'void afterFragment': '() {}'
+                    }
+                  });
                 }
                 return this._defaultLineShader;
               }
@@ -141935,14 +143294,14 @@
             },
             {
               key: '_setStrokeUniforms',
-              value: function _setStrokeUniforms(strokeShader) {
-                strokeShader.bindShader();
+              value: function _setStrokeUniforms(baseStrokeShader) {
+                baseStrokeShader.bindShader();
                 // set the uniform values
-                strokeShader.setUniform('uUseLineColor', this._useLineColor);
-                strokeShader.setUniform('uMaterialColor', this.curStrokeColor);
-                strokeShader.setUniform('uStrokeWeight', this.curStrokeWeight);
-                strokeShader.setUniform('uStrokeCap', STROKE_CAP_ENUM[this.curStrokeCap]);
-                strokeShader.setUniform('uStrokeJoin', STROKE_JOIN_ENUM[this.curStrokeJoin]);
+                baseStrokeShader.setUniform('uUseLineColor', this._useLineColor);
+                baseStrokeShader.setUniform('uMaterialColor', this.curStrokeColor);
+                baseStrokeShader.setUniform('uStrokeWeight', this.curStrokeWeight);
+                baseStrokeShader.setUniform('uStrokeCap', STROKE_CAP_ENUM[this.curStrokeCap]);
+                baseStrokeShader.setUniform('uStrokeJoin', STROKE_JOIN_ENUM[this.curStrokeJoin]);
               }
             },
             {
@@ -141971,7 +143330,7 @@
                 fillShader.setUniform('uSpecular', this._useSpecularMaterial);
                 fillShader.setUniform('uEmissive', this._useEmissiveMaterial);
                 fillShader.setUniform('uShininess', this._useShininess);
-                fillShader.setUniform('metallic', this._useMetalness);
+                fillShader.setUniform('uMetallic', this._useMetalness);
                 this._setImageLightUniforms(fillShader);
                 fillShader.setUniform('uUseLighting', this._enableLighting);
                 var pointLightCount = this.pointLightDiffuseColors.length / 3;
@@ -142022,14 +143381,6 @@
                   var diffusedLight = this.getDiffusedTexture(this.activeImageLight);
                   shader.setUniform('environmentMapDiffused', diffusedLight);
                   var specularLight = this.getSpecularTexture(this.activeImageLight);
-                  // In p5js the range of shininess is >= 1,
-                  // Therefore roughness range will be ([0,1]*8)*20 or [0, 160]
-                  // The factor of 8 is because currently the getSpecularTexture
-                  // only calculated 8 different levels of roughness
-                  // The factor of 20 is just to spread up this range so that,
-                  // [1, max] of shininess is converted to [0,160] of roughness
-                  var roughness = 20 / this._useShininess;
-                  shader.setUniform('levelOfDetail', roughness * 8);
                   shader.setUniform('environmentMapSpecular', specularLight);
                 }
               }
@@ -142397,26 +143748,35 @@
         _dereq_('core-js/modules/es.symbol');
         _dereq_('core-js/modules/es.symbol.description');
         _dereq_('core-js/modules/es.symbol.iterator');
+        _dereq_('core-js/modules/es.array.concat');
         _dereq_('core-js/modules/es.array.index-of');
         _dereq_('core-js/modules/es.array.iterator');
         _dereq_('core-js/modules/es.array.slice');
         _dereq_('core-js/modules/es.array.some');
         _dereq_('core-js/modules/es.function.name');
+        _dereq_('core-js/modules/es.object.assign');
         _dereq_('core-js/modules/es.object.keys');
         _dereq_('core-js/modules/es.object.to-string');
+        _dereq_('core-js/modules/es.regexp.exec');
+        _dereq_('core-js/modules/es.regexp.to-string');
         _dereq_('core-js/modules/es.string.iterator');
+        _dereq_('core-js/modules/es.string.split');
         _dereq_('core-js/modules/web.dom-collections.iterator');
         _dereq_('core-js/modules/es.symbol');
         _dereq_('core-js/modules/es.symbol.description');
         _dereq_('core-js/modules/es.symbol.iterator');
+        _dereq_('core-js/modules/es.array.concat');
         _dereq_('core-js/modules/es.array.index-of');
         _dereq_('core-js/modules/es.array.iterator');
         _dereq_('core-js/modules/es.array.slice');
         _dereq_('core-js/modules/es.array.some');
         _dereq_('core-js/modules/es.function.name');
+        _dereq_('core-js/modules/es.object.assign');
         _dereq_('core-js/modules/es.object.keys');
         _dereq_('core-js/modules/es.object.to-string');
+        _dereq_('core-js/modules/es.regexp.exec');
         _dereq_('core-js/modules/es.string.iterator');
+        _dereq_('core-js/modules/es.string.split');
         _dereq_('core-js/modules/web.dom-collections.iterator');
         Object.defineProperty(exports, '__esModule', {
           value: true
@@ -142428,6 +143788,41 @@
           default:
             obj
           };
+        }
+        function _slicedToArray(arr, i) {
+          return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
+        }
+        function _nonIterableRest() {
+          throw new TypeError('Invalid attempt to destructure non-iterable instance');
+        }
+        function _iterableToArrayLimit(arr, i) {
+          if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === '[object Arguments]')) {
+            return;
+          }
+          var _arr = [
+          ];
+          var _n = true;
+          var _d = false;
+          var _e = undefined;
+          try {
+            for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+              _arr.push(_s.value);
+              if (i && _arr.length === i) break;
+            }
+          } catch (err) {
+            _d = true;
+            _e = err;
+          } finally {
+            try {
+              if (!_n && _i['return'] != null) _i['return']();
+            } finally {
+              if (_d) throw _e;
+            }
+          }
+          return _arr;
+        }
+        function _arrayWithHoles(arr) {
+          if (Array.isArray(arr)) return arr;
         }
         function _classCallCheck(instance, Constructor) {
           if (!(instance instanceof Constructor)) {
@@ -142470,6 +143865,32 @@
  * created, it can be used with the <a href="#/p5/shader">shader()</a>
  * function, as in `shader(myShader)`.
  *
+ * A shader can optionally describe *hooks,* which are functions in GLSL that
+ * users may choose to provide to customize the behavior of the shader. For the
+ * vertex or the fragment shader, users can pass in an object where each key is
+ * the type and name of a hook function, and each value is a string with the
+ * parameter list and default implementation of the hook. For example, to let users
+ * optionally run code at the start of the vertex shader, the options object could
+ * include:
+ *
+ * ```js
+ * {
+ *   vertex: {
+ *     'void beforeVertex': '() {}'
+ *   }
+ * }
+ * ```
+ *
+ * Then, in your vertex shader source, you can run a hook by calling a function
+ * with the same name prefixed by `HOOK_`:
+ *
+ * ```glsl
+ * void main() {
+ *   HOOK_beforeVertex();
+ *   // Add the rest ofy our shader code here!
+ * }
+ * ```
+ *
  * Note: <a href="#/p5/createShader">createShader()</a>,
  * <a href="#/p5/createFilterShader">createFilterShader()</a>, and
  * <a href="#/p5/loadShader">loadShader()</a> are the recommended ways to
@@ -142480,6 +143901,10 @@
  * @param {p5.RendererGL} renderer WebGL context for this shader.
  * @param {String} vertSrc source code for the vertex shader program.
  * @param {String} fragSrc source code for the fragment shader program.
+ * @param {Object} [options] An optional object describing how this shader can
+ * be augmented with hooks. It can include:
+ *  - `vertex`: An object describing the available vertex shader hooks.
+ *  - `fragment`: An object describing the available frament shader hooks.
  *
  * @example
  * <div>
@@ -142571,6 +143996,8 @@
 
         _main.default.Shader = /*#__PURE__*/ function () {
           function _class(renderer, vertSrc, fragSrc) {
+            var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {
+            };
             _classCallCheck(this, _class);
             // TODO: adapt this to not take ids, but rather,
             // to take the source for a vertex and fragment shader
@@ -142590,17 +144017,340 @@
             this._bound = false;
             this.samplers = [
             ];
-          }          /**
-   * Creates, compiles, and links the shader based on its
-   * sources for the vertex and fragment shaders (provided
-   * to the constructor). Populates known attributes and
-   * uniforms from the shader.
-   * @method init
-   * @chainable
-   * @private
-   */
-
+            this.hooks = {
+              // These should be passed in by `.modify()` instead of being manually
+              // passed in.
+              // Stores uniforms + default values.
+              uniforms: options.uniforms || {
+              },
+              // Stores custom uniform + helper declarations as a string.
+              declarations: options.declarations,
+              // Stores helper functions to prepend to shaders.
+              helpers: options.helpers || {
+              },
+              // Stores the hook implementations
+              vertex: options.vertex || {
+              },
+              fragment: options.fragment || {
+              },
+              // Stores whether or not the hook implementation has been modified
+              // from the default. This is supplied automatically by calling
+              // yourShader.modify(...).
+              modified: {
+                vertex: options.modified && options.modified.vertex || {
+                },
+                fragment: options.modified && options.modified.fragment || {
+                }
+              }
+            };
+          }
           _createClass(_class, [
+            {
+              key: 'shaderSrc',
+              value: function shaderSrc(src, shaderType) {
+                var main = 'void main';
+                var _src$split = src.split(main),
+                _src$split2 = _slicedToArray(_src$split, 2),
+                preMain = _src$split2[0],
+                postMain = _src$split2[1];
+                var hooks = '';
+                for (var key in this.hooks.uniforms) {
+                  hooks += 'uniform '.concat(key, ';\n');
+                }
+                if (this.hooks.declarations) {
+                  hooks += this.hooks.declarations + '\n';
+                }
+                if (this.hooks[shaderType].declarations) {
+                  hooks += this.hooks[shaderType].declarations + '\n';
+                }
+                for (var hookDef in this.hooks.helpers) {
+                  hooks += ''.concat(hookDef).concat(this.hooks.helpers[hookDef], '\n');
+                }
+                for (var _hookDef in this.hooks[shaderType]) {
+                  if (_hookDef === 'declarations') continue;
+                  var _hookDef$split = _hookDef.split(' '),
+                  _hookDef$split2 = _slicedToArray(_hookDef$split, 2),
+                  hookType = _hookDef$split2[0],
+                  hookName = _hookDef$split2[1]; // Add a #define so that if the shader wants to use preprocessor directives to
+                  // optimize away the extra function calls in main, it can do so
+                  if (this.hooks.modified[shaderType][_hookDef]) {
+                    hooks += '#define AUGMENTED_HOOK_' + hookName + '\n';
+                  }
+                  hooks += hookType + ' HOOK_' + hookName + this.hooks[shaderType][_hookDef] + '\n';
+                }
+                return preMain + hooks + main + postMain;
+              }              /**
+     * Shaders are written in <a href="https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/GLSL_Shaders">GLSL</a>, but
+     * there are different versions of GLSL that it might be written in.
+     *
+     * Calling this method on a `p5.Shader` will return the GLSL version it uses, either `100 es` or `300 es`.
+     * WebGL 1 shaders will only use `100 es`, and WebGL 2 shaders may use either.
+     *
+     * @returns {String} The GLSL version used by the shader.
+     */
+
+            },
+            {
+              key: 'version',
+              value: function version() {
+                var match = /#version (.+)$/.exec(this.vertSrc());
+                if (match) {
+                  return match[1];
+                } else {
+                  return '100 es';
+                }
+              }
+            },
+            {
+              key: 'vertSrc',
+              value: function vertSrc() {
+                return this.shaderSrc(this._vertSrc, 'vertex');
+              }
+            },
+            {
+              key: 'fragSrc',
+              value: function fragSrc() {
+                return this.shaderSrc(this._fragSrc, 'fragment');
+              }              /**
+     * Logs the hooks available in this shader, and their current implementation.
+     *
+     * Each shader may let you override bits of its behavior. Each bit is called
+     * a *hook.* A hook is either for the *vertex* shader, if it affects the
+     * position of vertices, or in the *fragment* shader, if it affects the pixel
+     * color. This method logs those values to the console, letting you know what
+     * you are able to use in a call to
+     * <a href="#/p5.Shader/modify">`modify()`</a>.
+     *
+     * For example, this shader will produce the following output:
+     *
+     * ```js
+     * myShader = baseMaterialShader().modify({
+     *   declarations: 'uniform float time;',
+     *   'vec3 getWorldPosition': `(vec3 pos) {
+     *     pos.y += 20. * sin(time * 0.001 + pos.x * 0.05);
+     *     return pos;
+     *   }`
+     * });
+     * myShader.inspectHooks();
+     * ```
+     *
+     * ```
+     * ==== Vertex shader hooks: ====
+     * void beforeVertex() {}
+     * vec3 getLocalPosition(vec3 position) { return position; }
+     * [MODIFIED] vec3 getWorldPosition(vec3 pos) {
+     *       pos.y += 20. * sin(time * 0.001 + pos.x * 0.05);
+     *       return pos;
+     *     }
+     * vec3 getLocalNormal(vec3 normal) { return normal; }
+     * vec3 getWorldNormal(vec3 normal) { return normal; }
+     * vec2 getUV(vec2 uv) { return uv; }
+     * vec4 getVertexColor(vec4 color) { return color; }
+     * void afterVertex() {}
+     *
+     * ==== Fragment shader hooks: ====
+     * void beforeFragment() {}
+     * Inputs getPixelInputs(Inputs inputs) { return inputs; }
+     * vec4 combineColors(ColorComponents components) {
+     *                 vec4 color = vec4(0.);
+     *                 color.rgb += components.diffuse * components.baseColor;
+     *                 color.rgb += components.ambient * components.ambientColor;
+     *                 color.rgb += components.specular * components.specularColor;
+     *                 color.rgb += components.emissive;
+     *                 color.a = components.opacity;
+     *                 return color;
+     *               }
+     * vec4 getFinalColor(vec4 color) { return color; }
+     * void afterFragment() {}
+     * ```
+     *
+     * @method inspectHooks
+     * @beta
+     */
+
+            },
+            {
+              key: 'inspectHooks',
+              value: function inspectHooks() {
+                console.log('==== Vertex shader hooks: ====');
+                for (var key in this.hooks.vertex) {
+                  console.log((this.hooks.modified.vertex[key] ? '[MODIFIED] ' : '') + key + this.hooks.vertex[key]);
+                }
+                console.log('');
+                console.log('==== Fragment shader hooks: ====');
+                for (var _key in this.hooks.fragment) {
+                  console.log((this.hooks.modified.fragment[_key] ? '[MODIFIED] ' : '') + _key + this.hooks.fragment[_key]);
+                }
+                console.log('');
+                console.log('==== Helper functions: ====');
+                for (var _key2 in this.hooks.helpers) {
+                  console.log(_key2 + this.hooks.helpers[_key2]);
+                }
+              }              /**
+     * Returns a new shader, based on the original, but with custom snippets
+     * of shader code replacing default behaviour.
+     *
+     * Each shader may let you override bits of its behavior. Each bit is called
+     * a *hook.* A hook is either for the *vertex* shader, if it affects the
+     * position of vertices, or in the *fragment* shader, if it affects the pixel
+     * color. You can inspect the different hooks available by calling
+     * <a href="#/p5.Shader/inspectHooks">`yourShader.inspectHooks()`</a>. You can
+     * also read the reference for the default material, normal material, color, line, and point shaders to
+     * see what hooks they have available.
+     *
+     * `modify()` takes one parameter, `hooks`, an object with the hooks you want
+     * to override. Each key of the `hooks` object is the name
+     * of a hook, and the value is a string with the GLSL code for your hook.
+     *
+     * If you supply functions that aren't existing hooks, they will get added at the start of
+     * the shader as helper functions so that you can use them in your hooks.
+     *
+     * To add new <a href="#/p5.Shader/setUniform">uniforms</a> to your shader, you can pass in a `uniforms` object containing
+     * the type and name of the uniform as the key, and a default value or function returning
+     * a default value as its value. These will be automatically set when the shader is set
+     * with `shader(yourShader)`.
+     *
+     * You can also add a `declarations` key, where the value is a GLSL string declaring
+     * custom uniform variables, globals, and functions shared
+     * between hooks. To add declarations just in a vertex or fragment shader, add
+     * `vertexDeclarations` and `fragmentDeclarations` keys.
+     *
+     * @method modify
+     * @beta
+     * @param {Object} [hooks] The hooks in the shader to replace.
+     * @returns {p5.Shader}
+     *
+     * @example
+     * <div modernizr='webgl'>
+     * <code>
+     * let myShader;
+     *
+     * function setup() {
+     *   createCanvas(200, 200, WEBGL);
+     *   myShader = baseMaterialShader().modify({
+     *     uniforms: {
+     *       'float time': () => millis()
+     *     },
+     *     'vec3 getWorldPosition': `(vec3 pos) {
+     *       pos.y += 20. * sin(time * 0.001 + pos.x * 0.05);
+     *       return pos;
+     *     }`
+     *   });
+     * }
+     *
+     * function draw() {
+     *   background(255);
+     *   shader(myShader);
+     *   lights();
+     *   noStroke();
+     *   fill('red');
+     *   sphere(50);
+     * }
+     * </code>
+     * </div>
+     *
+     * @example
+     * <div modernizr='webgl'>
+     * <code>
+     * let myShader;
+     *
+     * function setup() {
+     *   createCanvas(200, 200, WEBGL);
+     *   myShader = baseMaterialShader().modify({
+     *     // Manually specifying a uniform
+     *     declarations: 'uniform float time;',
+     *     'vec3 getWorldPosition': `(vec3 pos) {
+     *       pos.y += 20. * sin(time * 0.001 + pos.x * 0.05);
+     *       return pos;
+     *     }`
+     *   });
+     * }
+     *
+     * function draw() {
+     *   background(255);
+     *   shader(myShader);
+     *   myShader.setUniform('time', millis());
+     *   lights();
+     *   noStroke();
+     *   fill('red');
+     *   sphere(50);
+     * }
+     * </code>
+     * </div>
+     */
+
+            },
+            {
+              key: 'modify',
+              value: function modify(hooks) {
+                _main.default._validateParameters('p5.Shader.modify', arguments);
+                var newHooks = {
+                  vertex: {
+                  },
+                  fragment: {
+                  },
+                  helpers: {
+                  }
+                };
+                for (var key in hooks) {
+                  if (key === 'declarations') continue;
+                  if (key === 'uniforms') continue;
+                  if (key === 'vertexDeclarations') {
+                    newHooks.vertex.declarations = (newHooks.vertex.declarations || '') + '\n' + hooks[key];
+                  } else if (key === 'fragmentDeclarations') {
+                    newHooks.fragment.declarations = (newHooks.fragment.declarations || '') + '\n' + hooks[key];
+                  } else if (this.hooks.vertex[key]) {
+                    newHooks.vertex[key] = hooks[key];
+                  } else if (this.hooks.fragment[key]) {
+                    newHooks.fragment[key] = hooks[key];
+                  } else {
+                    newHooks.helpers[key] = hooks[key];
+                  }
+                }
+                var modifiedVertex = Object.assign({
+                }, this.hooks.modified.vertex);
+                var modifiedFragment = Object.assign({
+                }, this.hooks.modified.fragment);
+                for (var _key3 in newHooks.vertex || {
+                }) {
+                  if (_key3 === 'declarations') continue;
+                  modifiedVertex[_key3] = true;
+                }
+                for (var _key4 in newHooks.fragment || {
+                }) {
+                  if (_key4 === 'declarations') continue;
+                  modifiedFragment[_key4] = true;
+                }
+                return new _main.default.Shader(this._renderer, this._vertSrc, this._fragSrc, {
+                  declarations: (this.hooks.declarations || '') + '\n' + (hooks.declarations || ''),
+                  uniforms: Object.assign({
+                  }, this.hooks.uniforms, hooks.uniforms || {
+                  }),
+                  fragment: Object.assign({
+                  }, this.hooks.fragment, newHooks.fragment || {
+                  }),
+                  vertex: Object.assign({
+                  }, this.hooks.vertex, newHooks.vertex || {
+                  }),
+                  helpers: Object.assign({
+                  }, this.hooks.helpers, newHooks.helpers || {
+                  }),
+                  modified: {
+                    vertex: modifiedVertex,
+                    fragment: modifiedFragment
+                  }
+                });
+              }              /**
+     * Creates, compiles, and links the shader based on its
+     * sources for the vertex and fragment shaders (provided
+     * to the constructor). Populates known attributes and
+     * uniforms from the shader.
+     * @method init
+     * @chainable
+     * @private
+     */
+
+            },
             {
               key: 'init',
               value: function init() {
@@ -142615,20 +144365,30 @@
                   // 3. linking the vertex and fragment shaders
                   this._vertShader = gl.createShader(gl.VERTEX_SHADER);
                   //load in our default vertex shader
-                  gl.shaderSource(this._vertShader, this._vertSrc);
+                  gl.shaderSource(this._vertShader, this.vertSrc());
                   gl.compileShader(this._vertShader);
                   // if our vertex shader failed compilation?
                   if (!gl.getShaderParameter(this._vertShader, gl.COMPILE_STATUS)) {
-                    _main.default._friendlyError('Yikes! An error occurred compiling the vertex shader:'.concat(gl.getShaderInfoLog(this._vertShader)));
+                    var glError = gl.getShaderInfoLog(this._vertShader);
+                    if (typeof IS_MINIFIED !== 'undefined') {
+                      console.error(glError);
+                    } else {
+                      _main.default._friendlyError('Yikes! An error occurred compiling the vertex shader:'.concat(glError));
+                    }
                     return null;
                   }
                   this._fragShader = gl.createShader(gl.FRAGMENT_SHADER);
                   //load in our material frag shader
-                  gl.shaderSource(this._fragShader, this._fragSrc);
+                  gl.shaderSource(this._fragShader, this.fragSrc());
                   gl.compileShader(this._fragShader);
                   // if our frag shader failed compilation?
                   if (!gl.getShaderParameter(this._fragShader, gl.COMPILE_STATUS)) {
-                    _main.default._friendlyError('Darn! An error occurred compiling the fragment shader:'.concat(gl.getShaderInfoLog(this._fragShader)));
+                    var _glError = gl.getShaderInfoLog(this._fragShader);
+                    if (typeof IS_MINIFIED !== 'undefined') {
+                      console.error(_glError);
+                    } else {
+                      _main.default._friendlyError('Darn! An error occurred compiling the fragment shader:'.concat(_glError));
+                    }
                     return null;
                   }
                   this._glProgram = gl.createProgram();
@@ -142642,6 +144402,29 @@
                   this._loadUniforms();
                 }
                 return this;
+              }              /**
+     * @private
+     */
+
+            },
+            {
+              key: 'setDefaultUniforms',
+              value: function setDefaultUniforms() {
+                for (var key in this.hooks.uniforms) {
+                  var _key$split = key.split(' '),
+                  _key$split2 = _slicedToArray(_key$split, 2),
+                  name = _key$split2[1];
+                  var initializer = this.hooks.uniforms[key];
+                  var value = void 0;
+                  if (initializer instanceof Function) {
+                    value = initializer();
+                  } else {
+                    value = initializer;
+                  }
+                  if (value !== undefined && value !== null) {
+                    this.setUniform(name, value);
+                  }
+                }
               }              /**
      * Copies the shader from one drawing context to another.
      *
@@ -143580,14 +145363,19 @@
       },
       {
         '../core/main': 306,
+        'core-js/modules/es.array.concat': 171,
         'core-js/modules/es.array.index-of': 182,
         'core-js/modules/es.array.iterator': 183,
         'core-js/modules/es.array.slice': 187,
         'core-js/modules/es.array.some': 188,
         'core-js/modules/es.function.name': 192,
+        'core-js/modules/es.object.assign': 201,
         'core-js/modules/es.object.keys': 207,
         'core-js/modules/es.object.to-string': 208,
+        'core-js/modules/es.regexp.exec': 213,
+        'core-js/modules/es.regexp.to-string': 214,
         'core-js/modules/es.string.iterator': 218,
+        'core-js/modules/es.string.split': 224,
         'core-js/modules/es.symbol': 230,
         'core-js/modules/es.symbol.description': 228,
         'core-js/modules/es.symbol.iterator': 229,
@@ -143922,7 +145710,10 @@
                   textureData = this.src.canvas;
                 } else if (this.isSrcMediaElement || this.isSrcP5Graphics || this.isSrcP5Renderer || this.isSrcHTMLElement) {
                   // if param is a video HTML element
-                  textureData = this.src.elt;
+                  if (this.src._ensureCanvas) {
+                    this.src._ensureCanvas();
+                  }
+                  textureData = this.src.canvas || this.src.elt;
                 } else if (this.isImageData) {
                   textureData = this.src;
                 }
@@ -144434,6 +146225,8 @@
         _main.default.RendererGL.prototype._applyTextProperties = function () {
           //@TODO finish implementation
           //console.error('text commands not yet implemented in webgl');
+          this._setProperty('_textAscent', null);
+          this._setProperty('_textDescent', null);
         };
         _main.default.RendererGL.prototype.textWidth = function (s) {
           if (this._isOpenType()) {
