@@ -1,0 +1,49 @@
+function setup() {
+  createCanvas(500, 600);
+}
+
+function draw() {
+  background(180, 45, 78);
+
+  // Head
+  strokeWeight(10);
+  fill(876);  // Replace this with a valid color like fill(255);
+  point(100, 75);
+  point(285, 75);
+  triangle(240, 230, 303, 30, 30, 30);
+  
+  // Eyes
+  fill(255);  // Ensure the eyes are white
+  circle(75, 60, 50);
+  circle(150, 60, 50);
+  fill(0);  // Black for the pupils
+  
+  // Smoke
+  line(130, 175, 175, 50);
+  
+  // Body
+  fill(100, 24, 120);
+  rect(200, 185, 100, 150);
+  
+  // Decoration
+  fill(255);
+  triangle(1, 220, 250, 120, 180, 220);
+  
+  // Right arm
+  fill(10, 24, 120);
+  rect(300, 195, 100, 10);
+  
+  // Left arm
+  rect(100, 195, 100, 10);
+  
+  // Left leg
+  rect(200, 335, 10, 20);
+  
+  // Right leg
+  rect(290, 335, 10, 20);
+  
+  // Text
+  fill(0);
+  textSize(25);
+  text("Django Behunin", 175, 500);
+}
