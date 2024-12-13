@@ -1,0 +1,163 @@
+// Django Behunin
+// Professor Cassens
+// Arrays Week-13
+// 11-25-24
+
+// Character position
+var characterX = 100;
+var characterY = 100;
+
+// Obstacle arrays
+var obstacleXs = [];
+var obstacleYs = [];
+var obstacleWidths = [];
+var obstacleHeights = [];
+var obstacleSpeedsX = [];
+var obstacleSpeedsY = [];
+var obstacleColors = [];  // Array to store obstacle colors
+
+// Exit position
+var exitX, exitY;
+
+// Win condition
+var gameWon = false;
+
+function setup() {
+  createCanvas(600, 600);
+
+  // Create obstacles with random colors
+  for (var i = 0; i < 5; i++) {
+    obstacleXs.push(random(width));
+    obstacleYs.push(random(height));
+    obstacleWidths.push(random(20, 50));
+    obstacleHeights.push(random(20, 50));
+    obstacleSpeedsX.push(random(-2, 2));
+    obstacleSpeedsY.push(random(-2, 2));
+
+    // Randomly assign a color to each obstacle
+    obstacleColors.push(randomColor());
+  }
+
+  // Set exit position
+  exitX = width - 50;
+  exitY = height - 50;
+}
+
+function draw() {
+  // Set the background color to dark grey
+  background(50); // Dark grey background
+
+  if (gameWon) {
+    textSize(32);
+    fill(0);
+    textAlign(CENTER, CENTER);
+    text("You Win!", width / 2, height / 2);
+    return;
+  }
+
+  // Draw exit (goal) as green
+  fill(0, 255, 0);
+  ellipse(exitX, exitY, 40, 40);
+
+  // Draw obstacles with different colors and move them
+  for (var i = 0; i < obstacleXs.length; i++) {
+    fill(obstacleColors[i]); // Set each obstacle's color
+    noStroke();
+    ellipse(obstacleXs[i], obstacleYs[i], obstacleWidths[i], obstacleHeights[i]);
+
+    // Move obstacles
+    obstacleXs[i] += obstacleSpeedsX[i];
+    obstacleYs[i] += obstacleSpeedsY[i];
+
+    // Wrap obstacles around the screen
+    if (obstacleXs[i] > width) obstacleXs[i] = 0;
+    if (obstacleXs[i] < 0) obstacleXs[i] = width;
+    if (obstacleYs[i] > height) obstacleYs[i] = 0;
+    if (obstacleYs[i] < 0) obstacleYs[i] = height;
+  }
+
+  // Draw the player as red
+  fill(255, 0, 0); // Red player
+  ellipse(characterX, characterY, 25, 25);
+
+  // Check if character reaches exit
+  if (dist(characterX, characterY, exitX, exitY) < 20) {
+    gameWon = true;
+  }
+
+  // Handle character movement with border checking
+  if (keyIsDown(87) && characterY > 25) { // W
+    characterY -= 10;
+  }
+  if (keyIsDown(83) && characterY < height - 25) { // S
+    characterY += 10;
+  }
+  if (keyIsDown(65) && characterX > 25) { // A
+    characterX -= 10;
+  }
+  if (keyIsDown(68) && characterX < width - 25) { // D
+    characterX += 10;
+  }
+
+  // Check for collision with obstacles
+  for (var i = 0; i < obstacleXs.length; i++) {
+    if (checkCollision(characterX, characterY, obstacleXs[i], obstacleYs[i], obstacleWidths[i], obstacleHeights[i])) {
+      // Reset player position if collision detected
+      characterX = width / 2;
+      characterY = height / 2;
+    }
+  }
+
+  // Create the borders
+  createBorders(10); // 10px thick border
+}
+
+// Check if two rectangles (player and obstacle) are colliding
+function checkCollision(x1, y1, x2, y2, w2, h2) {
+  return (x1 > x2 - w2 / 2 && x1 < x2 + w2 / 2 &&
+          y1 > y2 - h2 / 2 && y1 < y2 + h2 / 2);
+}
+
+// Function to return a random color for obstacles
+function randomColor() {
+  // Randomly choose a color that doesn't conflict with the dark grey background
+  var colors = [
+    color(255, 0, 0), // Red
+    color(0, 0, 255), // Blue
+    color(255, 255, 0), // Yellow
+    color(255, 165, 0), // Orange
+    color(128, 0, 128), // Purple
+    color(0, 255, 255) // Cyan
+  ];
+  
+  return random(colors); // Return a random color from the list
+}
+
+function mousePressed() {
+  // Add a new non-moving obstacle at the mouse position
+  obstacleXs.push(mouseX);
+  obstacleYs.push(mouseY);
+  obstacleWidths.push(random(20, 50));
+  obstacleHeights.push(random(20, 50));
+  obstacleSpeedsX.push(0);
+  obstacleSpeedsY.push(0);
+
+  // Randomly assign a color to the new obstacle
+  obstacleColors.push(randomColor());
+}
+
+function createBorders(thickness) {
+  // Draw top border
+  fill(0); // Black border
+  noStroke();
+  rect(0, 0, width, thickness);
+
+  // Draw left border
+  rect(0, 0, thickness, height);
+
+  // Draw bottom border
+  rect(0, height - thickness, width, thickness);
+
+  // Draw right border
+  rect(width - thickness, 0, thickness, height);
+}
