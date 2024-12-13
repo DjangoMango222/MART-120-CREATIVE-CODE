@@ -1,0 +1,143 @@
+// Homework 10 - Django Behunin
+
+let x1, x2, y1, y2, diagonalX, diagonalY;
+let x1Speed, x2Speed, y1Speed, y2Speed, diagonalSpeedX, diagonalSpeedY;
+
+let titleSize = 25;
+let titleGrow = true;
+let titleX = 175, titleY = 500;
+let titleSpeed = 2;
+let titleDirection = 0; // 0: right, 1: down, 2: left, 3: up
+
+let headSize = 50;
+let headGrow = true;
+
+let shapeColor1, shapeColor2, shapeColor3, shapeColor4, diagonalColor;
+
+function setup() {
+  createCanvas(500, 600);
+
+  // Initialize positions
+  x1 = 30;
+  x2 = 50;
+  y1 = 40;
+  y2 = 60;
+  diagonalX = 200;
+  diagonalY = 200;
+
+  // Initialize random speeds in setup
+  x1Speed = random(0.5, 2);
+  x2Speed = random(1, 3);
+  y1Speed = random(1, 2.5);
+  y2Speed = random(0.5, 1.5);
+  diagonalSpeedX = random(1, 2);
+  diagonalSpeedY = random(1, 2);
+
+  // Initialize random colors for each shape
+  shapeColor1 = color(random(255), random(255), random(255));
+  shapeColor2 = color(random(255), random(255), random(255));
+  shapeColor3 = color(random(255), random(255), random(255));
+  shapeColor4 = color(random(255), random(255), random(255));
+  diagonalColor = color(random(255), random(255), random(255));
+}
+
+function draw() {
+  background(180, 45, 78);
+  
+  // Shapes moving along the x-axis
+  fill(shapeColor1);
+  circle(x1, 40, 50);
+  fill(shapeColor2);
+  circle(x2, 100, 50);
+  
+  // Shapes moving along the y-axis
+  fill(shapeColor3);
+  circle(60, y1, 50);
+  fill(shapeColor4);
+  circle(100, y2, 50);
+
+  // Diagonal movement
+  fill(diagonalColor);
+  circle(diagonalX, diagonalY, 50);
+
+  // Update positions with speeds
+  x1 += x1Speed;
+  x2 -= x2Speed;
+  y1 += y1Speed;
+  y2 -= y2Speed;
+  diagonalX += diagonalSpeedX;
+  diagonalY += diagonalSpeedY;
+
+  // Reverse directions on boundary and change color
+  if (x1 > width || x1 < 0) { x1Speed *= -1; shapeColor1 = color(random(255), random(255), random(255)); }
+  if (x2 > width || x2 < 0) { x2Speed *= -1; shapeColor2 = color(random(255), random(255), random(255)); }
+  if (y1 > height || y1 < 0) { y1Speed *= -1; shapeColor3 = color(random(255), random(255), random(255)); }
+  if (y2 > height || y2 < 0) { y2Speed *= -1; shapeColor4 = color(random(255), random(255), random(255)); }
+  if (diagonalX > width || diagonalX < 0) { diagonalSpeedX *= -1; diagonalColor = color(random(255), random(255), random(255)); }
+  if (diagonalY > height || diagonalY < 0) { diagonalSpeedY *= -1; diagonalColor = color(random(255), random(255), random(255)); }
+
+  // Head - grows and shrinks
+  strokeWeight(10);
+  fill(876);
+  ellipse(200, 100, headSize, headSize);
+  if (headGrow) {
+    headSize += 0.5;
+    if (headSize >= 70) headGrow = false;
+  } else {
+    headSize -= 0.5;
+    if (headSize <= 50) headGrow = true;
+  }
+
+  // Eyes
+  fill(255);
+  circle(175, 90, 20);
+  circle(225, 90, 20);
+
+  // Smoke
+  line(130, 175, 175, 50);
+
+  // Body
+  fill(100, 24, 120);
+  rect(200, 185, 100, 150);
+
+  // Decoration
+  fill(255);
+  triangle(1, 220, 250, 120, 180, 220);
+
+  // Right arm
+  fill(10, 24, 120);
+  rect(300, 195, 100, 10);
+
+  // Left arm
+  rect(100, 195, 100, 10);
+
+  // Legs
+  rect(200, 335, 10, 20); // Left leg
+  rect(290, 335, 10, 20); // Right leg
+
+  // Animate title moving in a square pattern
+  fill(0);
+  textSize(titleSize);
+  text("Django Behunin", titleX, titleY);
+
+  // Update title position in a square pattern
+  if (titleDirection === 0) titleX += titleSpeed;
+  else if (titleDirection === 1) titleY += titleSpeed;
+  else if (titleDirection === 2) titleX -= titleSpeed;
+  else if (titleDirection === 3) titleY -= titleSpeed;
+
+  // Change direction at edges of square path
+  if (titleX >= 325 && titleDirection === 0) titleDirection = 1;
+  if (titleY >= 550 && titleDirection === 1) titleDirection = 2;
+  if (titleX <= 175 && titleDirection === 2) titleDirection = 3;
+  if (titleY <= 500 && titleDirection === 3) titleDirection = 0;
+
+  // Update title size
+  if (titleGrow) {
+    titleSize += 0.5;
+    if (titleSize >= 30) titleGrow = false;
+  } else {
+    titleSize -= 0.5;
+    if (titleSize <= 25) titleGrow = true;
+  }
+}
